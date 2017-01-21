@@ -16,20 +16,25 @@ public class App
 {
 	
 	public static final String[] functions = { "Encryption", "Decryption"};
+	FileHolder mFileHolder;
 
 	
     public static void main( String[] args )
     {
-        JFrame frame = new JFrame("Path InputDialog Example");
-        String path = JOptionPane.showInputDialog(frame, "Path :");
+		JFrame frame = new JFrame("Path InputDialog Example");
+        String choose = (String) JOptionPane.showInputDialog(frame, 
+                "What do you wish to do ?",
+                "Functions:",
+                JOptionPane.QUESTION_MESSAGE, null, functions, functions[0]);
+            System.out.printf("Function is %s.\n", choose);
 
-
-//        String choose = (String) JOptionPane.showInputDialog(frame, 
-//                "What do you wish to do ?",
-//                "Functions:",
-//                JOptionPane.QUESTION_MESSAGE, null, functions, functions[0]);
-//            System.out.printf("Function is %s.\n", choose);
-
+            
+        if (choose.equals(functions[0])){
+        	//Encryption
+        }
+        else{
+        	//Encryption
+        }
         
         
     }
