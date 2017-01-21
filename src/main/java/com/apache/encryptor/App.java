@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import org.mockito.Mockito.*;
 
 /**
  * Hello world!
