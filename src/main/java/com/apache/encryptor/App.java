@@ -1,5 +1,7 @@
 package com.apache.encryptor;
 
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -17,16 +19,20 @@ public class App
     {
         JFrame frame = new JFrame("Path InputDialog Example");
         String path = JOptionPane.showInputDialog(frame, "Path :");
-        System.out.println("Path is : " + path);
-        //String choose = JOptionPane.showInputDialog(frame, " :");
-        
-        String choose = (String) JOptionPane.showInputDialog(frame, 
-                "What do you wish to do ?",
-                "Functions:",
-                JOptionPane.QUESTION_MESSAGE, null, functions, functions[0]);
 
-            // favoritePizza will be null if the user clicks Cancel
-            System.out.printf("Function is %s.\n", choose);
+        File file = new File(path);
+        System.out.println(file.isDirectory());
+        while (file.isDirectory() || !file.exists()){
+        	path = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
+        	file = new File(path);
+        }
+
+                System.out.println("Path is : " + path +"\nIsDirectory: "+file.isDirectory());
+//        String choose = (String) JOptionPane.showInputDialog(frame, 
+//                "What do you wish to do ?",
+//                "Functions:",
+//                JOptionPane.QUESTION_MESSAGE, null, functions, functions[0]);
+//            System.out.printf("Function is %s.\n", choose);
 
         
         
