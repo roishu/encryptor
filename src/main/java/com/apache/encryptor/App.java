@@ -4,10 +4,12 @@ import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.mockito.Mockito.*;
+import org.mockito.Mockito.*; //check
 
 /**
- * Hello world!
+ * Roi Shukrun
+ * T.Z : 313454464
+ * M.I : 8079738
  *
  */
 public class App 
@@ -21,14 +23,7 @@ public class App
         JFrame frame = new JFrame("Path InputDialog Example");
         String path = JOptionPane.showInputDialog(frame, "Path :");
 
-        File file = new File(path);
-        System.out.println(file.isDirectory());
-        while (file.isDirectory() || !file.exists()){
-        	path = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
-        	file = new File(path);
-        }
 
-                System.out.println("Path is : " + path +"\nIsDirectory: "+file.isDirectory());
 //        String choose = (String) JOptionPane.showInputDialog(frame, 
 //                "What do you wish to do ?",
 //                "Functions:",
