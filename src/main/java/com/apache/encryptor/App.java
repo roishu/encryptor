@@ -30,10 +30,10 @@ public class App
 
             
         if (choose.equals(functions[0])){
-        	//Encryption
+        	//encryption
         }
         else{
-        	//Encryption
+        	//decryption
         }
         
         
