@@ -21,11 +21,11 @@ public class Test1 {
 			String key = "squirrel123"; // needs to be at least 8 characters for DES
 
 			FileInputStream fis = new FileInputStream(new File ("C:/Users/Roi/Documents/hello.txt"));
-			FileOutputStream fos = new FileOutputStream("encrypted.txt");
+			FileOutputStream fos = new FileOutputStream("C:/Users/Roi/Documents/encrypted.txt");
 			encrypt(key, fis, fos);
 
-			FileInputStream fis2 = new FileInputStream("encrypted.txt");
-			FileOutputStream fos2 = new FileOutputStream("decrypted.txt");
+			FileInputStream fis2 = new FileInputStream("C:/Users/Roi/Documents/encrypted.txt");
+			FileOutputStream fos2 = new FileOutputStream("C:/Users/Roi/Documents/decrypted.txt");
 			decrypt(key, fis2, fos2);
 		} catch (Throwable e) {
 			e.printStackTrace();
