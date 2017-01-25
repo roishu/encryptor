@@ -1,6 +1,13 @@
 package com.apache.encryptor;
 
 public class CaesarCipher implements CryptographicUtilities {
+	
+	public CaesarCipher(){
+		/*
+		 * 
+		 */
+	}
+	
 	@Override
 	public String encrypt(String str, int keyLength) 
 	{

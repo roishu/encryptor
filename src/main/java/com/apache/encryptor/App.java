@@ -1,10 +1,13 @@
 package com.apache.encryptor;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
@@ -33,58 +36,40 @@ public class App
 	
     public static void main( String[] args )  throws Exception
     {
-//		JFrame frame = new JFrame("Path InputDialog Example");
-//        String choose = (String) JOptionPane.showInputDialog(frame, 
-//                "What do you wish to do ?",
-//                "Functions:",
-//                JOptionPane.QUESTION_MESSAGE, null, functions, functions[0]);
-//            System.out.printf("Function is %s.\n", choose);
-//
-//            
-//        if (choose.equals(functions[0])){
-//        	//encryption
-//        }
-//        else{
-//        	//decryption
-//        }
 		//gets a string to encrypt
-//		String str = (JOptionPane.showInputDialog("Input Data to encypt:"));
-//		
-//		//gets a key 
-//		String key = (JOptionPane.showInputDialog("Input the key:"));
-//		int keyLength=key.length();
-//		
-//		
-//	
-//		
-//		//prints encryption
-//		String encrypted = CryptographicUtilities.encrypt(str, keyLength);
-//		System.out.println("Encrypted:" + encrypted);
-//
-//		//prints decryption
-//		String decrypted = CryptographicUtilities.decrypt(encrypted, keyLength);
-//		System.out.println("Decrypted:" + decrypted);
-//		
-//		//prints key
-//		System.out.println("Key:" + key);
-    	
-        KeyGenerator kg = KeyGenerator.getInstance("DES");
-        kg.init(new SecureRandom());
-        SecretKey key = kg.generateKey();
-        SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
-        Class spec = Class.forName("javax.crypto.spec.DESKeySpec");
-        DESKeySpec ks = (DESKeySpec) skf.getKeySpec(key, spec);
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("‪C:\\Users\\Roi\\Documents\\hello.txt"));
-        oos.writeObject(ks.getKey());
+    	CaesarCipher cipher = new CaesarCipher();
+		String str = new String(Files.readAllBytes(Paths.get("C:/Users/Roi/Documents/hello.txt"))); 
+		str += "ROI IS THE KING";
+		//(JOptionPane.showInputDialog("Input Data to encypt:"));
+		
+		//gets a key 
+		String key = (JOptionPane.showInputDialog("Input the key:"));
+		int keyLength=key.length();
+		
+		
+	
+		
+		//prints encryption
+		String encrypted = cipher.encrypt(str, keyLength);
+		System.out.println("Encrypted:" + encrypted);
 
-        Cipher c = Cipher.getInstance("DES/CFB8/NoPadding");
-        c.init(Cipher.ENCRYPT_MODE, key);
-        CipherOutputStream cos = new CipherOutputStream(new FileOutputStream("C:\\Users\\Roi\\Documents\\hello.txt"), c);
-        PrintWriter pw = new PrintWriter(new OutputStreamWriter(cos));
-        pw.println("Stand and unfold yourself");
-        pw.close();
-        oos.writeObject(c.getIV());
-        oos.close();
+		//prints decryption
+		String decrypted = cipher.decrypt(encrypted, keyLength);
+		System.out.println("Decrypted:" + decrypted);
+		
+		//prints key
+		System.out.println("Key:" + key);
+    	
+    	//String key = "squirrel123"; // needs to be at least 8 characters for DES
+
+		//FileInputStream fis = new FileInputStream(new File ("C:/Users/Roi/Documents/hello.txt"));
+		FileOutputStream fos = new FileOutputStream("C:/Users/Roi/Documents/encrypted2.txt");
+		byte data[] = encrypted.getBytes();
+		fos.write(data);
+		fos.close();
+
+    			
+    			
         
     }
 }
