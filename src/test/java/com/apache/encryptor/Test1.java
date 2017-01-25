@@ -15,6 +15,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
 public class Test1 {
+	//not a real test
 
 	public static void main(String[] args) {
 		try {

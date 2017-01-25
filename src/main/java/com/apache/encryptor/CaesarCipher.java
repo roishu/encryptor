@@ -4,7 +4,7 @@ public class CaesarCipher implements CryptographicUtilities {
 	
 	public CaesarCipher(){
 		/*
-		 * 
+		 * key ?
 		 */
 	}
 	

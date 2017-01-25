@@ -44,7 +44,7 @@ public class App
 		
 		//gets a key 
 		String key = (JOptionPane.showInputDialog("Input the key:"));
-		int keyLength=key.length();
+		int keyLength=key.length(); //
 		
 		
 	
