@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 public class FileHolder implements EncryptionManager {
 	private File file;
+	private CaesarCipher caesarChiper;
 
 	public FileHolder() {
 		// TODO Auto-generated constructor stub
