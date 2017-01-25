@@ -30,7 +30,6 @@ public class App
 {
 	
 	public static final String[] functions = { "Encryption", "Decryption"};
-	private FileHolder mFileHolder;
 	
 
 	
@@ -38,7 +37,10 @@ public class App
     {
 		//gets a string to encrypt
     	CaesarCipher cipher = new CaesarCipher();
-		String str = new String(Files.readAllBytes(Paths.get("C:/Users/Roi/Documents/hello.txt"))); 
+    	FileHolder mFileHolder = new FileHolder();
+    	mFileHolder.importFile();
+    	
+		String str = new String(Files.readAllBytes(Paths.get(mFileHolder.getFilePath()))); 
 		str += "ROI IS THE KING";
 		//(JOptionPane.showInputDialog("Input Data to encypt:"));
 		
