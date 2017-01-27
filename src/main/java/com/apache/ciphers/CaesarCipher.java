@@ -1,4 +1,6 @@
-package com.apache.encryptor;
+package com.apache.ciphers;
+
+import com.apache.encryptor.CryptographicUtilities;
 
 public class CaesarCipher implements CryptographicUtilities {
 	

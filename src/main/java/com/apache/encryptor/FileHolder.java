@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.apache.ciphers.CaesarCipher;
+
 public class FileHolder {
 	private boolean isEmpty = true;
 	private File file;

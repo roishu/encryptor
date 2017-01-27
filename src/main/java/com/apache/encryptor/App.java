@@ -20,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.mockito.Mockito.*; //check
 
+import com.apache.ciphers.CaesarCipher;
+
 /**
  * Roi Shukrun
  * T.Z : 313454464
