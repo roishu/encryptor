@@ -9,9 +9,25 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class FileHolder {
+	private boolean isEmpty = true;
 	private File file;
 	private CaesarCipher caesarChiper;
 	private String filePath;
+	private String content;
+	
+	public FileHolder() {
+		// TODO Auto-generated constructor stub
+		caesarChiper = new CaesarCipher();
+	}
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	private String directoryPath;
 
 	public File getFile() {
@@ -30,25 +46,32 @@ public class FileHolder {
 		this.filePath = path;
 	}
 
-	public FileHolder() {
-		// TODO Auto-generated constructor stub
-		caesarChiper = new CaesarCipher();
-	}
+
 	
 	public boolean isValid(){
 		return !(file.isDirectory() || !file.exists());
 	}
 	
 	public void importFile(){
-		JFrame frame = new JFrame("Path InputDialog Example");
-		filePath = JOptionPane.showInputDialog(frame, "Path :");
-        file = new File(filePath);
-        System.out.println(file.isDirectory());
-        while (!isValid()){
-        	filePath = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
-        	file = new File(filePath);
-        }
-        saveDirectoryPath();
+		if(isEmpty){
+			JFrame frame = new JFrame("Path InputDialog Example");
+			filePath = JOptionPane.showInputDialog(frame, "Path :");
+	        file = new File(filePath);
+	        System.out.println(file.isDirectory());
+	        while (!isValid()){
+	        	filePath = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
+	        	file = new File(filePath);
+	        }
+	        saveDirectoryPath();
+	        try {
+				content = new String(Files.readAllBytes(Paths.get(filePath)));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	        
+	        isEmpty = false;
+		}
 	}
 
 	private void saveDirectoryPath() {

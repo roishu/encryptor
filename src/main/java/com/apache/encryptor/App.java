@@ -40,8 +40,8 @@ public class App
     	FileHolder mFileHolder = new FileHolder();
     	mFileHolder.importFile();
     	
-		String str = new String(Files.readAllBytes(Paths.get(mFileHolder.getFilePath()))); 
-		str += "ROI IS THE KING";
+		String str = mFileHolder.getContent(); 
+
 		//(JOptionPane.showInputDialog("Input Data to encypt:"));
 		
 		//gets a key 
