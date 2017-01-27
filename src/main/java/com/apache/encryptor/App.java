@@ -41,7 +41,6 @@ public class App
     	CaesarCipher cipher = new CaesarCipher();
     	FileHolder mFileHolder = new FileHolder();
     	mFileHolder.importFile();
-    	
 		String str = mFileHolder.getContent(); 
 
 		//(JOptionPane.showInputDialog("Input Data to encypt:"));
