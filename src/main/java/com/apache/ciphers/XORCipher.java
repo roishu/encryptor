@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.apache.encryptor.CryptographicUtilities;
 
-public class XORCipher extends Algorithm implements CryptographicUtilities{
+public class XORCipher extends BaseAlgorithm implements CryptographicUtilities{
 
 	public XORCipher() {
 		super();

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.apache.encryptor.CryptographicUtilities;
 
-public class CaesarCipher extends Algorithm implements CryptographicUtilities {
+public class CaesarCipher extends BaseAlgorithm implements CryptographicUtilities {
 		
 	public CaesarCipher() {
 		super();

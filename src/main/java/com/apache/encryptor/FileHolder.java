@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.apache.ciphers.Algorithm;
+import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.Key;
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.apache.encryptor.CryptographicUtilities;
 
-public class MultiplicativeCipher extends Algorithm implements CryptographicUtilities{
+public class MultiplicativeCipher extends BaseAlgorithm implements CryptographicUtilities{
 
 	public MultiplicativeCipher() {
 		super();
