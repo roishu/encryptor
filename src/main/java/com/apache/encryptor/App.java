@@ -69,6 +69,7 @@ public class App
 //    	//String key = "squirrel123"; // needs to be at least 8 characters for DES
 //
 //		//FileInputStream fis = new FileInputStream(new File ("C:/Users/Roi/Documents/hello.txt"));
+    	//C:\Users\Roi\Desktop\desktop-file.txt
 //		FileOutputStream fos = new FileOutputStream("C:/Users/Roi/Documents/encrypted2.txt");
 //		byte data[] = encrypted.getBytes();
 //		fos.write(data);
@@ -83,7 +84,7 @@ public class App
     	mFileHolder.importFile();
     	cipher.execute(mFileHolder, "enc");
     	FileHolder mFileHolderDec = new FileHolder();
-    	mFileHolderDec.importFile("C:/Users/Roi/Documents/encrypted-algorithm.txt");
+    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
     	cipher.execute(mFileHolder, "dec");
     			
         

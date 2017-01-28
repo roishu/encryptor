@@ -17,9 +17,9 @@ public abstract class BaseAlgorithm {
 	}
 
 	protected Byte randomizeKeyByte() {
-		byte key = (byte)(random.nextInt(2*Byte.MAX_VALUE + 2)
-                + Byte.MIN_VALUE);
-		System.out.println("randomizeKeyByte:" + key);
+		//random from -128 to 127
+		byte key = (byte)(random.nextInt(2*Byte.MAX_VALUE + 2) + Byte.MIN_VALUE); 
+		System.out.println("Key =" + key);
         return key;
 	}
 	
@@ -32,7 +32,6 @@ public abstract class BaseAlgorithm {
     public void execute(FileHolder fileHolder , String choice) throws IOException{
     	byte[] fileBytes = fileHolder.getData();
     	if (choice.equals("enc")){
-    		System.out.println("Encryption");
     		long startTime = System.nanoTime();
             for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = encryptByte(fileBytes[i], key);
@@ -41,7 +40,6 @@ public abstract class BaseAlgorithm {
             	fos.close();
     	}
     	else if (choice.equals("dec")){
-    		System.out.println("Decryption");
     		for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = decryptByte(fileBytes[i], key);
     		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");

@@ -16,7 +16,6 @@ public class MultiplicativeCipher extends BaseAlgorithm implements Cryptographic
 		while(key.key == 0 || ((key.key & 1) == 0)){
 		key = new Key ((byte)((random.nextInt(Byte.MAX_VALUE + 1)
                 + Byte.MIN_VALUE/2) * 2 + 1));
-			System.out.println("keyFix: " + key.key.toString());
 		}
 			
 	}
@@ -44,7 +43,7 @@ public class MultiplicativeCipher extends BaseAlgorithm implements Cryptographic
 		// TODO Auto-generated method stub
 		 for (int i = Byte.MIN_VALUE; i <= Byte.MAX_VALUE; i++) {
 	            if ((byte)(key.key * i) == 1) {
-	            	System.out.println("---KEY FOUND--- " + i);
+	            	//System.out.println("---KEY FOUND--- " + i);
 	            	key = new Key((byte)i);
 	            	break;
 	            }
