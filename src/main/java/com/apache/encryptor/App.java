@@ -47,30 +47,32 @@ public class App
     {
     	
     	//path : C:\Users\Roi\Desktop\desktop-file.txt
-    	//MultiplicativeCipher cipher = new MultiplicativeCipher();
-    	/*
-     	CaesarCipher cipher = new CaesarCipher();
-    	//XORCipher cipher2 = new XORCipher();
     	
-    	final FileHolder mFileHolder = new FileHolder();
-    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-    	cipher.execute(mFileHolder, "Encryption");
-    	final FileHolder mFileHolderDec = new FileHolder();
-    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-    	cipher.execute(mFileHolder, "Decryption");
-    	 */
+    	/* --- Base Cipher Example --- */
     	
-    	
-    	CaesarCipher cipher = new CaesarCipher();
-    	XORCipher cipher2 = new XORCipher();
     	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
-    	DoubleCipher doubleCipher = new DoubleCipher(cipher3,cipher2);
+     	CaesarCipher cipher = new CaesarCipher();
+    	XORCipher cipher2 = new XORCipher();
+    	
     	final FileHolder mFileHolder = new FileHolder();
     	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-    	doubleCipher.encrypt(mFileHolder);
-    	final FileHolder mFileHolderDec = new FileHolder();
-    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-    	doubleCipher.decrypt(mFileHolderDec);
+    	cipher3.execute(mFileHolder, "Encryption");
+    	final FileHolder mFileEncHolder = new FileHolder();
+    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+    	cipher3.execute(mFileEncHolder, "Decryption");
+    	 
+    	
+    	/* --- Double Cipher Example --- */
+//    	CaesarCipher cipher = new CaesarCipher();
+//    	XORCipher cipher2 = new XORCipher();
+//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
+//    	DoubleCipher doubleCipher = new DoubleCipher(cipher3,cipher2);
+//    	final FileHolder mFileHolder = new FileHolder();
+//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
+//    	doubleCipher.encrypt(mFileHolder);
+//    	final FileHolder mFileHolderDec = new FileHolder();
+//    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+//    	doubleCipher.decrypt(mFileHolderDec);
 
     			
       //  final EncryptorMenu menu = new EncryptorMenu();
