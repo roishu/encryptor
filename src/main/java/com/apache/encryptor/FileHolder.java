@@ -8,7 +8,9 @@ import java.nio.file.Paths;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.apache.ciphers.Algorithm;
 import com.apache.ciphers.CaesarCipher;
+import com.apache.ciphers.Key;
 
 public class FileHolder {
 	private boolean isEmpty = true;
@@ -16,10 +18,20 @@ public class FileHolder {
 	private CaesarCipher caesarChiper;
 	private String filePath;
 	private String content;
+	private byte[] data;
+	private String directoryPath;
 	
+	public String getDirectoryPath() {
+		return directoryPath;
+	}
+
+	public void setDirectoryPath(String directoryPath) {
+		this.directoryPath = directoryPath;
+	}
+
 	public FileHolder() {
 		// TODO Auto-generated constructor stub
-		caesarChiper = new CaesarCipher();
+		//caesarChiper = new CaesarCipher("ken");
 	}
 	
 	public String getContent() {
@@ -30,7 +42,7 @@ public class FileHolder {
 		this.content = content;
 	}
 
-	private String directoryPath;
+	
 
 	public File getFile() {
 		return file;
@@ -67,6 +79,24 @@ public class FileHolder {
 	        saveDirectoryPath();
 	        try {
 				content = new String(Files.readAllBytes(Paths.get(filePath)));
+				data = Files.readAllBytes(Paths.get(filePath));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	        
+	        isEmpty = false;
+		}
+	}
+	
+	public void importFile(String filePath){
+		if(isEmpty){
+	        file = new File(filePath);
+	        System.out.println("file.isDirectory()" + file.isDirectory());
+	        saveDirectoryPath();
+	        try {
+				content = new String(Files.readAllBytes(Paths.get(filePath)));
+				data = Files.readAllBytes(Paths.get(filePath));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -82,20 +112,14 @@ public class FileHolder {
 		System.out.println("Directory Path: " + directoryPath);
 	}
 
-	public void encrypt() {
-		if (file!=null){
-			long startTime = System.nanoTime();
-			CaesarCipher cipher = new CaesarCipher();
-			try {
-				String str = new String(Files.readAllBytes(Paths.get("C:/Users/Roi/Documents/hello.txt")));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-			long endTime = System.nanoTime();
-			long duration = (endTime - startTime);
-			System.out.println(duration);
-		}//end of if
+	public byte[] getData() {
+		return data;
 	}
 
-}
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+
+
+	
+}//END

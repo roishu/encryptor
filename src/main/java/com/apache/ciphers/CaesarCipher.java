@@ -1,15 +1,16 @@
 package com.apache.ciphers;
 
+import java.io.IOException;
+
 import com.apache.encryptor.CryptographicUtilities;
 
-public class CaesarCipher implements CryptographicUtilities {
-	
-	public CaesarCipher(){
-		/*
-		 * key ?
-		 */
+public class CaesarCipher extends Algorithm implements CryptographicUtilities {
+		
+	public CaesarCipher() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public String encrypt(String str, int keyLength) 
 	{
@@ -58,5 +59,17 @@ public class CaesarCipher implements CryptographicUtilities {
 			decrypted += (char) c;
 		}
 		return decrypted;
+	}
+
+	@Override
+	protected byte encryptByte(byte b, int idx, Key key) throws IOException {
+		// TODO Auto-generated method stub
+		return (byte)(b + key.key);
+	}
+
+	@Override
+	protected byte decryptByte(byte b, int idx, Key key) throws IOException {
+		// TODO Auto-generated method stub
+		return (byte)(b - key.key);
 	}
 }
