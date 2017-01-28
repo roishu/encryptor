@@ -25,6 +25,7 @@ import org.mockito.Mockito.*; //check
 
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
+import com.apache.ciphers.DoubleCipher;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 import com.apache.gui.EncryptorMenu;
@@ -47,14 +48,30 @@ public class App
     	
     	//path : C:\Users\Roi\Desktop\desktop-file.txt
     	//MultiplicativeCipher cipher = new MultiplicativeCipher();
-    	//CaesarCipher cipher = new CaesarCipher();
-    	XORCipher cipher = new XORCipher();
+    	/*
+     	CaesarCipher cipher = new CaesarCipher();
+    	//XORCipher cipher2 = new XORCipher();
+    	
     	final FileHolder mFileHolder = new FileHolder();
     	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
     	cipher.execute(mFileHolder, "Encryption");
     	final FileHolder mFileHolderDec = new FileHolder();
     	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
     	cipher.execute(mFileHolder, "Decryption");
+    	 */
+    	
+    	
+    	CaesarCipher cipher = new CaesarCipher();
+    	XORCipher cipher2 = new XORCipher();
+    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
+    	DoubleCipher doubleCipher = new DoubleCipher(cipher3,cipher2);
+    	final FileHolder mFileHolder = new FileHolder();
+    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
+    	doubleCipher.encrypt(mFileHolder);
+    	final FileHolder mFileHolderDec = new FileHolder();
+    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+    	doubleCipher.decrypt(mFileHolderDec);
+
     			
       //  final EncryptorMenu menu = new EncryptorMenu();
 //        menu.btBut1.addActionListener(new ActionListener() {
