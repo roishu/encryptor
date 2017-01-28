@@ -71,7 +71,7 @@ public class FileHolder {
 			JFrame frame = new JFrame("Path InputDialog Example");
 			filePath = JOptionPane.showInputDialog(frame, "Path :");
 	        file = new File(filePath);
-	        System.out.println("file.isDirectory()" + file.isDirectory());
+	        //System.out.println("file.isDirectory()" + file.isDirectory());
 	        while (!isValid()){
 	        	filePath = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
 	        	file = new File(filePath);
@@ -92,7 +92,7 @@ public class FileHolder {
 	public void importFile(String filePath){
 		if(isEmpty){
 	        file = new File(filePath);
-	        System.out.println("file.isDirectory()" + file.isDirectory());
+	        //System.out.println("file.isDirectory()" + file.isDirectory());
 	        saveDirectoryPath();
 	        try {
 				content = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -109,7 +109,7 @@ public class FileHolder {
 	private void saveDirectoryPath() {
 		// TODO Auto-generated method stub
 		directoryPath = file.getParent();
-		System.out.println("Directory Path: " + directoryPath);
+		//System.out.println("Directory Path: " + directoryPath);
 	}
 
 	public byte[] getData() {
