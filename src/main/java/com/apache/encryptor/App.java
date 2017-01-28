@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import org.mockito.Mockito.*; //check
 
 import com.apache.ciphers.CaesarCipher;
+import com.apache.ciphers.XORCipher;
 
 /**
  * Roi Shukrun
@@ -39,6 +40,8 @@ public class App
     {
 		//gets a string to encrypt
     	CaesarCipher cipher = new CaesarCipher();
+    	XORCipher cipher2 = new XORCipher();
+
     	FileHolder mFileHolder = new FileHolder();
     	mFileHolder.importFile();
 		String str = mFileHolder.getContent(); 
@@ -49,15 +52,14 @@ public class App
 		String key = (JOptionPane.showInputDialog("Input the key:"));
 		int keyLength=key.length(); //
 		
-		
-	
-		
+		long startTime = System.nanoTime();
+
 		//prints encryption
-		String encrypted = cipher.encrypt(str, keyLength);
+		String encrypted = cipher2.encrypt(str, keyLength);
 		System.out.println("Encrypted:" + encrypted);
 
 		//prints decryption
-		String decrypted = cipher.decrypt(encrypted, keyLength);
+		String decrypted = cipher2.decrypt(encrypted, keyLength);
 		System.out.println("Decrypted:" + decrypted);
 		
 		//prints key
@@ -71,6 +73,9 @@ public class App
 		fos.write(data);
 		fos.close();
 
+		long endTime = System.nanoTime();
+		long duration = (endTime - startTime) / 1000000 ;
+		System.out.println("Time: " + duration + "ms.");
     			
     			
         

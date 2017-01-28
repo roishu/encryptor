@@ -59,7 +59,7 @@ public class FileHolder {
 			JFrame frame = new JFrame("Path InputDialog Example");
 			filePath = JOptionPane.showInputDialog(frame, "Path :");
 	        file = new File(filePath);
-	        System.out.println(file.isDirectory());
+	        System.out.println("file.isDirectory()" + file.isDirectory());
 	        while (!isValid()){
 	        	filePath = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
 	        	file = new File(filePath);
@@ -84,6 +84,7 @@ public class FileHolder {
 
 	public void encrypt() {
 		if (file!=null){
+			long startTime = System.nanoTime();
 			CaesarCipher cipher = new CaesarCipher();
 			try {
 				String str = new String(Files.readAllBytes(Paths.get("C:/Users/Roi/Documents/hello.txt")));
@@ -91,7 +92,10 @@ public class FileHolder {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-		}
+			long endTime = System.nanoTime();
+			long duration = (endTime - startTime);
+			System.out.println(duration);
+		}//end of if
 	}
 
 }
