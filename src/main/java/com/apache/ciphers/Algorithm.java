@@ -8,19 +8,19 @@ import java.util.Random;
 import com.apache.encryptor.FileHolder;
 
 public abstract class Algorithm {
-	private Key key;
-	private SecureRandom random;
+	protected Key key;
+	protected SecureRandom random;
 	
 	public Algorithm(){
 		random = new SecureRandom();
 		key = new Key(randomizeKeyByte());
 	}
 
-	private Byte randomizeKeyByte() {
-		SecureRandom random = new SecureRandom();
-		byte bytes[] = new byte[16]; // 128 bits are converted to 16 bytes;
-		random.nextBytes(bytes);
-		return bytes[0];
+	protected Byte randomizeKeyByte() {
+		byte key = (byte)(random.nextInt(2*Byte.MAX_VALUE + 2)
+                + Byte.MIN_VALUE);
+		System.out.println("randomizeKeyByte:" + key);
+        return key;
 	}
 	
     protected abstract byte encryptByte(byte b, int idx, Key key)
@@ -32,6 +32,7 @@ public abstract class Algorithm {
     public void execute(FileHolder fileHolder , String choice) throws IOException{
     	byte[] fileBytes = fileHolder.getData();
     	if (choice.equals("enc")){
+    		System.out.println("Encryption");
     		long startTime = System.nanoTime();
             for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = encryptByte(fileBytes[i], i, key);
@@ -39,7 +40,8 @@ public abstract class Algorithm {
             	fos.write(fileBytes);
             	fos.close();
     	}
-    	else{
+    	else if (choice.equals("dec")){
+    		System.out.println("Decryption");
     		for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = decryptByte(fileBytes[i], i, key);
     		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");

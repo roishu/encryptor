@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import org.mockito.Mockito.*; //check
 
 import com.apache.ciphers.CaesarCipher;
+import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 
 /**
@@ -77,7 +78,7 @@ public class App
 //		long duration = (endTime - startTime) / 1000000 ;
 //		System.out.println("Time: " + duration + "ms.");
     	
-    	XORCipher cipher = new XORCipher();
+    	MultiplicativeCipher cipher = new MultiplicativeCipher();
     	FileHolder mFileHolder = new FileHolder();
     	mFileHolder.importFile();
     	cipher.execute(mFileHolder, "enc");

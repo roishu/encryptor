@@ -8,7 +8,17 @@ public class MultiplicativeCipher extends Algorithm implements CryptographicUtil
 
 	public MultiplicativeCipher() {
 		super();
-		// TODO Auto-generated constructor stub
+		keyFix();
+	}
+
+	private void keyFix() {
+		// TODO Auto-generated method stub
+		while(key.key == 0 || ((key.key & 1) == 0)){
+		key = new Key ((byte)((random.nextInt(Byte.MAX_VALUE + 1)
+                + Byte.MIN_VALUE/2) * 2 + 1));
+			System.out.println("keyFix: " + key.key.toString());
+		}
+			
 	}
 
 	@Override
@@ -26,13 +36,21 @@ public class MultiplicativeCipher extends Algorithm implements CryptographicUtil
 	@Override
 	protected byte encryptByte(byte b, int idx, Key key) throws IOException {
 		// TODO Auto-generated method stub
-		return 0;
+		return (byte) (b * key.key);
 	}
 
 	@Override
 	protected byte decryptByte(byte b, int idx, Key key) throws IOException {
 		// TODO Auto-generated method stub
-		return 0;
+		 for (int i = Byte.MIN_VALUE; i <= Byte.MAX_VALUE; i++) {
+	            if ((byte)(key.key * i) == 1) {
+	            	System.out.println("---KEY FOUND--- " + i);
+	            	key = new Key((byte)i);
+	            	break;
+	            }
+	        }
+		 
+		 return (byte) (b * key.key);
 	}
 
 }
