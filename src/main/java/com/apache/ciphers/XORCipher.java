@@ -29,15 +29,15 @@ public class XORCipher extends BaseAlgorithm implements CryptographicUtilities{
 	}
 
 	@Override
-	protected byte encryptByte(byte b, int idx, Key key) throws IOException {
+	protected byte encryptByte(byte b, Key key) throws IOException {
 		// TODO Auto-generated method stub
 		return (byte) (b ^ key.key);
 	}
 
 	@Override
-	protected byte decryptByte(byte b, int idx, Key key) throws IOException {
+	protected byte decryptByte(byte b, Key key) throws IOException {
 		// TODO Auto-generated method stub
-		return encryptByte( b,  idx,  key);
+		return encryptByte( b , key);
 	}
 
 }

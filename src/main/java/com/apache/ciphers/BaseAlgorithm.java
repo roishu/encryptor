@@ -23,10 +23,10 @@ public abstract class BaseAlgorithm {
         return key;
 	}
 	
-    protected abstract byte encryptByte(byte b, int idx, Key key)
+    protected abstract byte encryptByte(byte b, Key key)
             throws IOException;
 
-    protected abstract byte decryptByte(byte b, int idx, Key key)
+    protected abstract byte decryptByte(byte b, Key key)
             throws IOException;
     
     public void execute(FileHolder fileHolder , String choice) throws IOException{
@@ -35,7 +35,7 @@ public abstract class BaseAlgorithm {
     		System.out.println("Encryption");
     		long startTime = System.nanoTime();
             for (int i = 0; i < fileBytes.length; i++) 
-            	fileBytes[i] = encryptByte(fileBytes[i], i, key);
+            	fileBytes[i] = encryptByte(fileBytes[i], key);
             	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
             	fos.write(fileBytes);
             	fos.close();
@@ -43,7 +43,7 @@ public abstract class BaseAlgorithm {
     	else if (choice.equals("dec")){
     		System.out.println("Decryption");
     		for (int i = 0; i < fileBytes.length; i++) 
-            	fileBytes[i] = decryptByte(fileBytes[i], i, key);
+            	fileBytes[i] = decryptByte(fileBytes[i], key);
     		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
     		 	fos.write(fileBytes);
     		 	fos.close();
