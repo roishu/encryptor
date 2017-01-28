@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class Key implements Serializable {
     @NonNull
     public final Byte key;
-
     public final Byte secondaryKey;
     /**
      * Construct a Key object with only one valid key

@@ -32,14 +32,14 @@ public abstract class BaseAlgorithm {
     public void execute(FileHolder fileHolder , String choice) throws IOException{
     	long startTime = System.nanoTime();
     	byte[] fileBytes = fileHolder.getData();
-    	if (choice.equals("enc")){
+    	if (choice.equals("Encryption")){
             for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = encryptByte(fileBytes[i], key);
             	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
             	fos.write(fileBytes);
             	fos.close();
     	}
-    	else if (choice.equals("dec")){
+    	else if (choice.equals("Decryption")){
     		for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = decryptByte(fileBytes[i], key);
     		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");

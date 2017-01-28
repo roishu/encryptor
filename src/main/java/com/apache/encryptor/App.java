@@ -1,8 +1,11 @@
 package com.apache.encryptor;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -20,9 +23,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.mockito.Mockito.*; //check
 
+import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
+import com.apache.gui.EncryptorMenu;
 
 /**
  * Roi Shukrun
@@ -33,21 +38,48 @@ import com.apache.ciphers.XORCipher;
 public class App 
 {
 	
-	public static final String[] functions = { "Encryption", "Decryption"};
-	
-
+	//public static final String[] functions = { "Encryption", "Decryption"};
+	public static final BaseAlgorithm[] algorithms = 
+		{new CaesarCipher() , new MultiplicativeCipher() , new XORCipher()};
 	
     public static void main( String[] args )  throws Exception
     {
+    	
     	//path : C:\Users\Roi\Desktop\desktop-file.txt
-    	MultiplicativeCipher cipher = new MultiplicativeCipher();
-    	FileHolder mFileHolder = new FileHolder();
-    	mFileHolder.importFile();
-    	cipher.execute(mFileHolder, "enc");
-    	FileHolder mFileHolderDec = new FileHolder();
+    	//MultiplicativeCipher cipher = new MultiplicativeCipher();
+    	//CaesarCipher cipher = new CaesarCipher();
+    	XORCipher cipher = new XORCipher();
+    	final FileHolder mFileHolder = new FileHolder();
+    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
+    	cipher.execute(mFileHolder, "Encryption");
+    	final FileHolder mFileHolderDec = new FileHolder();
     	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-    	cipher.execute(mFileHolder, "dec");
+    	cipher.execute(mFileHolder, "Decryption");
     			
+      //  final EncryptorMenu menu = new EncryptorMenu();
+//        menu.btBut1.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				System.out.println(menu.dataCombo0[menu.cmbCombo0.getSelectedIndex()]);
+//				System.out.println(menu.dataCombo1[menu.cmbCombo1.getSelectedIndex()]);
+//				try {
+//					switch(menu.cmbCombo0.getSelectedIndex()){
+//					case 0: algorithms[menu.cmbCombo1.getSelectedIndex()].execute(mFileHolder, 
+//							menu.dataCombo0[menu.cmbCombo0.getSelectedIndex()]);
+//					case 1: algorithms[menu.cmbCombo1.getSelectedIndex()].execute(mFileHolderDec, 
+//							menu.dataCombo0[menu.cmbCombo0.getSelectedIndex()]);
+//					}
+//					
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//			}
+//		});
         
-    }
+        
+        
+        
+    } 
 }
