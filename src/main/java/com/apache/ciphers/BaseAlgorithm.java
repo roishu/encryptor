@@ -31,7 +31,7 @@ public abstract class BaseAlgorithm {
     
     public void execute(FileHolder fileHolder , String choice) throws IOException{
     	long startTime = System.nanoTime();
-    	byte[] fileBytes = fileHolder.getData();
+    	byte[] fileBytes = fileHolder.getData(); //may be changed in FileHolder - check it !
     	if (choice.equals("Encryption")){
             for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = encryptByte(fileBytes[i], key);

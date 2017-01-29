@@ -27,6 +27,7 @@ import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.DoubleCipher;
 import com.apache.ciphers.MultiplicativeCipher;
+import com.apache.ciphers.ReverseCipher;
 import com.apache.ciphers.XORCipher;
 import com.apache.gui.EncryptorMenu;
 
@@ -50,16 +51,16 @@ public class App
     	
     	/* --- Base Cipher Example --- */
     	
-    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
-     	CaesarCipher cipher = new CaesarCipher();
-    	XORCipher cipher2 = new XORCipher();
-    	
-    	final FileHolder mFileHolder = new FileHolder();
-    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-    	cipher3.execute(mFileHolder, "Encryption");
-    	final FileHolder mFileEncHolder = new FileHolder();
-    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-    	cipher3.execute(mFileEncHolder, "Decryption");
+//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
+//     	CaesarCipher cipher = new CaesarCipher();
+//    	XORCipher cipher2 = new XORCipher();
+//    	
+//    	final FileHolder mFileHolder = new FileHolder();
+//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
+//    	cipher3.execute(mFileHolder, "Encryption");
+//    	final FileHolder mFileEncHolder = new FileHolder();
+//    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+//    	cipher3.execute(mFileEncHolder, "Decryption");
     	 
     	
     	/* --- Double Cipher Example --- */
@@ -74,6 +75,21 @@ public class App
 //    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
 //    	doubleCipher.decrypt(mFileHolderDec);
 
+    	/* --- Reverse Cipher Example --- */
+//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
+//     	CaesarCipher cipher = new CaesarCipher();
+//    	XORCipher cipher2 = new XORCipher();
+//    	ReverseCipher r_cipher = new ReverseCipher(cipher3);
+//    	
+//    	final FileHolder mFileHolder = new FileHolder();
+//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
+//    	r_cipher.encrypt(mFileHolder);
+//    	final FileHolder mFileEncHolder = new FileHolder();
+//    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+//    	r_cipher.decrypt(mFileHolder);
+//    	r_cipher.swapFiles(mFileHolder);
+    	
+    	
     			
       //  final EncryptorMenu menu = new EncryptorMenu();
 //        menu.btBut1.addActionListener(new ActionListener() {
