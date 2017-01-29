@@ -109,17 +109,60 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testReverseCipher() throws IOException  {
+	    public void testReverseCipher_Caesar() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new CaesarCipher();
 	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
 	    	 executeReverseAlgorithmForTest();
 	    }
+	    
+	    @Test
+	    public void testReverseCipher_XOR() throws IOException  {
+	         
+	    	 baseAlgorithm1 = new XORCipher();
+	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 executeReverseAlgorithmForTest();
+	    }
+	    
+	    @Test
+	    public void testReverseCipher_Multi() throws IOException  {
+	         
+	    	 baseAlgorithm1 = new MultiplicativeCipher();
+	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 executeReverseAlgorithmForTest();
+	    }
 	     
 	    @Test
-	    public void testSplitCipher() throws IOException  {
+	    public void testSplitCipher_Caesar_XOR() throws IOException  {
 	         baseAlgorithm1 = new CaesarCipher();
 	         baseAlgorithm2 = new XORCipher();
+	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 executeSplitAlgorithmForTest();
+
+	    }
+	    
+	    @Test
+	    public void testSplitCipher_Multi_XOR() throws IOException  {
+	         baseAlgorithm1 = new MultiplicativeCipher();
+	         baseAlgorithm2 = new XORCipher();
+	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 executeSplitAlgorithmForTest();
+
+	    }
+	    
+	    @Test
+	    public void testSplitCipher_Caesar_Multi() throws IOException  {
+	         baseAlgorithm1 = new CaesarCipher();
+	         baseAlgorithm2 = new MultiplicativeCipher();
+	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 executeSplitAlgorithmForTest();
+
+	    }
+	    
+	    @Test
+	    public void testSplitCipher_Multi_Multi() throws IOException  {
+	         baseAlgorithm1 = new MultiplicativeCipher();
+	         baseAlgorithm2 = new MultiplicativeCipher();
 	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
 	    	 executeSplitAlgorithmForTest();
 
@@ -142,7 +185,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void executeReverseAlgorithmForTest() throws IOException{
 	    	reverseAlgorithm.encrypt(fileHolder);
 	    	final FileHolder mFileEncHolder = new FileHolder();
-	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
 	    	reverseAlgorithm.decrypt(fileHolder);
 	    	reverseAlgorithm.swapFiles(fileHolder);
 	    	//content
