@@ -23,10 +23,10 @@ public abstract class BaseAlgorithm {
         return key;
 	}
 	
-    protected abstract byte encryptByte(byte b, Key key)
+    public abstract byte encryptByte(byte b, Key key)
             throws IOException;
 
-    protected abstract byte decryptByte(byte b, Key key)
+    public abstract byte decryptByte(byte b, Key key)
             throws IOException;
     
     public void execute(FileHolder fileHolder , String choice) throws IOException{

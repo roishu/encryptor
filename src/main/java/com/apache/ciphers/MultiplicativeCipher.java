@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.apache.encryptor.CryptographicUtilities;
 
-public class MultiplicativeCipher extends BaseAlgorithm implements CryptographicUtilities{
+public class MultiplicativeCipher extends BaseAlgorithm{
 
 	public MultiplicativeCipher() {
 		super();
@@ -21,25 +21,13 @@ public class MultiplicativeCipher extends BaseAlgorithm implements Cryptographic
 	}
 
 	@Override
-	public String encrypt(String str, int keyLength) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String decrypt(String str, int keyLength) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected byte encryptByte(byte b, Key key) throws IOException {
+	public byte encryptByte(byte b, Key key) throws IOException {
 		// TODO Auto-generated method stub
 		return (byte) (b * key.key);
 	}
 
 	@Override
-	protected byte decryptByte(byte b, Key key) throws IOException {
+	public byte decryptByte(byte b, Key key) throws IOException {
 		// TODO Auto-generated method stub
 		 for (int i = Byte.MIN_VALUE; i <= Byte.MAX_VALUE; i++) {
 	            if ((byte)(key.key * i) == 1) {

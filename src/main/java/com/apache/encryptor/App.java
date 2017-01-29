@@ -28,6 +28,7 @@ import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.DoubleCipher;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.ReverseCipher;
+import com.apache.ciphers.SplitCipher;
 import com.apache.ciphers.XORCipher;
 import com.apache.gui.EncryptorMenu;
 
@@ -89,7 +90,18 @@ public class App
 //    	r_cipher.decrypt(mFileHolder);
 //    	r_cipher.swapFiles(mFileHolder);
     	
+    	/* --- Split Cipher Example --- */
+    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
+     	CaesarCipher cipher = new CaesarCipher();
+    	XORCipher cipher2 = new XORCipher();
+    	SplitCipher s_cipher = new SplitCipher(cipher3, cipher2);
     	
+    	final FileHolder mFileHolder = new FileHolder();
+    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
+    	s_cipher.execute(mFileHolder, "Encryption");
+    	final FileHolder mFileEncHolder = new FileHolder();
+    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+    	s_cipher.execute(mFileEncHolder, "Decryption");
     			
       //  final EncryptorMenu menu = new EncryptorMenu();
 //        menu.btBut1.addActionListener(new ActionListener() {
