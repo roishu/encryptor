@@ -48,60 +48,8 @@ public class App
     public static void main( String[] args )  throws Exception
     {
     	
-    	//path : C:\Users\Roi\Desktop\desktop-file.txt
-    	
-    	/* --- Base Cipher Example --- */
-    	
-//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
-//     	CaesarCipher cipher = new CaesarCipher();
-//    	XORCipher cipher2 = new XORCipher();
-//    	
-//    	final FileHolder mFileHolder = new FileHolder();
-//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-//    	cipher3.execute(mFileHolder, "Encryption");
-//    	final FileHolder mFileEncHolder = new FileHolder();
-//    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-//    	cipher3.execute(mFileEncHolder, "Decryption");
-    	 
-    	
-    	/* --- Double Cipher Example --- */
-//    	CaesarCipher cipher = new CaesarCipher();
-//    	XORCipher cipher2 = new XORCipher();
-//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
-//    	DoubleCipher doubleCipher = new DoubleCipher(cipher3,cipher2);
-//    	final FileHolder mFileHolder = new FileHolder();
-//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-//    	doubleCipher.encrypt(mFileHolder);
-//    	final FileHolder mFileHolderDec = new FileHolder();
-//    	mFileHolderDec.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-//    	doubleCipher.decrypt(mFileHolderDec);
+    	//my path : C:\Users\Roi\Desktop\desktop-file.txt
 
-    	/* --- Reverse Cipher Example --- */
-//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
-//     	CaesarCipher cipher = new CaesarCipher();
-//    	XORCipher cipher2 = new XORCipher();
-//    	ReverseCipher r_cipher = new ReverseCipher(cipher3);
-//    	
-//    	final FileHolder mFileHolder = new FileHolder();
-//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-//    	r_cipher.encrypt(mFileHolder);
-//    	final FileHolder mFileEncHolder = new FileHolder();
-//    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-//    	r_cipher.decrypt(mFileHolder);
-//    	r_cipher.swapFiles(mFileHolder);
-    	
-    	/* --- Split Cipher Example --- */
-//    	MultiplicativeCipher cipher3 = new MultiplicativeCipher();
-//     	CaesarCipher cipher = new CaesarCipher();
-//    	XORCipher cipher2 = new XORCipher();
-//    	SplitCipher s_cipher = new SplitCipher(cipher3, cipher2);
-//    	
-//    	final FileHolder mFileHolder = new FileHolder();
-//    	mFileHolder.importFile("C:\\Users\\Roi\\Desktop\\desktop-file.txt");
-//    	s_cipher.execute(mFileHolder, "Encryption");
-//    	final FileHolder mFileEncHolder = new FileHolder();
-//    	mFileEncHolder.importFile(mFileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-//    	s_cipher.execute(mFileEncHolder, "Decryption");
     			
       //  final EncryptorMenu menu = new EncryptorMenu();
 //        menu.btBut1.addActionListener(new ActionListener() {
