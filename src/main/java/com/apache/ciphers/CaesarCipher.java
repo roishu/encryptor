@@ -7,7 +7,7 @@ import com.apache.encryptor.CryptographicUtilities;
 public class CaesarCipher extends BaseAlgorithm {
 		
 	public CaesarCipher() {
-		super();
+		super("CaesarCipher");
 		// TODO Auto-generated constructor stub
 	}
 

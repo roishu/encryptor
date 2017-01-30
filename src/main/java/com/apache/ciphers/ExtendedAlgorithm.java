@@ -6,16 +6,16 @@ import com.apache.encryptor.FileHolder;
 
 import lombok.NonNull;
 
-public abstract class ExtendedAlgorithm {
+public abstract class ExtendedAlgorithm extends Algorithm {
 	
-	public ExtendedAlgorithm(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
-		super();
+	public ExtendedAlgorithm(String name,BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
+		super(name);
 		this.baseAlgorithm = baseAlgorithm;
 		this.secondaryBaseAlgorithm = secondaryBaseAlgorithm;
 	}
 	
-	public ExtendedAlgorithm(BaseAlgorithm baseAlgorithm) {
-		super();
+	public ExtendedAlgorithm(String name,BaseAlgorithm baseAlgorithm) {
+		super(name);
 		this.baseAlgorithm = baseAlgorithm;
 		this.secondaryBaseAlgorithm = null;
 	}

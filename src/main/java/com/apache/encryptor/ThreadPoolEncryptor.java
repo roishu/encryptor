@@ -11,12 +11,35 @@ public class ThreadPoolEncryptor {
 	private ExecutorService executor;
 	private File folder;
 	private String algorithm;
+	private String cipher1="",cipher2=""; //Extended Algorithm Issue
 	private ArrayList<FileHolder> filesInFolder;
 	private ArrayList<EncryptorThread> threadEncryptors;
 	private int numOfFiles = 0;
 	private long startTime=0 , endTime=0 , duration=0;
 	
 	public ThreadPoolEncryptor(File folder, String algorithm) {
+		super();
+		this.folder = folder;
+		this.algorithm = algorithm;
+		this.encryptor = new EncryptorExecuter();
+		this.filesInFolder = new ArrayList<FileHolder>();
+		this.threadEncryptors = new ArrayList<EncryptorThread>();
+		this.executor = null;
+		init();
+	}
+	
+	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1) {
+		super();
+		this.folder = folder;
+		this.algorithm = algorithm;
+		this.encryptor = new EncryptorExecuter();
+		this.filesInFolder = new ArrayList<FileHolder>();
+		this.threadEncryptors = new ArrayList<EncryptorThread>();
+		this.executor = null;
+		init();
+	}
+	
+	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1 , String cipher2) {
 		super();
 		this.folder = folder;
 		this.algorithm = algorithm;
@@ -39,7 +62,16 @@ public class ThreadPoolEncryptor {
 		startTime = System.nanoTime();
 		executor = Executors.newFixedThreadPool(filesInFolder.size());
 		for(int i =0 ; i<numOfFiles ; i++){
-			threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
+			//check for algorithm type
+	    	  if(cipher1.equals(""))
+	    		  threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
+	    	  else if (algorithm.equals("DoubleCipher"))
+	    		  threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
+	    		  else if (algorithm.equals("ReverseCipher"))
+	    			  threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1));
+	    			  else if (algorithm.equals("SplitCipher")) 
+	    				  threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
+	    			  else System.out.println("THROW EXCEPTION");
 			executor.execute(threadEncryptors.get(i));
 		}
 	    executor.shutdown();

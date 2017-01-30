@@ -7,7 +7,7 @@ import com.apache.encryptor.CryptographicUtilities;
 public class MultiplicativeCipher extends BaseAlgorithm{
 
 	public MultiplicativeCipher() {
-		super();
+		super("MultiplicativeCipher");
 		keyFix();
 	}
 

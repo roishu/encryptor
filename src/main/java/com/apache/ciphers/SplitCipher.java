@@ -8,7 +8,7 @@ import com.apache.encryptor.FileHolder;
 public class SplitCipher extends ExtendedAlgorithm{
 
 	public SplitCipher(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
-		super(baseAlgorithm, secondaryBaseAlgorithm);
+		super("SplitCipher",baseAlgorithm, secondaryBaseAlgorithm);
 	}
 
 	@Override

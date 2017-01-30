@@ -12,7 +12,7 @@ import com.apache.encryptor.FileHolder;
 public class ReverseCipher extends ExtendedAlgorithm{
 
 	public ReverseCipher(BaseAlgorithm baseAlgorithm) {
-		super(baseAlgorithm);
+		super("ReverseCipher",baseAlgorithm);
 		// TODO Auto-generated constructor stub
 	}
 

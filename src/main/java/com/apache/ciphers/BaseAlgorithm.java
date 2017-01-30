@@ -7,11 +7,12 @@ import java.util.Random;
 
 import com.apache.encryptor.FileHolder;
 
-public abstract class BaseAlgorithm {
+public abstract class BaseAlgorithm extends Algorithm {
 	protected Key key;
 	protected SecureRandom random;
 	
-	public BaseAlgorithm(){
+	public BaseAlgorithm(String name){
+		super(name);
 		random = new SecureRandom();
 		key = new Key(randomizeKeyByte());
 	}

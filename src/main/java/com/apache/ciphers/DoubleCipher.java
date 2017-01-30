@@ -8,7 +8,7 @@ import com.apache.encryptor.FileHolder;
 public class DoubleCipher extends ExtendedAlgorithm{
 
 	public DoubleCipher(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
-		super(baseAlgorithm, secondaryBaseAlgorithm);
+		super("DoubleCipher",baseAlgorithm, secondaryBaseAlgorithm);
 		// TODO Auto-generated constructor stub
 	}
 

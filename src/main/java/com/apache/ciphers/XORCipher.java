@@ -7,7 +7,7 @@ import com.apache.encryptor.CryptographicUtilities;
 public class XORCipher extends BaseAlgorithm {
 
 	public XORCipher() {
-		super();
+		super("XORCipher");
 		// TODO Auto-generated constructor stub
 	}
 

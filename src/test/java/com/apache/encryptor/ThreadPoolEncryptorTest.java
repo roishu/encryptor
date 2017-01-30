@@ -52,7 +52,6 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    	encryptor = new EncryptorExecuter();
 	    	folder = new File("logs");
 	    	filesInFolder = new ArrayList<FileHolder>();
-
 	    }
 	 
 	    @After
@@ -70,6 +69,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	 
 	    @Test
 	    public void testCaesarCipher() throws IOException  {
+	    	System.out.println("testCaesarCipher");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "CaesarCiper");
 	    	tpEncryptor.execute();
 	    	finishTest();
@@ -77,6 +77,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    
 	    @Test
 	    public void testMultiplicativeCipher() throws IOException  {
+	    	System.out.println("testMultiplicativeCipher");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "MultiplicativeCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
@@ -84,7 +85,48 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    
 	    @Test
 	    public void testXORCipher() throws IOException  {
+	    	System.out.println("testXORCipher");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "XORCipher");
+	    	tpEncryptor.execute();
+	    	finishTest();
+	    }
+	    
+	    @Test
+	    public void testDoubleCipher_Caesar_Multiplicative() throws IOException  {
+	    	System.out.println("testDoubleCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleCipher" ,"CaesarCiper" , "MultiplicativeCipher");
+	    	tpEncryptor.execute();
+	    	finishTest();
+	    }
+	    
+	    @Test
+	    public void testDoubleCipher_Multiplicative_XOR() throws IOException  {
+	    	System.out.println("testDoubleCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleCipher" ,"MultiplicativeCipher" , "XORCipher");
+	    	tpEncryptor.execute();
+	    	finishTest();
+	    }
+	    
+	    @Test
+	    public void testDoubleCipher_XOR_Caesar() throws IOException  {
+	    	System.out.println("testDoubleCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleCipher" ,"XORCipher" , "CaesarCiper");
+	    	tpEncryptor.execute();
+	    	finishTest();
+	    }
+	    
+	    @Test
+	    public void testReverseCipher() throws IOException  {
+	    	System.out.println("testDoubleCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "ReverseCipher" ,"XORCipher");
+	    	tpEncryptor.execute();
+	    	finishTest();
+	    }
+	    
+	    @Test
+	    public void testSplitCipher() throws IOException  {
+	    	System.out.println("testDoubleCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "SplitCipher" ,"MultiplicativeCipher" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }

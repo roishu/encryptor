@@ -8,6 +8,7 @@ public class EncryptorThread implements Runnable {
 	private FileHolder fileHolder;
 	private EncryptorExecuter encryptor;
 	private String algorithm;
+	private String cipher1="",cipher2="";
 	
 	public EncryptorThread(FileHolder fileHolder, EncryptorExecuter encryptor, String algorithm) {
 		super();
@@ -16,11 +17,33 @@ public class EncryptorThread implements Runnable {
 		this.algorithm = algorithm;
 	}
 	
+	public EncryptorThread(FileHolder fileHolder, EncryptorExecuter encryptor, String algorithm , String cipher1) {
+		super();
+		this.fileHolder = fileHolder;
+		this.encryptor = encryptor;
+		this.algorithm = algorithm;
+		this.cipher1 = cipher1;
+	}
+	
+	public EncryptorThread(FileHolder fileHolder, EncryptorExecuter encryptor, String algorithm , String cipher1 , String cipher2) {
+		super();
+		this.fileHolder = fileHolder;
+		this.encryptor = encryptor;
+		this.algorithm = algorithm;
+		this.cipher1 = cipher1;
+		this.cipher2 = cipher2;
+	}
+	
 	
 	public void run() {
 	      System.out.println("Encryption\\Decryption File: " +  fileHolder.getFileNameWithoutExtension());
 	      try {
-			encryptor.executeBaseAlgorithm(algorithm, fileHolder);
+	    	  if(cipher1.equals(""))
+	    		  encryptor.executeBaseAlgorithm(algorithm, fileHolder);
+	    	  else if (algorithm.equals("DoubleCipher")) encryptor.executeDoubleAlgorithm(cipher1,cipher2, fileHolder);
+	    		  else if (algorithm.equals("ReverseCipher")) encryptor.executeReverseAlgorithm(cipher1, fileHolder);
+	    			  else if (algorithm.equals("SplitCipher")) encryptor.executeSplitAlgorithm(cipher1,cipher2, fileHolder);
+	    			  else System.out.println("THROW EXCEPTION");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
