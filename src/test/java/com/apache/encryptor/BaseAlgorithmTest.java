@@ -78,15 +78,13 @@ public class BaseAlgorithmTest extends TestCase {
 	    
 	    public void executeAlgorithmForTest() throws IOException{
 	    	algorithm.execute(fileHolder, "Encryption");
-	    	final FileHolder mFileEncHolder = new FileHolder();
-	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-	    	algorithm.execute(mFileEncHolder, "Decryption");
+	    	algorithm.execute(fileHolder, "Decryption");
 			String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt")));
+					(Paths.get(fileHolder.getDecryptedResultPath())));
 			assertEquals(text, dec_content);
 			//delete Files
-			mFileEncHolder.getFile().delete();
-			Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt").toFile().delete();
+			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();
+			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();
 	    }
 	 
 	

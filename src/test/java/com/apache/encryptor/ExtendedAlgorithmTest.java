@@ -170,48 +170,43 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    
 	    public void executeDoubleAlgorithmForTest() throws IOException{
 	    	doubleAlgorithm.encrypt(fileHolder);
-	    	final FileHolder mFileEncHolder = new FileHolder();
-	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-	    	doubleAlgorithm.decrypt(mFileEncHolder);
+	    	doubleAlgorithm.decrypt(fileHolder);
 	    	//content
 	    	String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt")));
+					(Paths.get(fileHolder.getDecryptedResultPath())));
 	    	//test assert
 			assertEquals(text, dec_content);
 			//delete Files
-			mFileEncHolder.getFile().delete();
-			Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt").toFile().delete();	    }
+			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();	
+			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();	    
+			}
 	    
 	    public void executeReverseAlgorithmForTest() throws IOException{
 	    	reverseAlgorithm.encrypt(fileHolder);
-	    	final FileHolder mFileEncHolder = new FileHolder();
-	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
 	    	reverseAlgorithm.decrypt(fileHolder);
 	    	reverseAlgorithm.swapFiles(fileHolder);
 	    	//content
 	    	String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt")));
+					(Paths.get(fileHolder.getDecryptedResultPath())));
 	    	//test assert
 			assertEquals(text, dec_content);
 			//delete Files
-			mFileEncHolder.getFile().delete();
-			Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt").toFile().delete();
-	    }
+			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();	
+			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();		    
+			}
 	    
 	    public void executeSplitAlgorithmForTest() throws IOException{
 	    	splitAlgorithm.execute(fileHolder, "Encryption");
-	    	final FileHolder mFileEncHolder = new FileHolder();
-	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-	    	splitAlgorithm.execute(mFileEncHolder, "Decryption");
+	    	splitAlgorithm.execute(fileHolder, "Decryption");
 	    	//content
 	    	String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt")));
+					(Paths.get(fileHolder.getDecryptedResultPath())));
 	    	//test assert
 			assertEquals(text, dec_content);
 			//delete Files
-			mFileEncHolder.getFile().delete();
-			Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt").toFile().delete();
-	    }
+			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();	
+			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();		    
+			}
 	 
 	
 }

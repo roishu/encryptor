@@ -30,11 +30,11 @@ public class ReverseCipher extends ExtendedAlgorithm{
 	}
 	
 	public void swapFiles(FileHolder fileHolder) throws IOException{
-		String e_content = new String(Files.readAllBytes(Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt")));
-		String d_content = new String(Files.readAllBytes(Paths.get(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt")));
+		String e_content = new String(Files.readAllBytes(Paths.get(fileHolder.getDecryptedResultPath())));
+		String d_content = new String(Files.readAllBytes(Paths.get(fileHolder.getEncryptedResultPath())));
 
-		FileOutputStream fos_e = new FileOutputStream(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-		FileOutputStream fos_d = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
+		FileOutputStream fos_e = new FileOutputStream(fileHolder.getEncryptedResultPath());
+		FileOutputStream fos_d = new FileOutputStream(fileHolder.getDecryptedResultPath());
 		
 		
 		fos_d.write(d_content.getBytes());

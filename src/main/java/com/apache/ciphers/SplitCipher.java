@@ -37,7 +37,7 @@ public class SplitCipher extends ExtendedAlgorithm{
             		fileBytes[i] = secondaryBaseAlgorithm.encryptByte(fileBytes[i], secondaryBaseAlgorithm.key);
             	}
             }
-            	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+            	FileOutputStream fos = new FileOutputStream(fileHolder.getEncryptedResultPath());
             	fos.write(fileBytes);
             	fos.close();
     	}
@@ -51,7 +51,7 @@ public class SplitCipher extends ExtendedAlgorithm{
             		fileBytes[i] = secondaryBaseAlgorithm.decryptByte(fileBytes[i], secondaryBaseAlgorithm.key);
             	}
             }
-    		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
+    		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDecryptedResultPath());
     		 	fos.write(fileBytes);
     		 	fos.close();
     }

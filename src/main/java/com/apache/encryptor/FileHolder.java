@@ -34,6 +34,11 @@ public class FileHolder {
 		//caesarChiper = new CaesarCipher("ken");
 	}
 	
+	public FileHolder(File file) {
+		// TODO Auto-generated constructor stub
+		importFile(file.getPath());
+	}
+	
 	public String getContent() {
 		return content;
 	}
@@ -92,7 +97,6 @@ public class FileHolder {
 	public void importFile(String filePath){
 		if(isEmpty){
 	        file = new File(filePath);
-	        //System.out.println("file.isDirectory()" + file.isDirectory());
 	        saveDirectoryPath();
 	        try {
 				content = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -111,6 +115,32 @@ public class FileHolder {
 		directoryPath = file.getParent();
 		//System.out.println("Directory Path: " + directoryPath);
 	}
+	
+	public String getFileNameWithoutExtension(){
+		String fileName = file.getName();
+		int pos = fileName.lastIndexOf(".");
+		if (pos > 0) {
+		    fileName = fileName.substring(0, pos);
+		}
+		return fileName;
+	}
+	
+	public String getEncryptedResultPath(){
+		return getDirectoryPath()+"\\"+getFileNameWithoutExtension()+"-encrypted.txt";
+	}
+	
+	public String getEncryptedResultPath(String path){
+		return path+"\\"+getFileNameWithoutExtension()+"-encrypted.txt";
+	}
+	
+	public String getDecryptedResultPath(){
+		return getDirectoryPath()+"\\"+getFileNameWithoutExtension()+"-decrypted.txt";
+	}
+	
+	public String getDecryptedResultPath(String path){
+		return path+"\\"+getFileNameWithoutExtension()+"-decrypted.txt";
+	}
+
 
 	public byte[] getData() {
 		return data;

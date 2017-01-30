@@ -15,18 +15,14 @@ public class DoubleCipher extends ExtendedAlgorithm{
 	@Override
 	public void encrypt(FileHolder fileHolder) throws IOException {
 		baseAlgorithm.execute(fileHolder, "Encryption");
-		FileHolder fileEncHolder = new FileHolder();
-		fileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-		secondaryBaseAlgorithm.execute(fileEncHolder, "Encryption");
+		secondaryBaseAlgorithm.execute(fileHolder, "Encryption");
 	}
 
 	@Override
 	public void decrypt(FileHolder fileHolder) throws IOException {
 		// TODO Auto-generated method stub
 		secondaryBaseAlgorithm.execute(fileHolder, "Decryption");
-		FileHolder fileDecHolder = new FileHolder();
-		fileDecHolder.importFile(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
-		baseAlgorithm.execute(fileDecHolder, "Decryption");
+		baseAlgorithm.execute(fileHolder, "Decryption");
 	}
 
 }

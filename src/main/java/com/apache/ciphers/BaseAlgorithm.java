@@ -35,14 +35,14 @@ public abstract class BaseAlgorithm {
     	if (choice.equals("Encryption")){
             for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = encryptByte(fileBytes[i], key);
-            	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
+            	FileOutputStream fos = new FileOutputStream(fileHolder.getEncryptedResultPath());
             	fos.write(fileBytes);
             	fos.close();
     	}
     	else if (choice.equals("Decryption")){
     		for (int i = 0; i < fileBytes.length; i++) 
             	fileBytes[i] = decryptByte(fileBytes[i], key);
-    		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt");
+    		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDecryptedResultPath());
     		 	fos.write(fileBytes);
     		 	fos.close();
     }
