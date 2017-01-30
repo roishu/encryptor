@@ -43,61 +43,25 @@ public class App
 {
 	
 	//public static final String[] functions = { "Encryption", "Decryption"};
-	public static final BaseAlgorithm[] algorithms = 
-		{new CaesarCipher() , new MultiplicativeCipher() , new XORCipher()};
+	public static EncryptorExecuter encryptor = new EncryptorExecuter();
 	
     public static void main( String[] args )  throws Exception
     {
     	
-    	//my path : C:\Users\Roi\Desktop\desktop-file.txt
-    	//directoryPath : C:\Users\Roi\Desktop\files-desktop
-    	
-    	//public void listFilesForFolder(final File folder) {
     	Path desktopPath = Paths.get("C:\\Users\\Roi\\Desktop\\files-desktop\\result1");
     	final File folder = new File("C:\\Users\\Roi\\Desktop\\files-desktop");
     	ArrayList<FileHolder> filesInFolder = new ArrayList<FileHolder>();
-    	BaseAlgorithm algorithm = new CaesarCipher();
     	int i = 0;
     
     	    for (final File fileEntry : folder.listFiles()) {
     	    	if(!fileEntry.isDirectory() && fileEntry.exists()){
     	    		filesInFolder.add(i,new FileHolder(fileEntry));
-    	    		executeAlgorithm(algorithm,filesInFolder.get(i));
-    	    		System.out.println(filesInFolder.get(i).getFileNameWithoutExtension());
+    	    		encryptor.executeBaseAlgorithm("MultiplicativeCipher",filesInFolder.get(i));
     	    		i++;
     	    	}
     	    }
-    	    	
-    	    
-    	   
-    	            
-    	    
-
     	    Files.createDirectories(desktopPath);
-
-    	    
-    	//}
-
-    	
-    			
-
         
-        
-        
-        
-    } 
-    
-    
-    public static void executeAlgorithm
-    (BaseAlgorithm algorithm , FileHolder fileHolder) throws IOException{
-    	 algorithm.execute(fileHolder, "Encryption");
-	    	final FileHolder mFileEncHolder = new FileHolder();
-	    	mFileEncHolder.importFile(fileHolder.getDirectoryPath()+"\\encrypted-algorithm.txt");
-	    	algorithm.execute(mFileEncHolder, "Decryption");
-			String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDirectoryPath()+"\\decrypted-algorithm.txt")));
-
-    }
-    
+    }   
     
 }

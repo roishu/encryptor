@@ -140,6 +140,11 @@ public class FileHolder {
 	public String getDecryptedResultPath(String path){
 		return path+"\\"+getFileNameWithoutExtension()+"-decrypted.txt";
 	}
+	
+	public String expectedExtension(){
+        int index = file.getName().indexOf(".");
+        return file.getName().substring(index);
+	}
 
 
 	public byte[] getData() {
