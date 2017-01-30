@@ -5,13 +5,10 @@ package com.apache.gui;
 // http://www.jvider.com/
 //======================================================
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;

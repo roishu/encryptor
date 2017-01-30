@@ -35,6 +35,7 @@ public class EncryptorThread implements Runnable {
 	}
 	
 	
+	@Override
 	public void run() {
 	      System.out.println("Encryption\\Decryption File: " +  fileHolder.getFileNameWithoutExtension());
 	      try {

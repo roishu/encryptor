@@ -3,8 +3,6 @@ package com.apache.ciphers;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.Random;
-
 import com.apache.encryptor.FileHolder;
 
 public abstract class BaseAlgorithm extends Algorithm {

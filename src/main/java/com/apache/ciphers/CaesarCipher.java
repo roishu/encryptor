@@ -2,8 +2,6 @@ package com.apache.ciphers;
 
 import java.io.IOException;
 
-import com.apache.encryptor.CryptographicUtilities;
-
 public class CaesarCipher extends BaseAlgorithm {
 		
 	public CaesarCipher() {

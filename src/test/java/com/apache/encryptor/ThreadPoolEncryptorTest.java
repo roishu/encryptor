@@ -1,11 +1,7 @@
 package com.apache.encryptor;
 
 import junit.framework.TestCase;
-import static org.mockito.Mockito.*;
-
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,14 +13,7 @@ import java.util.Arrays;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
-import com.apache.ciphers.BaseAlgorithm;
-import com.apache.ciphers.CaesarCipher;
-import com.apache.ciphers.MultiplicativeCipher;
-import com.apache.ciphers.XORCipher;
 
 public class ThreadPoolEncryptorTest extends TestCase {
 	private String text = "Example Test Content.";
@@ -38,7 +27,8 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Mock
 	    ThreadPoolEncryptor tpEncryptor;
 	 
-	    @Before
+	    @Override
+		@Before
 	    public void setUp() throws IOException {
 	    	file1 = new File("logs/fileTest1.txt");
 	    	testFileSize(10,'A',file1);	
@@ -54,7 +44,8 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    	filesInFolder = new ArrayList<FileHolder>();
 	    }
 	 
-	    @After
+	    @Override
+		@After
 	    public void tearDown() {
 	        encryptor = null;
 	        tpEncryptor = null;

@@ -1,6 +1,5 @@
 package com.apache.ciphers;
 
-import java.io.File;
 import java.io.IOException;
 
 import com.apache.encryptor.FileHolder;

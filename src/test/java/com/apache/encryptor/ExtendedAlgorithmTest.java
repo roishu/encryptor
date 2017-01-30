@@ -37,7 +37,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    @Mock
 	    FileHolder fileHolder;
 	 
-	    @Before
+	    @Override
+		@Before
 	    public void setUp() throws IOException {
 	    	file = new File("logs/fileTest.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));
@@ -47,7 +48,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 		    fileHolder.importFile(file.getPath());
 	    }
 	 
-	    @After
+	    @Override
+		@After
 	    public void tearDown() {
 	        fileHolder = null;
 	        doubleAlgorithm = null;

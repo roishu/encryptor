@@ -1,21 +1,14 @@
 package com.apache.encryptor;
 
 import junit.framework.TestCase;
-import static org.mockito.Mockito.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 public class FileHolderTest extends TestCase {
 	     
@@ -26,7 +19,8 @@ public class FileHolderTest extends TestCase {
 	    @Mock
 	    FileHolder fileHolder;
 	 
-	    @Before
+	    @Override
+		@Before
 	    public void setUp() throws IOException {
 	    	file = new File("logs/fileTest.txt");
 	    	file2 = new File("logs/fileTest2.txt"); //will be empty
@@ -39,7 +33,8 @@ public class FileHolderTest extends TestCase {
 		    	fileHolder.importFile(file.getPath());
 	    }
 	 
-	    @After
+	    @Override
+		@After
 	    public void tearDown() {
 	        fileHolder = null;
 	        file.delete();  
