@@ -30,7 +30,6 @@ public abstract class BaseAlgorithm {
             throws IOException;
     
     public void execute(FileHolder fileHolder , String choice) throws IOException{
-    	long startTime = System.nanoTime();
     	byte[] fileBytes = fileHolder.getData(); //may be changed in FileHolder - check it !
     	if (choice.equals("Encryption")){
             for (int i = 0; i < fileBytes.length; i++) 
@@ -45,10 +44,7 @@ public abstract class BaseAlgorithm {
     		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDecryptedResultPath());
     		 	fos.write(fileBytes);
     		 	fos.close();
-    }
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime) / 1000000 ;
-		System.out.println("Time: " + duration + "ms.");   	
+    }  	
 }//execute
     
 }

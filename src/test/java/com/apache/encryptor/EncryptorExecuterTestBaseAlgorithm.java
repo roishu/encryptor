@@ -56,30 +56,28 @@ public class EncryptorExecuterTestBaseAlgorithm extends TestCase {
 	    @Test
 	    public void testCaesarCipher() throws IOException  {
 	    	encryptor.executeBaseAlgorithm("CaesarCipher", fileHolder);
-	    	testResults();
+	    	finish();
 	    }
 	    
 		@Test
 	    public void testMultiplicativeCipher() throws IOException  {
 	         
 	    	encryptor.executeBaseAlgorithm("MultiplicativeCipher", fileHolder);
-	    	testResults();
+	    	finish();
 	    }
 	     
 	    @Test
 	    public void testXORCipher() throws IOException  {
 	         
 	    	encryptor.executeBaseAlgorithm("XORCipher", fileHolder);
-	    	testResults();
+	    	finish();
 	    }
 	    
-	    private void testResults() throws IOException {
+	    public void finish() throws IOException {
 	    	String dec_content = new String(Files.readAllBytes
 					(Paths.get(fileHolder.getDecryptedResultPath())));
 			assertEquals(text, dec_content);
-			//delete Files
-			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();
-			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();	
+			encryptor.deleteEncryptorFiles(fileHolder);
 		}
 	 
 	

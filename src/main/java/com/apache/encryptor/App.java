@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherOutputStream;
@@ -43,24 +45,33 @@ public class App
 {
 	
 	//public static final String[] functions = { "Encryption", "Decryption"};
-	public static EncryptorExecuter encryptor = new EncryptorExecuter();
+
 	
     public static void main( String[] args )  throws Exception
     {
+    	//    	Path desktopPath = Paths.get("C:\\Users\\Roi\\Desktop\\files-desktop\\result1");
     	
-    	Path desktopPath = Paths.get("C:\\Users\\Roi\\Desktop\\files-desktop\\result1");
-    	final File folder = new File("C:\\Users\\Roi\\Desktop\\files-desktop");
+    	EncryptorExecuter encryptor = new EncryptorExecuter();
+       	
+    	final File folder = new File("C:\\Users\\Roi\\Desktop\\files-desktop\\result1");
     	ArrayList<FileHolder> filesInFolder = new ArrayList<FileHolder>();
-    	int i = 0;
+    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "MultiplicativeCipher");
+    	//tpEncryptor.execute();
+    	
+		//encryptor.deleteEncryptorFiles(fileHolder);
     
+		long startTime = System.nanoTime();
+		int i = 0;
     	    for (final File fileEntry : folder.listFiles()) {
     	    	if(!fileEntry.isDirectory() && fileEntry.exists()){
     	    		filesInFolder.add(i,new FileHolder(fileEntry));
     	    		encryptor.executeBaseAlgorithm("MultiplicativeCipher",filesInFolder.get(i));
     	    		i++;
     	    	}
-    	    }
-    	    Files.createDirectories(desktopPath);
+    	    }//for
+    	    long endTime = System.nanoTime();
+    	    long duration = (endTime - startTime) / 1000000 ;
+    		System.out.println("-----------Time 2: " + duration + "ms-----------"); 
         
     }   
     

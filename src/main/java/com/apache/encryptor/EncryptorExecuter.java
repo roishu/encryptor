@@ -2,6 +2,7 @@ package com.apache.encryptor;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
@@ -9,12 +10,16 @@ import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 
 public class EncryptorExecuter {
-	//new CaesarCipher() , new MultiplicativeCipher() , new XORCipher()
 	private static final CaesarCipher caesarCipher = new CaesarCipher();
 	private static final MultiplicativeCipher multiplicativeCipher = new MultiplicativeCipher();
 	private static final XORCipher xorCipher = new XORCipher();
 	private static final BaseAlgorithm[] baseAlgorithms ={caesarCipher,multiplicativeCipher,xorCipher};
-	
+	/**
+	 * time =
+	 * 		long endTime = System.nanoTime();
+		long duration = (endTime - startTime) / 1000000 ;
+		System.out.println("Time: " + duration + "ms."); 
+	 */
 	public EncryptorExecuter(){
 		
 	}
@@ -37,6 +42,12 @@ public class EncryptorExecuter {
 		if (choice.equals("CaesarCipher")) return 0;
 		else if (choice.equals("MultiplicativeCipher")) return 1;
 		return 2;
+	}
+	
+	public void deleteEncryptorFiles(FileHolder fileHolder){
+		//delete Files
+		Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();
+		Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();	
 	}
 	
 }
