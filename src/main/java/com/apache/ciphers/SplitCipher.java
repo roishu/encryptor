@@ -9,24 +9,20 @@ public class SplitCipher extends ExtendedAlgorithm{
 
 	public SplitCipher(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
 		super(baseAlgorithm, secondaryBaseAlgorithm);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void encrypt(FileHolder fileHolder) throws IOException {
-		// TODO Auto-generated method stub
-		
+		execute(fileHolder , "Encryption");
 	}
 
 	@Override
 	public void decrypt(FileHolder fileHolder) throws IOException {
-		// TODO Auto-generated method stub
-		
+		execute(fileHolder , "Decryption");
 	}
 	
 	public void execute(FileHolder fileHolder , String choice) throws IOException{
-    	long startTime = System.nanoTime();
-    	byte[] fileBytes = fileHolder.getData(); //may be changed in FileHolder - check it !
+    	byte[] fileBytes = fileHolder.getData();
     	if (choice.equals("Encryption")){
             for (int i = 0; i < fileBytes.length; i++) 
             {
@@ -55,9 +51,6 @@ public class SplitCipher extends ExtendedAlgorithm{
     		 	fos.write(fileBytes);
     		 	fos.close();
     }
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime) / 1000000 ;
-		System.out.println("Time: " + duration + "ms.");   	
 	}
 	
 

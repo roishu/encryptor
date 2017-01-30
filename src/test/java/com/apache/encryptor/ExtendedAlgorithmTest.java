@@ -1,28 +1,19 @@
 package com.apache.encryptor;
 
 import junit.framework.TestCase;
-import static org.mockito.Mockito.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.DoubleCipher;
-import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.ReverseCipher;
 import com.apache.ciphers.SplitCipher;
@@ -196,8 +187,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 			}
 	    
 	    public void executeSplitAlgorithmForTest() throws IOException{
-	    	splitAlgorithm.execute(fileHolder, "Encryption");
-	    	splitAlgorithm.execute(fileHolder, "Decryption");
+	    	splitAlgorithm.encrypt(fileHolder);
+	    	splitAlgorithm.decrypt(fileHolder);
 	    	//content
 	    	String dec_content = new String(Files.readAllBytes
 					(Paths.get(fileHolder.getDecryptedResultPath())));

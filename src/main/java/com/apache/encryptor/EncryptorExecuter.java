@@ -6,14 +6,22 @@ import java.nio.file.Paths;
 
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
+import com.apache.ciphers.DoubleCipher;
+import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
+import com.apache.ciphers.ReverseCipher;
+import com.apache.ciphers.SplitCipher;
 import com.apache.ciphers.XORCipher;
 
 public class EncryptorExecuter {
-	private static final CaesarCipher caesarCipher = new CaesarCipher();
-	private static final MultiplicativeCipher multiplicativeCipher = new MultiplicativeCipher();
-	private static final XORCipher xorCipher = new XORCipher();
-	private static final BaseAlgorithm[] baseAlgorithms ={caesarCipher,multiplicativeCipher,xorCipher};
+	private	CaesarCipher caesarCipher = new CaesarCipher();
+	private	MultiplicativeCipher multiplicativeCipher = new MultiplicativeCipher();
+	private	XORCipher xorCipher = new XORCipher();
+	private	DoubleCipher doubleCipher;
+	private	ReverseCipher reverseCipher;
+	private	SplitCipher splitCipher;
+	private	BaseAlgorithm[] baseAlgorithms ={caesarCipher,multiplicativeCipher,xorCipher};
+
 	/**
 	 * time =
 	 * 		long endTime = System.nanoTime();
@@ -29,6 +37,34 @@ public class EncryptorExecuter {
 		baseAlgorithms[index].execute(fileHolder, "Encryption");
 		baseAlgorithms[index].execute(fileHolder, "Decryption");
 	   renameEncryptedFile(fileHolder);
+	}
+	
+	public void executeExtendedAlgorithm(ExtendedAlgorithm extendedAlgorithm , FileHolder fileHolder) throws IOException{
+		extendedAlgorithm.encrypt(fileHolder);
+		extendedAlgorithm.decrypt(fileHolder);
+		if (extendedAlgorithm instanceof ReverseCipher)
+			reverseCipher.swapFiles(fileHolder);	
+	   renameEncryptedFile(fileHolder);
+	}
+
+	public void executeDoubleAlgorithm(String choice1 , String choice2, FileHolder fileHolder) throws IOException{
+		int index1 = getAlgorithmIndex(choice1);
+		int index2 = getAlgorithmIndex(choice2);
+		doubleCipher = new DoubleCipher(baseAlgorithms[index1],baseAlgorithms[index2]);
+		executeExtendedAlgorithm(doubleCipher,fileHolder);
+	}
+	
+	public void executeReverseAlgorithm(String choice , FileHolder fileHolder) throws IOException{
+		int index = getAlgorithmIndex(choice);
+		reverseCipher = new ReverseCipher(baseAlgorithms[index]);
+		executeExtendedAlgorithm(reverseCipher,fileHolder);
+	}
+	
+	public void executeSplitAlgorithm(String choice1 , String choice2, FileHolder fileHolder) throws IOException{
+		int index1 = getAlgorithmIndex(choice1);
+		int index2 = getAlgorithmIndex(choice2);
+		splitCipher = new SplitCipher(baseAlgorithms[index1],baseAlgorithms[index2]);
+		executeExtendedAlgorithm(splitCipher,fileHolder);
 	}
 
 	private void renameEncryptedFile(FileHolder fileHolder) {
