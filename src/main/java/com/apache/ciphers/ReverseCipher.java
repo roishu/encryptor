@@ -40,7 +40,14 @@ public class ReverseCipher extends ExtendedAlgorithm{
 		
 		fos_d.close();
 		fos_e.close();
-
+	}
+	
+	@Override
+	public void execute(FileHolder fileHolder , String choice) throws IOException {
+		if(choice.equals("Encryption"))
+			encrypt(fileHolder);
+		else
+			decrypt(fileHolder);
 	}
 	
 	

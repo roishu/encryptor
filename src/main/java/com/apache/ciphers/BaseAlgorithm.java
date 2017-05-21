@@ -1,5 +1,6 @@
 package com.apache.ciphers;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -28,22 +29,28 @@ public abstract class BaseAlgorithm extends Algorithm {
     public abstract byte decryptByte(byte b, Key key)
             throws IOException;
     
+    private void encryption(byte[] fileBytes , FileHolder fileHolder) throws IOException{
+    	 for (int i = 0; i < fileBytes.length; i++) 
+         	fileBytes[i] = encryptByte(fileBytes[i], key);
+         	FileOutputStream fos = new FileOutputStream(fileHolder.getEncryptedResultPath());
+         	fos.write(fileBytes);
+         	fos.close();
+    }
+    
+    private void decryption(byte[] fileBytes , FileHolder fileHolder) throws IOException{
+    	for (int i = 0; i < fileBytes.length; i++) 
+        	fileBytes[i] = decryptByte(fileBytes[i], key);
+		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDecryptedResultPath());
+		 	fos.write(fileBytes);
+		 	fos.close();
+    }
+    
     public void execute(FileHolder fileHolder , String choice) throws IOException{
-    	byte[] fileBytes = fileHolder.getData(); //may be changed in FileHolder - check it !
-    	if (choice.equals("Encryption")){
-            for (int i = 0; i < fileBytes.length; i++) 
-            	fileBytes[i] = encryptByte(fileBytes[i], key);
-            	FileOutputStream fos = new FileOutputStream(fileHolder.getEncryptedResultPath());
-            	fos.write(fileBytes);
-            	fos.close();
-    	}
-    	else if (choice.equals("Decryption")){
-    		for (int i = 0; i < fileBytes.length; i++) 
-            	fileBytes[i] = decryptByte(fileBytes[i], key);
-    		 	FileOutputStream fos = new FileOutputStream(fileHolder.getDecryptedResultPath());
-    		 	fos.write(fileBytes);
-    		 	fos.close();
-    }  	
-}//execute
+    	byte[] fileBytes = fileHolder.getData();
+    	if (choice.equals("Encryption"))
+    		encryption(fileBytes ,fileHolder);
+    	else
+    		decryption(fileBytes ,fileHolder);
+    }
     
 }

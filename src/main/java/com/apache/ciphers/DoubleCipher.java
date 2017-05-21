@@ -23,5 +23,13 @@ public class DoubleCipher extends ExtendedAlgorithm{
 		secondaryBaseAlgorithm.execute(fileHolder, "Decryption");
 		baseAlgorithm.execute(fileHolder, "Decryption");
 	}
+	
+	@Override
+	public void execute(FileHolder fileHolder , String choice) throws IOException {
+		if(choice.equals("Encryption"))
+			encrypt(fileHolder);
+		else
+			decrypt(fileHolder);
+	}
 
 }

@@ -13,12 +13,12 @@ public class SplitCipher extends ExtendedAlgorithm{
 
 	@Override
 	public void encrypt(FileHolder fileHolder) throws IOException {
-		execute(fileHolder , "Encryption");
+		execute(fileHolder, "Encryption");
 	}
 
 	@Override
 	public void decrypt(FileHolder fileHolder) throws IOException {
-		execute(fileHolder , "Decryption");
+		execute(fileHolder, "Decryption");
 	}
 	
 	public void execute(FileHolder fileHolder , String choice) throws IOException{

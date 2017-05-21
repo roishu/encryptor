@@ -14,24 +14,19 @@ import org.mockito.Mock;
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.DoubleCipher;
+import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.ReverseCipher;
 import com.apache.ciphers.SplitCipher;
 import com.apache.ciphers.XORCipher;
 
-public class ExtendedAlgorithmTest extends TestCase {
+public class AbstractAlgorithmTest extends TestCase {
 	private String text = "Example Test Content.";
-	     /*
-	      * before setting ExtendedAlgorithm as Abstract Class.
-	      */
+	     
 	    @Mock
 	    File file;
 	    @Mock
-	    DoubleCipher doubleAlgorithm;
-	    @Mock
-	    ReverseCipher reverseAlgorithm;
-	    @Mock
-	    SplitCipher splitAlgorithm;
+	    ExtendedAlgorithm exAlgorithm;
 	    @Mock
 	    BaseAlgorithm baseAlgorithm1;
 	    @Mock
@@ -54,9 +49,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 		@After
 	    public void tearDown() {
 	        fileHolder = null;
-	        doubleAlgorithm = null;
-	        reverseAlgorithm = null;
-	        splitAlgorithm = null;
+	        exAlgorithm = null;
 	        baseAlgorithm1 = null;
 	        baseAlgorithm2 = null;
 	        file.delete();   
@@ -68,8 +61,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new CaesarCipher();
 	    	baseAlgorithm2 = new XORCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
-	    	executeDoubleAlgorithmForTest();
+	    	exAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -78,8 +71,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new CaesarCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
-	    	executeDoubleAlgorithmForTest();
+	    	exAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -88,8 +81,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new XORCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
-	    	executeDoubleAlgorithmForTest();
+	    	exAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -98,8 +91,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new MultiplicativeCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
-	    	executeDoubleAlgorithmForTest();
+	    	exAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -107,32 +100,32 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testReverseCipher_Caesar() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new CaesarCipher();
-	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
-	    	 executeReverseAlgorithmForTest();
+	    	 exAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 executeExtendedAlgorithmForTest();
 	    }
 	    
 	    @Test
 	    public void testReverseCipher_XOR() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new XORCipher();
-	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
-	    	 executeReverseAlgorithmForTest();
+	    	 exAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 executeExtendedAlgorithmForTest();
 	    }
 	    
 	    @Test
 	    public void testReverseCipher_Multi() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new MultiplicativeCipher();
-	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
-	    	 executeReverseAlgorithmForTest();
+	    	 exAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 executeExtendedAlgorithmForTest();
 	    }
 	     
 	    @Test
 	    public void testSplitCipher_Caesar_XOR() throws IOException  {
 	         baseAlgorithm1 = new CaesarCipher();
 	         baseAlgorithm2 = new XORCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
-	    	 executeSplitAlgorithmForTest();
+	         exAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	         executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -140,8 +133,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Multi_XOR() throws IOException  {
 	         baseAlgorithm1 = new MultiplicativeCipher();
 	         baseAlgorithm2 = new XORCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
-	    	 executeSplitAlgorithmForTest();
+	         exAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	         executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -149,8 +142,8 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Caesar_Multi() throws IOException  {
 	         baseAlgorithm1 = new CaesarCipher();
 	         baseAlgorithm2 = new MultiplicativeCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
-	    	 executeSplitAlgorithmForTest();
+	         exAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	         executeExtendedAlgorithmForTest();
 
 	    }
 	    
@@ -158,16 +151,16 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Multi_Multi() throws IOException  {
 	         baseAlgorithm1 = new MultiplicativeCipher();
 	         baseAlgorithm2 = new MultiplicativeCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
-	    	 executeSplitAlgorithmForTest();
+	         exAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	         executeExtendedAlgorithmForTest();
 
 	    }
 	    
-	    public void executeDoubleAlgorithmForTest() throws IOException{
-	    	doubleAlgorithm.execute(fileHolder, "Encryption");
-	    	doubleAlgorithm.execute(fileHolder, "Decryption");
-	    	//doubleAlgorithm.encrypt(fileHolder);
-	    	//doubleAlgorithm.decrypt(fileHolder);
+	    public void executeExtendedAlgorithmForTest() throws IOException{
+	    	exAlgorithm.execute(fileHolder, "Encryption");
+	    	exAlgorithm.execute(fileHolder, "Decryption");
+	    	if(exAlgorithm.getName().equals("ReverseCipher"))
+	    		((ReverseCipher)exAlgorithm).swapFiles(fileHolder);
 	    	//content
 	    	String dec_content = new String(Files.readAllBytes
 					(Paths.get(fileHolder.getDecryptedResultPath())));
@@ -176,37 +169,6 @@ public class ExtendedAlgorithmTest extends TestCase {
 			//delete Files
 			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();	
 			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();	    
-			}
-	    
-	    public void executeReverseAlgorithmForTest() throws IOException{
-	    	reverseAlgorithm.execute(fileHolder, "Encryption");
-	    	reverseAlgorithm.execute(fileHolder, "Decryption");
-	    	//reverseAlgorithm.encrypt(fileHolder);
-	    	//reverseAlgorithm.decrypt(fileHolder);
-	    	reverseAlgorithm.swapFiles(fileHolder);
-	    	//content
-	    	String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDecryptedResultPath())));
-	    	//test assert
-			assertEquals(text, dec_content);
-			//delete Files
-			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();	
-			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();		    
-			}
-	    
-	    public void executeSplitAlgorithmForTest() throws IOException{
-	    	splitAlgorithm.execute(fileHolder, "Encryption");
-	    	splitAlgorithm.execute(fileHolder, "Decryption");
-	    	//splitAlgorithm.encrypt(fileHolder);
-	    	//splitAlgorithm.decrypt(fileHolder);
-	    	//content
-	    	String dec_content = new String(Files.readAllBytes
-					(Paths.get(fileHolder.getDecryptedResultPath())));
-	    	//test assert
-			assertEquals(text, dec_content);
-			//delete Files
-			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();	
-			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();		    
 			}
 	 
 	
