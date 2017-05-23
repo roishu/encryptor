@@ -6,18 +6,18 @@ public class EncryptorThread implements Runnable {
 
 	private Thread t;
 	private FileHolder fileHolder;
-	private EncryptorExecuter encryptor;
+	private EncryptorManager encryptor;
 	private String algorithm;
 	private String cipher1="",cipher2="";
 	
-	public EncryptorThread(FileHolder fileHolder, EncryptorExecuter encryptor, String algorithm) {
+	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm) {
 		super();
 		this.fileHolder = fileHolder;
 		this.encryptor = encryptor;
 		this.algorithm = algorithm;
 	}
 	
-	public EncryptorThread(FileHolder fileHolder, EncryptorExecuter encryptor, String algorithm , String cipher1) {
+	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1) {
 		super();
 		this.fileHolder = fileHolder;
 		this.encryptor = encryptor;
@@ -25,7 +25,7 @@ public class EncryptorThread implements Runnable {
 		this.cipher1 = cipher1;
 	}
 	
-	public EncryptorThread(FileHolder fileHolder, EncryptorExecuter encryptor, String algorithm , String cipher1 , String cipher2) {
+	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 , String cipher2) {
 		super();
 		this.fileHolder = fileHolder;
 		this.encryptor = encryptor;

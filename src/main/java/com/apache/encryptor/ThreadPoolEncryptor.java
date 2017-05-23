@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 public class ThreadPoolEncryptor {
 	
-	private EncryptorExecuter encryptor;
+	private EncryptorManager encryptor;
 	private ExecutorService executor;
 	private File folder;
 	private String algorithm;
@@ -21,7 +21,7 @@ public class ThreadPoolEncryptor {
 		super();
 		this.folder = folder;
 		this.algorithm = algorithm;
-		this.encryptor = new EncryptorExecuter();
+		this.encryptor = new EncryptorManager();
 		this.filesInFolder = new ArrayList<FileHolder>();
 		this.threadEncryptors = new ArrayList<EncryptorThread>();
 		this.executor = null;
@@ -32,7 +32,7 @@ public class ThreadPoolEncryptor {
 		super();
 		this.folder = folder;
 		this.algorithm = algorithm;
-		this.encryptor = new EncryptorExecuter();
+		this.encryptor = new EncryptorManager();
 		this.filesInFolder = new ArrayList<FileHolder>();
 		this.threadEncryptors = new ArrayList<EncryptorThread>();
 		this.executor = null;
@@ -43,7 +43,7 @@ public class ThreadPoolEncryptor {
 		super();
 		this.folder = folder;
 		this.algorithm = algorithm;
-		this.encryptor = new EncryptorExecuter();
+		this.encryptor = new EncryptorManager();
 		this.filesInFolder = new ArrayList<FileHolder>();
 		this.threadEncryptors = new ArrayList<EncryptorThread>();
 		this.executor = null;

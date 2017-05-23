@@ -18,7 +18,7 @@ public class App
     {
     	//    	Path desktopPath = Paths.get("C:\\Users\\Roi\\Desktop\\files-desktop\\result1");
     	
-    	EncryptorExecuter encryptor = new EncryptorExecuter();
+    	EncryptorManager encryptor = new EncryptorManager();
        	
     	final File folder = new File("C:\\Users\\Roi\\Desktop\\files-desktop\\result1");
     	ArrayList<FileHolder> filesInFolder = new ArrayList<FileHolder>();

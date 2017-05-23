@@ -21,7 +21,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Mock
 	    File file1, file2 , file3 , file4 , folder;
 	    @Mock
-	    EncryptorExecuter encryptor;
+	    EncryptorManager encryptor;
 	    @Mock
 	    ArrayList<FileHolder> filesInFolder;
 	    @Mock
@@ -39,7 +39,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    	file4 = new File("logs/fileTest4.txt");
 	    	testFileSize(10,'D',file4);	
 	    	
-	    	encryptor = new EncryptorExecuter();
+	    	encryptor = new EncryptorManager();
 	    	folder = new File("logs");
 	    	filesInFolder = new ArrayList<FileHolder>();
 	    }

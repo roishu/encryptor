@@ -20,7 +20,7 @@ import com.apache.ciphers.ReverseCipher;
 import com.apache.ciphers.SplitCipher;
 import com.apache.ciphers.XORCipher;
 
-public class AbstractAlgorithmTest extends TestCase {
+public class AbstractExtendedAlgorithmTest extends TestCase {
 	private String text = "Example Test Content.";
 	     
 	    @Mock

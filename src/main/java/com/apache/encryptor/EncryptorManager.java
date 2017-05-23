@@ -13,7 +13,7 @@ import com.apache.ciphers.ReverseCipher;
 import com.apache.ciphers.SplitCipher;
 import com.apache.ciphers.XORCipher;
 
-public class EncryptorExecuter {
+public class EncryptorManager {
 	private	CaesarCipher caesarCipher = new CaesarCipher();
 	private	MultiplicativeCipher multiplicativeCipher = new MultiplicativeCipher();
 	private	XORCipher xorCipher = new XORCipher();
@@ -28,7 +28,7 @@ public class EncryptorExecuter {
 		long duration = (endTime - startTime) / 1000000 ;
 		System.out.println("Time: " + duration + "ms."); 
 	 */
-	public EncryptorExecuter(){
+	public EncryptorManager(){
 		
 	}
 	
@@ -40,10 +40,14 @@ public class EncryptorExecuter {
 	}
 	
 	public void executeExtendedAlgorithm(ExtendedAlgorithm extendedAlgorithm , FileHolder fileHolder) throws IOException{
-		extendedAlgorithm.encrypt(fileHolder);
-		extendedAlgorithm.decrypt(fileHolder);
-		if (extendedAlgorithm instanceof ReverseCipher)
-			reverseCipher.swapFiles(fileHolder);	
+//		extendedAlgorithm.encrypt(fileHolder);
+//		extendedAlgorithm.decrypt(fileHolder);
+//		if (extendedAlgorithm instanceof ReverseCipher)
+//			reverseCipher.swapFiles(fileHolder);
+		extendedAlgorithm.execute(fileHolder, "Encryption");
+		extendedAlgorithm.execute(fileHolder, "Decryption");
+    	if(extendedAlgorithm.getName().equals("ReverseCipher"))
+    		((ReverseCipher)extendedAlgorithm).swapFiles(fileHolder);
 	   renameEncryptedFile(fileHolder);
 	}
 

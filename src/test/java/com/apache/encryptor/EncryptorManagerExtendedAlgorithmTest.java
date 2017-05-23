@@ -13,20 +13,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-public class EncryptorExecuterExtendedAlgorithmTest extends TestCase {
+public class EncryptorManagerExtendedAlgorithmTest extends TestCase {
 	private String text = "Example Test Content.";
 	     
 	    @Mock
 	    File file;
 	    @Mock
-	    EncryptorExecuter encryptor;
+	    EncryptorManager encryptor;
 	    @Mock
 	    FileHolder fileHolder;
 	 
 	    @Override
 		@Before
 	    public void setUp() throws IOException {
-	    	encryptor = new EncryptorExecuter();
+	    	encryptor = new EncryptorManager();
 	    	file = new File("logs/fileTest.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));
             out.write(text);
