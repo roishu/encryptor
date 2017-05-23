@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -16,7 +18,7 @@ public class EncryptorMenu extends JFrame
 {
 static EncryptorMenu theexample1;
 
-JPanel SystemMainPanel;
+JPanel systemMainPanel;
 
 JPanel SelectionPanel;
 JLabel lbLabel1;
@@ -33,14 +35,16 @@ public EncryptorMenu()
 {
    super( "Cryptographic Project Menu" );
    
-   SystemMainPanel = new JPanel();
+   systemMainPanel = new JPanel();
+   systemMainPanel.setLayout(new GridLayout(0, 1));
+   
    SelectionPanel = new JPanel();
    cmbCombo0 = new JComboBox<>(dataCombo0);
    SelectionPanel.add(cmbCombo0);
    setDefaultCloseOperation( EXIT_ON_CLOSE );
 
-   SystemMainPanel.add(SelectionPanel);
-   setContentPane( SystemMainPanel );
+   systemMainPanel.add(SelectionPanel);
+   setContentPane( systemMainPanel );
    pack();
    setSize(500,500);
    setVisible( true );
