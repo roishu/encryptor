@@ -20,14 +20,9 @@ public class EncryptorManager {
 	private	DoubleCipher doubleCipher;
 	private	ReverseCipher reverseCipher;
 	private	SplitCipher splitCipher;
+	private ExtendedAlgorithm extendedAlgorithm;
 	private	BaseAlgorithm[] baseAlgorithms ={caesarCipher,multiplicativeCipher,xorCipher};
 
-	/**
-	 * time =
-	 * 		long endTime = System.nanoTime();
-		long duration = (endTime - startTime) / 1000000 ;
-		System.out.println("Time: " + duration + "ms."); 
-	 */
 	public EncryptorManager(){
 		
 	}
@@ -40,10 +35,6 @@ public class EncryptorManager {
 	}
 	
 	public void executeExtendedAlgorithm(ExtendedAlgorithm extendedAlgorithm , FileHolder fileHolder) throws IOException{
-//		extendedAlgorithm.encrypt(fileHolder);
-//		extendedAlgorithm.decrypt(fileHolder);
-//		if (extendedAlgorithm instanceof ReverseCipher)
-//			reverseCipher.swapFiles(fileHolder);
 		extendedAlgorithm.execute(fileHolder, "Encryption");
 		extendedAlgorithm.execute(fileHolder, "Decryption");
     	if(extendedAlgorithm.getName().equals("ReverseCipher"))
