@@ -2,6 +2,10 @@ package com.apache.ciphers;
 
 import java.io.IOException;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.apache.encryptor.FileHolder;
 
 public class DoubleCipher extends ExtendedAlgorithm{
