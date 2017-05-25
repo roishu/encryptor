@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.apache.encryptor.FileHolder;
 
-public class DoubleCipher extends ExtendedAlgorithm{
+public class DoubleAlgorithm extends ExtendedAlgorithm{
 
-	public DoubleCipher(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
-		super("DoubleCipher",baseAlgorithm, secondaryBaseAlgorithm);
+	public DoubleAlgorithm(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
+		super("DoubleAlgorithm",baseAlgorithm, secondaryBaseAlgorithm);
 		// TODO Auto-generated constructor stub
 	}
 

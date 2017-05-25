@@ -5,10 +5,10 @@ import java.io.IOException;
 
 import com.apache.encryptor.FileHolder;
 
-public class SplitCipher extends ExtendedAlgorithm{
+public class SplitAlgorithm extends ExtendedAlgorithm{
 
-	public SplitCipher(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
-		super("SplitCipher",baseAlgorithm, secondaryBaseAlgorithm);
+	public SplitAlgorithm(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
+		super("SplitAlgorithm",baseAlgorithm, secondaryBaseAlgorithm);
 	}
 
 	@Override

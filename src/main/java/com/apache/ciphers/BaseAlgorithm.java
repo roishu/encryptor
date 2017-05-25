@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
+
 import com.apache.encryptor.FileHolder;
 
 public abstract class BaseAlgorithm extends Algorithm {

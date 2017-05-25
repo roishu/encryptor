@@ -41,9 +41,9 @@ public class EncryptorThread implements Runnable {
 		try {
 			if(cipher1.equals(""))
 				encryptor.executeBaseAlgorithm(algorithm, fileHolder);
-			else if (algorithm.equals("DoubleCipher")) encryptor.executeDoubleAlgorithm(cipher1,cipher2, fileHolder);
-			else if (algorithm.equals("ReverseCipher")) encryptor.executeReverseAlgorithm(cipher1, fileHolder);
-			else if (algorithm.equals("SplitCipher")) encryptor.executeSplitAlgorithm(cipher1,cipher2, fileHolder);
+			else if (algorithm.equals("DoubleAlgorithm")) encryptor.executeDoubleAlgorithm(cipher1,cipher2, fileHolder);
+			else if (algorithm.equals("ReverseAlgorithm")) encryptor.executeReverseAlgorithm(cipher1, fileHolder);
+			else if (algorithm.equals("SplitAlgorithm")) encryptor.executeSplitAlgorithm(cipher1,cipher2, fileHolder);
 			else System.out.println("THROW EXCEPTION");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

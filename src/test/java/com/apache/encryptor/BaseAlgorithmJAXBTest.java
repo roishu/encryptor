@@ -22,7 +22,7 @@ import org.mockito.Mock;
 import com.apache.ciphers.Algorithm;
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
-import com.apache.ciphers.DoubleCipher;
+import com.apache.ciphers.DoubleAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 

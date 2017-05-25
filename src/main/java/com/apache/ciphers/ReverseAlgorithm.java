@@ -7,10 +7,10 @@ import java.nio.file.Paths;
 
 import com.apache.encryptor.FileHolder;
 
-public class ReverseCipher extends ExtendedAlgorithm{
+public class ReverseAlgorithm extends ExtendedAlgorithm{
 
-	public ReverseCipher(BaseAlgorithm baseAlgorithm) {
-		super("ReverseCipher",baseAlgorithm);
+	public ReverseAlgorithm(BaseAlgorithm baseAlgorithm) {
+		super("ReverseAlgorithm",baseAlgorithm);
 		// TODO Auto-generated constructor stub
 	}
 

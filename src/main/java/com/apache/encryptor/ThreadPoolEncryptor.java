@@ -65,11 +65,11 @@ public class ThreadPoolEncryptor {
 			//check for algorithm type
 			if(cipher1.equals(""))
 				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
-			else if (algorithm.equals("DoubleCipher"))
+			else if (algorithm.equals("DoubleAlgorithm"))
 				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
-			else if (algorithm.equals("ReverseCipher"))
+			else if (algorithm.equals("ReverseAlgorithm"))
 				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1));
-			else if (algorithm.equals("SplitCipher")) 
+			else if (algorithm.equals("SplitAlgorithm")) 
 				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
 			else {
 				System.out.println("THROW EXCEPTION"); break; //TODO exception !

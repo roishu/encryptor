@@ -11,12 +11,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
-import com.apache.ciphers.DoubleCipher;
+import com.apache.ciphers.DoubleAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
-import com.apache.ciphers.ReverseCipher;
-import com.apache.ciphers.SplitCipher;
+import com.apache.ciphers.ReverseAlgorithm;
+import com.apache.ciphers.SplitAlgorithm;
 import com.apache.ciphers.XORCipher;
 
 public class ExtendedAlgorithmTest extends TestCase {
@@ -27,11 +28,11 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    @Mock
 	    File file;
 	    @Mock
-	    DoubleCipher doubleAlgorithm;
+	    DoubleAlgorithm doubleAlgorithm;
 	    @Mock
-	    ReverseCipher reverseAlgorithm;
+	    ReverseAlgorithm reverseAlgorithm;
 	    @Mock
-	    SplitCipher splitAlgorithm;
+	    SplitAlgorithm splitAlgorithm;
 	    @Mock
 	    BaseAlgorithm baseAlgorithm1;
 	    @Mock
@@ -68,7 +69,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new CaesarCipher();
 	    	baseAlgorithm2 = new XORCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	doubleAlgorithm = new DoubleAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	executeDoubleAlgorithmForTest();
 
 	    }
@@ -78,7 +79,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new CaesarCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	doubleAlgorithm = new DoubleAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	executeDoubleAlgorithmForTest();
 
 	    }
@@ -88,7 +89,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new XORCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	doubleAlgorithm = new DoubleAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	executeDoubleAlgorithmForTest();
 
 	    }
@@ -98,7 +99,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    	
 	    	baseAlgorithm1 = new MultiplicativeCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
-	    	doubleAlgorithm = new DoubleCipher(baseAlgorithm1, baseAlgorithm2);
+	    	doubleAlgorithm = new DoubleAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	executeDoubleAlgorithmForTest();
 
 	    }
@@ -107,7 +108,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testReverseCipher_Caesar() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new CaesarCipher();
-	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 reverseAlgorithm = new ReverseAlgorithm(baseAlgorithm1);
 	    	 executeReverseAlgorithmForTest();
 	    }
 	    
@@ -115,7 +116,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testReverseCipher_XOR() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new XORCipher();
-	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 reverseAlgorithm = new ReverseAlgorithm(baseAlgorithm1);
 	    	 executeReverseAlgorithmForTest();
 	    }
 	    
@@ -123,7 +124,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testReverseCipher_Multi() throws IOException  {
 	         
 	    	 baseAlgorithm1 = new MultiplicativeCipher();
-	    	 reverseAlgorithm = new ReverseCipher(baseAlgorithm1);
+	    	 reverseAlgorithm = new ReverseAlgorithm(baseAlgorithm1);
 	    	 executeReverseAlgorithmForTest();
 	    }
 	     
@@ -131,7 +132,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Caesar_XOR() throws IOException  {
 	         baseAlgorithm1 = new CaesarCipher();
 	         baseAlgorithm2 = new XORCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 splitAlgorithm = new SplitAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	 executeSplitAlgorithmForTest();
 
 	    }
@@ -140,7 +141,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Multi_XOR() throws IOException  {
 	         baseAlgorithm1 = new MultiplicativeCipher();
 	         baseAlgorithm2 = new XORCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 splitAlgorithm = new SplitAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	 executeSplitAlgorithmForTest();
 
 	    }
@@ -149,7 +150,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Caesar_Multi() throws IOException  {
 	         baseAlgorithm1 = new CaesarCipher();
 	         baseAlgorithm2 = new MultiplicativeCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 splitAlgorithm = new SplitAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	 executeSplitAlgorithmForTest();
 
 	    }
@@ -158,7 +159,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    public void testSplitCipher_Multi_Multi() throws IOException  {
 	         baseAlgorithm1 = new MultiplicativeCipher();
 	         baseAlgorithm2 = new MultiplicativeCipher();
-	    	 splitAlgorithm = new SplitCipher(baseAlgorithm1, baseAlgorithm2);
+	    	 splitAlgorithm = new SplitAlgorithm(baseAlgorithm1, baseAlgorithm2);
 	    	 executeSplitAlgorithmForTest();
 
 	    }

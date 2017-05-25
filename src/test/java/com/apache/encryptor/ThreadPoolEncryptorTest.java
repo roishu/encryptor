@@ -85,7 +85,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testDoubleCipher_Caesar_Multiplicative() throws IOException  {
 	    	System.out.println("testDoubleCipher");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleCipher" ,"CaesarCiper" , "MultiplicativeCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"CaesarCiper" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
@@ -93,7 +93,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testDoubleCipher_Multiplicative_XOR() throws IOException  {
 	    	System.out.println("testDoubleCipher");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleCipher" ,"MultiplicativeCipher" , "XORCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"MultiplicativeCipher" , "XORCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
@@ -101,7 +101,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testDoubleCipher_XOR_Caesar() throws IOException  {
 	    	System.out.println("testDoubleCipher");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleCipher" ,"XORCipher" , "CaesarCiper");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"XORCipher" , "CaesarCiper");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
@@ -109,7 +109,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testReverseCipher() throws IOException  {
 	    	System.out.println("testDoubleCipher");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "ReverseCipher" ,"XORCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "ReverseAlgorithm" ,"XORCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
@@ -117,7 +117,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testSplitCipher() throws IOException  {
 	    	System.out.println("testDoubleCipher");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "SplitCipher" ,"MultiplicativeCipher" , "MultiplicativeCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "SplitAlgorithm" ,"MultiplicativeCipher" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
