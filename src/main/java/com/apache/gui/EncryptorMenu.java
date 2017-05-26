@@ -2,6 +2,7 @@ package com.apache.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -10,17 +11,23 @@ import javax.swing.border.EtchedBorder;
 import com.apache.gui.FileChooserTest.OpenL;
 import com.apache.gui.FileChooserTest.SaveL;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.LinearGradientPaint;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Enumeration;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -34,7 +41,7 @@ public class EncryptorMenu extends JFrame
 {
 	static EncryptorMenu theexample1;
 	private JPanel fileChooserPanel;
-	private JPanel selectionPanel , encryptionPanel , decriptionPanel;
+	private JPanel selectionPanel , encryptorPanel;
 	private JLabel lbLabel1;
 	private JLabel lbLabel2;
 	private JComboBox jcmbFunction , jcmbAlgorithm , jcmbCipher1 , jcmbCipher2 ;
@@ -47,25 +54,62 @@ public class EncryptorMenu extends JFrame
 	private JButton btBut1 = new JButton("Accept");
 	private JButton browseButton = new JButton("Browse");
 	private final JFileChooser fc = new JFileChooser();
-	private JTextArea filename = new JTextArea(""), dir = new JTextArea();
+	private JTextField filename = new JTextField("",30), dir = new JTextField();
+	private JRadioButton selectionButtonEncryption;
+	private JRadioButton selectionButtonDecryption;
+	private ButtonGroup selectionGroup;
+	private JPanel encryporOptionPanel;
+	private JPanel encryptorExecutePanel;
+	private JButton executeButton;
+	private JButton exportXMLButton;
 
 	public EncryptorMenu() 
 	{ 
 		fileChooserInit();
 		setLayout(new GridLayout(3, 1));
+		//Browse
 		selectionPanel = new JPanel();
 		selectionPanel.setLayout(new GridLayout(2, 1));
 		selectionPanel.add(fileChooserPanel);
-		jcmbFunction = new JComboBox<>(dataCombo0);
-		jcmbFunction.addActionListener(FunctionActionListener);
-		selectionPanel.add(jcmbFunction);
-		selectionPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-
-		encryptionPanel = new JPanel();
+		//Encryption / Decryption - Choose
+		selectionPanel.add(getSelectionRadioButtonPanel());
+		selectionPanel.setBorder(BorderFactory.createTitledBorder("Choose File"));
+		//Algorithms - Options
+		encryptorPanel = new JPanel();
+		encryptorPanel.setLayout(new GridLayout(2, 1));
+		encryptorPanel.setBorder(BorderFactory.createTitledBorder("Options"));
+		encryporOptionPanel = new JPanel();
+		encryptorExecutePanel = new JPanel();
+		encryporOptionPanel.setLayout(new GridLayout(3, 3));
 		jcmbAlgorithm = new JComboBox<>(dataCombo1);
-		encryptionPanel.add(jcmbAlgorithm);
-		encryptionPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-
+		jcmbAlgorithm.addActionListener(cbActionListener);
+		jcmbCipher1 = new JComboBox<>(dataCombo2);
+		jcmbCipher2 = new JComboBox<>(dataCombo2);
+		encryporOptionPanel.add(new JLabel("Algorithm:"));
+		encryporOptionPanel.add(jcmbAlgorithm);
+		encryporOptionPanel.add(new JLabel("Cipher:"));
+		encryporOptionPanel.add(jcmbCipher1);
+		encryporOptionPanel.add(new JLabel("Secondary Cipher:"));
+		encryporOptionPanel.add(jcmbCipher2);
+		jcmbAlgorithm.setSelectedIndex(-1);
+		jcmbCipher1.setSelectedIndex(-1);
+		jcmbCipher2.setSelectedIndex(-1);
+		jcmbAlgorithm.setEnabled(false);
+		jcmbCipher1.setEnabled(false);
+		jcmbCipher2.setEnabled(false);
+		encryptorPanel.add(encryporOptionPanel);
+		executeButton = new JButton("Execute");
+		encryptorExecutePanel.add(executeButton);
+		executeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				console.setText(console.getText()+checkBeforeExecution()+"\n");
+			}
+		});
+		exportXMLButton = new JButton("Export algorithm to xml");
+		encryptorExecutePanel.add(exportXMLButton);
+		encryptorPanel.add(encryptorExecutePanel);
 		console = new JTextArea( 12, 40 ) ;
 		console.setText(">>>Welcome!\n");
 		consolePanel = new JScrollPane(console) ;
@@ -78,13 +122,38 @@ public class EncryptorMenu extends JFrame
 
 		setDefaultCloseOperation( EXIT_ON_CLOSE );
 		add(selectionPanel);
-		add(encryptionPanel);
+		add(encryptorPanel);
 		add(consolePanel);
 		pack();
 		setSize(500,500);
 		setVisible( true );
 		//setResizable(false);
 	} 
+	
+	public boolean checkBeforeExecution(){
+		if (selectionButtonDecryption.isSelected() || selectionButtonEncryption.isSelected())
+			if (!filename.getText().isEmpty())
+				if (jcmbAlgorithm.getSelectedIndex()!=-1){
+					if (jcmbAlgorithm.getSelectedIndex()==0 && jcmbCipher1.getSelectedIndex()!=-1)
+						return true;
+					else if (jcmbAlgorithm.getSelectedIndex()!=0 && jcmbCipher1.getSelectedIndex()!=-1
+							&& jcmbCipher2.getSelectedIndex()!=-1)
+						return true;
+				}
+		return false;
+	}
+
+	private JPanel getSelectionRadioButtonPanel() {
+		JPanel panel = new JPanel();
+		selectionGroup = new ButtonGroup();
+	    selectionButtonEncryption = new JRadioButton("Encryption");
+	    panel.add(selectionButtonEncryption);
+	    selectionGroup.add(selectionButtonEncryption);
+	    selectionButtonDecryption = new JRadioButton("Decryption");
+	    panel.add(selectionButtonDecryption);
+	    selectionGroup.add(selectionButtonDecryption);
+	    return panel;
+	}
 
 	private void fileChooserInit() {
 		// TODO Auto-generated method stub
@@ -98,8 +167,33 @@ public class EncryptorMenu extends JFrame
 	    filename.setSize(100, 20);
 	}
 	
+    ActionListener cbActionListener = new ActionListener() {//add actionlistner to listen for change
+        @Override
+        public void actionPerformed(ActionEvent e) {
+    		/**
+    		 * { "ReverseAlgorithm" , "DoubleAlgorithm" , "SplitAlgorithm" };
+    		 * @param e
+    		 */
+            int index = jcmbAlgorithm.getSelectedIndex();//get the selected item
+
+            switch (index) {
+                case 0: //ReverseAlgorithm
+                    jcmbCipher1.setEnabled(true);
+                    break;
+                case 1: //DoubleAlgorithm
+                	jcmbCipher1.setEnabled(true);
+                	jcmbCipher2.setEnabled(true);
+                    break;
+                case 2: //SplitAlgorithm
+                	jcmbCipher1.setEnabled(true);
+                	jcmbCipher2.setEnabled(true);
+                    break;
+
+            }
+        }
+    };
+	
 	private ActionListener browseActionListener = new ActionListener() {
-		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -110,6 +204,7 @@ public class EncryptorMenu extends JFrame
 		      if (rVal == JFileChooser.APPROVE_OPTION) {
 		        filename.setText(c.getSelectedFile().getName());
 		        dir.setText(c.getCurrentDirectory().toString());
+		        jcmbAlgorithm.setEnabled(true);
 		      }
 		      if (rVal == JFileChooser.CANCEL_OPTION) {
 		        filename.setText("");
