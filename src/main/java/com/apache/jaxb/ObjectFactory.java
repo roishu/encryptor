@@ -31,7 +31,7 @@ public class ObjectFactory {
 		return new DoubleAlgorithmJAXB();
 	}
 
-	   @XmlElementDecl(namespace = "http://www.example.org/customer", name = "key")
+	   @XmlElementDecl(namespace = "http://com.apace.jaxb/doublealgorithm-jaxb", name = "key")
 	    public JAXBElement<Key> createKey(Key value) {
 	        return new JAXBElement<Key>(_Key_QNAME, Key.class, null, value);
 	    }
