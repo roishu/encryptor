@@ -37,18 +37,7 @@ public class FileChooserTest extends JFrame {
 
   class OpenL implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      JFileChooser c = new JFileChooser();
-      c.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-      // Demonstrate "Open" dialog:
-      int rVal = c.showOpenDialog(FileChooserTest.this);
-      if (rVal == JFileChooser.APPROVE_OPTION) {
-        filename.setText(c.getSelectedFile().getName());
-        dir.setText(c.getCurrentDirectory().toString());
-      }
-      if (rVal == JFileChooser.CANCEL_OPTION) {
-        filename.setText("You pressed cancel");
-        dir.setText("");
-      }
+
     }
   }
 

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.xml.bind.JAXBException;
+
 public class ThreadPoolEncryptor {
 
 	private EncryptorManager encryptor;
@@ -17,7 +19,7 @@ public class ThreadPoolEncryptor {
 	private int numOfFiles = 0;
 	private long startTime=0 , endTime=0 , duration=0;
 
-	public ThreadPoolEncryptor(File folder, String algorithm) {
+	public ThreadPoolEncryptor(File folder, String algorithm) throws JAXBException {
 		super();
 		this.folder = folder;
 		this.algorithm = algorithm;
@@ -28,9 +30,10 @@ public class ThreadPoolEncryptor {
 		init();
 	}
 
-	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1) {
+	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1) throws JAXBException {
 		super();
 		this.folder = folder;
+		this.cipher1 = cipher1;
 		this.algorithm = algorithm;
 		this.encryptor = new EncryptorManager();
 		this.filesInFolder = new ArrayList<FileHolder>();
@@ -39,9 +42,11 @@ public class ThreadPoolEncryptor {
 		init();
 	}
 
-	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1 , String cipher2) {
+	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1 , String cipher2) throws JAXBException {
 		super();
 		this.folder = folder;
+		this.cipher1 = cipher1;
+		this.cipher2 = cipher2;
 		this.algorithm = algorithm;
 		this.encryptor = new EncryptorManager();
 		this.filesInFolder = new ArrayList<FileHolder>();
@@ -58,19 +63,19 @@ public class ThreadPoolEncryptor {
 		numOfFiles = filesInFolder.size();
 	}
 
-	public void execute(){
+	public void execute(boolean runFromXML){
 		startTime = System.nanoTime();
 		executor = Executors.newFixedThreadPool(filesInFolder.size());
 		for(int i =0 ; i<numOfFiles ; i++){
 			//check for algorithm type
 			if(cipher1.equals(""))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm,runFromXML));
 			else if (algorithm.equals("DoubleAlgorithm"))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,runFromXML));
 			else if (algorithm.equals("ReverseAlgorithm"))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1,runFromXML));
 			else if (algorithm.equals("SplitAlgorithm")) 
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,runFromXML));
 			else {
 				System.out.println("THROW EXCEPTION"); break; //TODO exception !
 			}

@@ -20,7 +20,6 @@ public abstract class BaseAlgorithm extends Algorithm {
 	protected Byte randomizeKeyByte() {
 		//random from -128 to 127
 		byte key = (byte)(random.nextInt(2*Byte.MAX_VALUE + 2) + Byte.MIN_VALUE); 
-		System.out.println("Key =" + key);
         return key;
 	}
 	

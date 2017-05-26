@@ -2,11 +2,19 @@ package com.apache.ciphers;
 
 import java.io.IOException;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.apache.encryptor.FileHolder;
 
 import lombok.NonNull;
 
+@XmlTransient
+@XmlSeeAlso(DoubleAlgorithm.class)
 public abstract class ExtendedAlgorithm extends Algorithm {
+	@NonNull
+	protected BaseAlgorithm baseAlgorithm;
+	protected BaseAlgorithm secondaryBaseAlgorithm;
 	
 	public ExtendedAlgorithm(String name,BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
 		super(name);
@@ -20,9 +28,15 @@ public abstract class ExtendedAlgorithm extends Algorithm {
 		this.secondaryBaseAlgorithm = null;
 	}
 
-	@NonNull
-	protected BaseAlgorithm baseAlgorithm;
-	protected BaseAlgorithm secondaryBaseAlgorithm;
+	public String getBaseAlgorithmName(){
+		return baseAlgorithm.getName();
+	}
+	
+	public String getSecondaryBaseAlgorithmName(){
+		if(secondaryBaseAlgorithm!=null)
+			return secondaryBaseAlgorithm.getName();
+		return "NULL";
+	}
 	
     public abstract void encrypt(FileHolder fileHolder)
             throws IOException;

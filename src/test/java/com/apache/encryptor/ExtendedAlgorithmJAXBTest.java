@@ -23,27 +23,29 @@ import com.apache.ciphers.Algorithm;
 import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.DoubleAlgorithm;
+import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 
 import junit.framework.TestCase;
 
-public class BaseAlgorithmJAXBTest extends TestCase{
+public class ExtendedAlgorithmJAXBTest extends TestCase{
 	private String text = "Example Test Content.";
     
     @Mock
-    JAXBContext context;
+    JAXBContext context , doubleContext;
     @Mock
     BaseAlgorithm algorithm;
     @Mock
     FileHolder fileHolder;
     @Mock 
     File file;
-    
+ 
     @Override
 	@Before
     public void setUp() throws JAXBException, IOException {
     	context = JAXBContext.newInstance(CaesarCipher.class);
+    	doubleContext = JAXBContext.newInstance(DoubleAlgorithm.class);
     	file = new File("logs/fileTest.txt");
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
         out.write(text);
@@ -63,15 +65,24 @@ public class BaseAlgorithmJAXBTest extends TestCase{
     }
  
     @Test
-    public void testJAXB_BaseAlgorithm() throws JAXBException, IOException  {
+    public void testJAXB_ExtendedAlgorithm() throws JAXBException, IOException  {
     	Marshaller marshaller = this.context.createMarshaller();
     	marshaller.marshal(new CaesarCipher(), new File("CaesarCipher.xml"));
     	
     	Unmarshaller unmarshaller = this.context.createUnmarshaller();
     	CaesarCipher cipher = (CaesarCipher) unmarshaller.unmarshal(new File("CaesarCipher.xml"));
     	
-    	cipher.execute(fileHolder, "Encryption");
-    	cipher.execute(fileHolder, "Decryption");
+    	Marshaller marshaller2 = this.doubleContext.createMarshaller();
+    	marshaller2.marshal(new DoubleAlgorithm(), new File("DoubleAlgorithm.xml"));
+    	
+    	Unmarshaller unmarshaller2 = this.doubleContext.createUnmarshaller();
+    	DoubleAlgorithm doubleAlgorithm = (DoubleAlgorithm) unmarshaller2.unmarshal(new File("DoubleAlgorithm.xml"));
+    	
+    	assertEquals(doubleAlgorithm.getBaseAlgorithmName(), "CaesarCipher");
+    	assertEquals(doubleAlgorithm.getSecondaryBaseAlgorithmName(), "MultiplicativeCipher");
+    	
+    	doubleAlgorithm.execute(fileHolder, "Encryption");
+    	doubleAlgorithm.execute(fileHolder, "Decryption");
 			String dec_content = new String(Files.readAllBytes
 					(Paths.get(fileHolder.getDecryptedResultPath())));
 			assertEquals(text, dec_content);

@@ -2,6 +2,12 @@ package com.apache.ciphers;
 
 import java.io.IOException;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class XORCipher extends BaseAlgorithm {
 
 	public XORCipher() {

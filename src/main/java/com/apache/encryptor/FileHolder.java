@@ -18,6 +18,7 @@ public class FileHolder {
 	private String content;
 	private byte[] data;
 	private String directoryPath;
+	private String extension;
 	
 	public String getDirectoryPath() {
 		return directoryPath;
@@ -69,32 +70,34 @@ public class FileHolder {
 		return !(file.isDirectory() || !file.exists());
 	}
 	
-	public void importFile(){
-		if(isEmpty){
-			JFrame frame = new JFrame("Path InputDialog Example");
-			filePath = JOptionPane.showInputDialog(frame, "Path :");
-	        file = new File(filePath);
-	        //System.out.println("file.isDirectory()" + file.isDirectory());
-	        while (!isValid()){
-	        	filePath = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
-	        	file = new File(filePath);
-	        }
-	        saveDirectoryPath();
-	        try {
-				content = new String(Files.readAllBytes(Paths.get(filePath)));
-				data = Files.readAllBytes(Paths.get(filePath));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-	        
-	        isEmpty = false;
-		}
-	}
+//	public void importFile(){
+//		if(isEmpty){
+//			JFrame frame = new JFrame("Path InputDialog Example");
+//			filePath = JOptionPane.showInputDialog(frame, "Path :");
+//	        file = new File(filePath);
+//	        //System.out.println("file.isDirectory()" + file.isDirectory());
+//	        while (!isValid()){
+//	        	filePath = JOptionPane.showInputDialog(frame, "Enter Valid Path :");
+//	        	file = new File(filePath);
+//	        }
+//	        saveDirectoryPath();
+//	        try {
+//				content = new String(Files.readAllBytes(Paths.get(filePath)));
+//				data = Files.readAllBytes(Paths.get(filePath));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} 
+//	        
+//	        isEmpty = false;
+//		}
+//	}
 	
 	public void importFile(String filePath){
 		if(isEmpty){
 	        file = new File(filePath);
+	        if(!file.isDirectory())
+	        	saveExtension();
 	        saveDirectoryPath();
 	        try {
 				content = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -111,7 +114,12 @@ public class FileHolder {
 	private void saveDirectoryPath() {
 		// TODO Auto-generated method stub
 		directoryPath = file.getParent();
-		//System.out.println("Directory Path: " + directoryPath);
+	}
+	
+	public void saveExtension(){
+		//extension
+		int index = file.getName().indexOf(".");
+		extension =  file.getName().substring(index);
 	}
 	
 	public String getFileNameWithoutExtension(){
@@ -124,11 +132,11 @@ public class FileHolder {
 	}
 	
 	public String getEncryptedResultPath(){
-		return getDirectoryPath()+"\\"+getFileNameWithoutExtension()+"-encrypted.txt";
+		return getDirectoryPath()+"\\"+getFileNameWithoutExtension()+".encrypted";
 	}
 	
 	public String getEncryptedResultPath(String path){
-		return path+"\\"+getFileNameWithoutExtension()+"-encrypted.txt";
+		return path+"\\"+getFileNameWithoutExtension()+".encrypted";
 	}
 	
 	public String getDecryptedResultPath(){
@@ -140,8 +148,7 @@ public class FileHolder {
 	}
 	
 	public String expectedExtension(){
-        int index = file.getName().indexOf(".");
-        return file.getName().substring(index);
+        return extension;
 	}
 
 

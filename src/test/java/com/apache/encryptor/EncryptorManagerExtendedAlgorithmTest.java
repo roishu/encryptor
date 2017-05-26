@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.xml.bind.JAXBException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +27,7 @@ public class EncryptorManagerExtendedAlgorithmTest extends TestCase {
 	 
 	    @Override
 		@Before
-	    public void setUp() throws IOException {
+	    public void setUp() throws IOException, JAXBException {
 	    	encryptor = new EncryptorManager();
 	    	file = new File("logs/fileTest.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));

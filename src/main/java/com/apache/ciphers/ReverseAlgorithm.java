@@ -5,8 +5,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.apache.encryptor.FileHolder;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class ReverseAlgorithm extends ExtendedAlgorithm{
 
 	public ReverseAlgorithm(BaseAlgorithm baseAlgorithm) {

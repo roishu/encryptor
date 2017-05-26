@@ -8,10 +8,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.apache.encryptor.FileHolder;
 
+@XmlRootElement(name="double-algorithm")
 public class DoubleAlgorithm extends ExtendedAlgorithm{
 
 	public DoubleAlgorithm(BaseAlgorithm baseAlgorithm, BaseAlgorithm secondaryBaseAlgorithm) {
 		super("DoubleAlgorithm",baseAlgorithm, secondaryBaseAlgorithm);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public DoubleAlgorithm() {
+		//default double algorithm
+		super("DoubleAlgorithm",new CaesarCipher(), new MultiplicativeCipher());
 		// TODO Auto-generated constructor stub
 	}
 
