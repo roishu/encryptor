@@ -19,6 +19,10 @@ public abstract class Algorithm {
 		return name;
 	}
 	
+	public void setName(String name) {
+		this.name=name;
+	}
+	
 	public abstract void execute(FileHolder fileHolder , String choice) throws IOException;
 	
 

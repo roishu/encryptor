@@ -5,9 +5,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
 import com.apache.encryptor.FileHolder;
 
+@XmlTransient
 public abstract class BaseAlgorithm extends Algorithm {
+	
+	@XmlElement
 	protected Key key;
 	protected SecureRandom random;
 	

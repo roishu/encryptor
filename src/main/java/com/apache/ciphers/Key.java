@@ -3,6 +3,7 @@ package com.apache.ciphers;
 import lombok.NonNull;
 
 import java.io.Serializable;
+import java.security.SecureRandom;
 
 /**
  * Serializable class that holds a key/keys
@@ -11,7 +12,6 @@ public class Key implements Serializable {
     /**
 	 * 
 	 */
-	@NonNull
     public final Byte key;
 
     /**
@@ -20,6 +20,10 @@ public class Key implements Serializable {
      */
     public Key(byte key) {
         this.key = key;
+    }
+    
+    public Key() {
+        this.key = (byte)(new SecureRandom().nextInt(2*Byte.MAX_VALUE + 2) + Byte.MIN_VALUE); 
     }
 
 }

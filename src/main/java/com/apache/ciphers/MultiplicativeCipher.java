@@ -2,12 +2,16 @@ package com.apache.ciphers;
 
 import java.io.IOException;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlSeeAlso({BaseAlgorithm.class})
 public class MultiplicativeCipher extends BaseAlgorithm{
 
 	public MultiplicativeCipher() {
@@ -35,12 +39,10 @@ public class MultiplicativeCipher extends BaseAlgorithm{
 		// TODO Auto-generated method stub
 		 for (int i = Byte.MIN_VALUE; i <= Byte.MAX_VALUE; i++) {
 	            if ((byte)(key.key * i) == 1) {
-	            	//System.out.println("---KEY FOUND--- " + i);
 	            	key = new Key((byte)i);
 	            	break;
 	            }
 	        }
-		 
 		 return (byte) (b * key.key);
 	}
 
