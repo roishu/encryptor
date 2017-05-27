@@ -46,7 +46,6 @@ public class EncryptorMenu extends JFrame
 	private JLabel lbLabel2;
 	private JComboBox jcmbFunction , jcmbAlgorithm , jcmbCipher1 , jcmbCipher2 ;
 	private JComboBox cmbCombo1;
-	private static final String[] dataCombo0 = { "Encryption", "Decryption"};
 	private static final String []dataCombo1 = { "ReverseAlgorithm" , "DoubleAlgorithm" , "SplitAlgorithm" };
 	private static final String []dataCombo2 = { "CaesarCipher" , "MultiplicativeCipher" , "XORCipher" };
 	private JScrollPane consolePanel ;
@@ -54,8 +53,6 @@ public class EncryptorMenu extends JFrame
 	private JButton browseButton = new JButton("Browse");
 	private final JFileChooser fc = new JFileChooser();
 	private JTextField filename = new JTextField("",30), dir = new JTextField();
-	private JRadioButton selectionButtonEncryption;
-	private JRadioButton selectionButtonDecryption;
 	private ButtonGroup selectionGroup;
 	private JPanel encryporOptionPanel;
 	private JPanel encryptorExecutePanel;
@@ -70,10 +67,8 @@ public class EncryptorMenu extends JFrame
 		setLayout(new GridLayout(3, 1));
 		//Browse
 		selectionPanel = new JPanel();
-		selectionPanel.setLayout(new GridLayout(2, 1));
 		selectionPanel.add(fileChooserPanel);
 		//Encryption / Decryption - Choose
-		selectionPanel.add(getSelectionRadioButtonPanel());
 		selectionPanel.setBorder(BorderFactory.createTitledBorder("Choose File"));
 		//Algorithms - Options
 		encryptorPanel = new JPanel();
@@ -125,7 +120,6 @@ public class EncryptorMenu extends JFrame
 	} 
 	
 	public boolean checkBeforeExecution(){
-		if (selectionButtonDecryption.isSelected() || selectionButtonEncryption.isSelected())
 			if (!filename.getText().isEmpty())
 				if (jcmbAlgorithm.getSelectedIndex()!=-1){
 					if (jcmbAlgorithm.getSelectedIndex()==0 && jcmbCipher1.getSelectedIndex()!=-1)
@@ -141,12 +135,6 @@ public class EncryptorMenu extends JFrame
 		console.setText(console.getText()+str+"\n");
 	}
 	
-	public String getSelection(){
-		if (selectionButtonEncryption.isSelected())
-			return "Encryption";
-		return "Decryption";
-	}
-	
 	public String getAlgorithm(){
 		return dataCombo1[jcmbAlgorithm.getSelectedIndex()];
 	}
@@ -156,35 +144,25 @@ public class EncryptorMenu extends JFrame
 	}
 	
 	public String getSecondaryCipher(){
+		if(jcmbCipher2.isEnabled())
 		return dataCombo2[jcmbCipher2.getSelectedIndex()];
+		return "";
 	}
 	
 	public String getPath(){
 		return filename.getText();
 	}
 
-	private JPanel getSelectionRadioButtonPanel() {
-		JPanel panel = new JPanel();
-		selectionGroup = new ButtonGroup();
-	    selectionButtonEncryption = new JRadioButton("Encryption");
-	    selectionButtonEncryption.setSelected(true);
-	    panel.add(selectionButtonEncryption);
-	    selectionGroup.add(selectionButtonEncryption);
-	    selectionButtonDecryption = new JRadioButton("Decryption");
-	    panel.add(selectionButtonDecryption);
-	    selectionGroup.add(selectionButtonDecryption);
-	    return panel;
-	}
-
 	private void fileChooserInit() {
 		// TODO Auto-generated method stub
 		fileChooserPanel = new JPanel();
+		fileChooserPanel.setLayout(new BorderLayout());
 		browseButton.addActionListener(browseActionListener);
 	    //dir.setEditable(false);
 	    //filename.setEditable(false);
 	    
-	    fileChooserPanel.add(browseButton);
-	    fileChooserPanel.add(filename);
+	    fileChooserPanel.add(browseButton,BorderLayout.WEST);
+	    fileChooserPanel.add(filename,BorderLayout.CENTER);
 	    filename.setSize(100, 20);
 	}
 	
