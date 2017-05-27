@@ -65,7 +65,7 @@ public class ThreadPoolEncryptor {
 
 	public void execute(boolean runFromXML){
 		startTime = System.nanoTime();
-		executor = Executors.newFixedThreadPool(filesInFolder.size());
+		executor = Executors.newFixedThreadPool(numOfFiles);
 		for(int i =0 ; i<numOfFiles ; i++){
 			//check for algorithm type
 			if(cipher1.equals(""))
