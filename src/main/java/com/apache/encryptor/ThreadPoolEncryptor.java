@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JTextArea;
 import javax.xml.bind.JAXBException;
@@ -21,6 +22,8 @@ public class ThreadPoolEncryptor {
 	private long startTime=0 , endTime=0 , duration=0;
 	//MVC
 	private JTextArea console;
+	//mutex 
+	public static ReentrantLock lock = new ReentrantLock();
 
 	public ThreadPoolEncryptor(File folder, String algorithm) throws JAXBException {
 		super();
@@ -57,7 +60,7 @@ public class ThreadPoolEncryptor {
 		this.executor = null;
 		init();
 	}
-	
+
 	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1 , String cipher2, JTextArea console) throws JAXBException {
 		super();
 		this.folder = folder;
@@ -91,14 +94,23 @@ public class ThreadPoolEncryptor {
 		for(int i =0 ; i<numOfFiles ; i++){
 			//check for algorithm type
 			createThread(console==null , i);
+			//Async Execute
 			executor.execute(threadEncryptors.get(i));
+			/*
+			 * execute: Use it for fire and forget calls
+			 * submit: Use it to inspect the result of method call 
+			 * take appropriate action on Future objected returned by the call
+			 * we are using execute because we don't have to manage the thread after it ends.
+			 */
+			//Sync Execute
+			//syncExecute(i);
 		}
 		executor.shutdown();
 		time();
-	}//execute
+	}
 
 	private void createThread(boolean b , int i) {
-		// TODO Auto-generated method stub
+
 		if(b){ //system console
 			if(cipher1.equals(""))
 				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
@@ -134,7 +146,7 @@ public class ThreadPoolEncryptor {
 		duration = (endTime - startTime) / 1000000 ;
 		print("-----------Time 1: " + duration + "ms-----------"); 
 	}
-	
+
 	public void print(String str){
 		if(console!=null)
 			console.setText(console.getText()+str+"\n");

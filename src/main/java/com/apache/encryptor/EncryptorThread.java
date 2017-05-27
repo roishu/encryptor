@@ -1,6 +1,7 @@
 package com.apache.encryptor;
 
 import java.io.IOException;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JTextArea;
 import javax.xml.bind.JAXBException;
@@ -13,6 +14,8 @@ public class EncryptorThread implements Runnable {
 	private String algorithm;
 	private String cipher1="",cipher2="";
 	private JTextArea console;
+	//mutex
+	private ReentrantLock lock = ThreadPoolEncryptor.lock;
 
 	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm) {
 		super();
@@ -50,7 +53,7 @@ public class EncryptorThread implements Runnable {
 	}
 
 	private void threadExecuteBaseAlgorithm() throws IOException, JAXBException {
-			encryptor.executeBaseAlgorithm(algorithm, fileHolder);
+		encryptor.executeBaseAlgorithm(algorithm, fileHolder);
 	}
 
 	private void threadExecuteExtendedAlgorithm() throws IOException, JAXBException {
@@ -68,8 +71,10 @@ public class EncryptorThread implements Runnable {
 		}
 	}
 
+
 	@Override
 	public void run() {
+		//lock.lock();
 		print("Encryption\\Decryption File: " +  fileHolder.getFileNameWithoutExtension());
 		try {
 			if(cipher1.equals(""))
@@ -81,6 +86,7 @@ public class EncryptorThread implements Runnable {
 			e.printStackTrace();
 		}
 		print("Finish Encryption\\Decryption File: " +  fileHolder.getFileNameWithoutExtension());
+		//lock.unlock();
 	}
 
 	public void start () {
