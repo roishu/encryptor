@@ -6,6 +6,8 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
+import org.apache.log4j.Logger;
+
 import com.apache.gui.EncryptorMenu;
 
 public class EncryptorController {
@@ -29,6 +31,8 @@ public class EncryptorController {
 			}
 		}
 	};
+	
+	public final static Logger logger = Logger.getLogger(EncryptorController.class);
 
 	public EncryptorController(){
 		view = new EncryptorMenu();

@@ -98,8 +98,11 @@ public class EncryptorThread implements Runnable {
 	}
 
 	public void print(String str){
-		if(console!=null)
-			console.setText(console.getText()+str+"\n");
+		if(console!=null){
+			console.setText(console.getText()+str+"\n"); //to user
+			EncryptorController.logger.info("Thread Info : " + str); //to log
+		}
+			
 		else
 			System.out.println(str);
 	}
