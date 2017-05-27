@@ -41,10 +41,19 @@ public class EncryptorManager {
 	}
 
 	private void initJAXB() throws JAXBException {
-//		jc = JAXBContext.newInstance(DoubleAlgorithmJAXB.class);
-//        marshaller = jc.createMarshaller();
-//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//        xmlFile = new File("DoubleAlgorithmJAXB.xml");
+		jc = JAXBContext.newInstance(DoubleAlgorithmJAXB.class);
+        marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        xmlFile = new File("DoubleAlgorithmJAXB.xml");
+		//marshel into xmlFile
+		doubleAlgorithmJAXB = new DoubleAlgorithmJAXB();
+        doubleAlgorithmJAXB.setCipher("CaesarCipher");
+        doubleAlgorithmJAXB.setSecondaryCipher("XORCipher");
+        marshaller.marshal(doubleAlgorithmJAXB, xmlFile);
+        doubleAlgorithmJAXB=null;
+        //Unmarshal doubleAlgorithmJAXB
+
+    	//xmlFile.delete();
 	}
 
 	private void executeAlgorithmFromXML(String choice , FileHolder fileHolder){
@@ -75,19 +84,10 @@ public class EncryptorManager {
 	}
 
 	public void executeDoubleAlgorithm(String choice1 , String choice2, FileHolder fileHolder) throws IOException, JAXBException{
-		JAXBContext jc = JAXBContext.newInstance(DoubleAlgorithmJAXB.class);
-        Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        File xmlFile = new File("DoubleAlgorithmJAXB.xml");
-		//marshel into xmlFile
-		doubleAlgorithmJAXB = new DoubleAlgorithmJAXB();
-        doubleAlgorithmJAXB.setCipher(choice1);
-        doubleAlgorithmJAXB.setSecondaryCipher(choice2);
-        marshaller.marshal(doubleAlgorithmJAXB, xmlFile);
-        doubleAlgorithmJAXB=null;
-        //Unmarshal doubleAlgorithmJAXB
         Unmarshaller unmarshaller = jc.createUnmarshaller(); //create here to avoid UnmarshalException
         DoubleAlgorithmJAXB doubleAlgorithmJAXB = (DoubleAlgorithmJAXB) unmarshaller.unmarshal(xmlFile);
+        doubleAlgorithmJAXB.setCipher(choice1);
+        doubleAlgorithmJAXB.setSecondaryCipher(choice2);
     	doubleAlgorithmJAXB.execute(fileHolder, "Encryption");
     	doubleAlgorithmJAXB.execute(fileHolder, "Decryption");
     	renameEncryptedFile(fileHolder);

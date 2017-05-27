@@ -3,24 +3,24 @@
     <caesarCipher>
         <name>CaesarCipher</name>
         <key>
-            <key>70</key>
+            <key>78</key>
         </key>
         <random/>
     </caesarCipher>
     <multiplicativeCipher>
         <name>MultiplicativeCipher</name>
         <key>
-            <key>-59</key>
+            <key>-89</key>
         </key>
         <random/>
     </multiplicativeCipher>
     <xorCipher>
         <name>XORCipher</name>
         <key>
-            <key>-8</key>
+            <key>-36</key>
         </key>
         <random/>
     </xorCipher>
-    <cipher>XORCipher</cipher>
+    <cipher>CaesarCipher</cipher>
     <secondary-cipher>XORCipher</secondary-cipher>
 </double-algorithm>

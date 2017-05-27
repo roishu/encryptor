@@ -145,6 +145,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         doubleAlgorithmJAXB = 
         		(DoubleAlgorithmJAXB) unmarshaller.unmarshal(xmlFile);
+        //JAXB.unmarshal(new ByteArrayInputStream(string.getBytes("UTF-8")), Delivery.class);
     	doubleAlgorithmJAXB.execute(fileHolder, "Encryption");
     	doubleAlgorithmJAXB.execute(fileHolder, "Decryption");
 			String dec_content = new String(Files.readAllBytes
