@@ -21,7 +21,7 @@ public class EncryptorController {
 				try {
 					model = new ThreadPoolEncryptor(new File(view.getPath()),
 							view.getAlgorithm(),view.getCipher(),view.getSecondaryCipher(),view.console);
-					model.execute(false);
+					model.execute();
 				} catch (JAXBException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

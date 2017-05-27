@@ -47,19 +47,19 @@ public class EncryptorManagerExtendedAlgorithmTest extends TestCase {
 	    }
 	 
 	    @Test
-	    public void testDoubleCipher_Caesar_XOR() throws IOException  {
+	    public void testDoubleCipher_Caesar_XOR() throws IOException, JAXBException  {
 	    	encryptor.executeDoubleAlgorithm("CaesarCipher", "XORCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_XOR_Multi() throws IOException  {
+	    public void testDoubleCipher_XOR_Multi() throws IOException, JAXBException  {
 	    	encryptor.executeDoubleAlgorithm("XORCipher", "MultiplicativeCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_Multi_Caesar() throws IOException  {
+	    public void testDoubleCipher_Multi_Caesar() throws IOException, JAXBException  {
 	    	encryptor.executeDoubleAlgorithm("MultiplicativeCipher", "CaesarCipher", fileHolder);
 	    	finish();
 	    }

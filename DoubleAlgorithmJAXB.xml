@@ -3,21 +3,21 @@
     <caesarCipher>
         <name>CaesarCipher</name>
         <key>
-            <key>22</key>
+            <key>70</key>
         </key>
         <random/>
     </caesarCipher>
     <multiplicativeCipher>
         <name>MultiplicativeCipher</name>
         <key>
-            <key>77</key>
+            <key>-59</key>
         </key>
         <random/>
     </multiplicativeCipher>
     <xorCipher>
         <name>XORCipher</name>
         <key>
-            <key>12</key>
+            <key>-8</key>
         </key>
         <random/>
     </xorCipher>

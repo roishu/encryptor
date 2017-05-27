@@ -17,6 +17,7 @@ import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.ReverseAlgorithm;
 import com.apache.ciphers.SplitAlgorithm;
 import com.apache.ciphers.XORCipher;
+import com.apache.jaxb.DoubleAlgorithmJAXB;
 
 public class EncryptorManager {
 	//Algorithms and Ciphers
@@ -29,14 +30,10 @@ public class EncryptorManager {
 	private ExtendedAlgorithm extendedAlgorithm;
 	private	BaseAlgorithm[] baseAlgorithms ={caesarCipher,multiplicativeCipher,xorCipher};
 	//JAXB
-	private JAXBContext caesarCipherContext;
-	private JAXBContext multiplicativeCipherContext;
-	private JAXBContext xorCipherContext;
-	private JAXBContext reverseAlgorithmContext;
-	private JAXBContext splitAlgorithmContext;
-	private JAXBContext doubleAlgorithmContext;
+	private DoubleAlgorithmJAXB doubleAlgorithmJAXB;
+	private JAXBContext jc;
 	private Marshaller marshaller;
-	private Unmarshaller caesarUnmarshaller , multiplicativeUnmarshaller , xorUnmarshaller;
+	private File xmlFile;
 
 
 	public EncryptorManager() throws JAXBException{
@@ -44,22 +41,10 @@ public class EncryptorManager {
 	}
 
 	private void initJAXB() throws JAXBException {
-		caesarCipherContext= JAXBContext.newInstance(CaesarCipher.class);
-		multiplicativeCipherContext= JAXBContext.newInstance(MultiplicativeCipher.class);
-		xorCipherContext= JAXBContext.newInstance(XORCipher.class);
-		//reverseAlgorithmContext= JAXBContext.newInstance(ReverseAlgorithm.class);
-		//splitAlgorithmContext= JAXBContext.newInstance(SplitAlgorithm.class);
-		doubleAlgorithmContext= JAXBContext.newInstance(DoubleAlgorithm.class);
-		//create-XML-Ciphers
-		//caesarCipher
-		marshaller = caesarCipherContext.createMarshaller();
-		marshaller.marshal(new CaesarCipher(), new File("CaesarCipher.xml"));
-		//multiplicativeCipher
-		marshaller = multiplicativeCipherContext.createMarshaller();
-		marshaller.marshal(new MultiplicativeCipher(), new File("MultiplicativeCipher.xml"));
-		//xorCipher
-		marshaller = xorCipherContext.createMarshaller();
-		marshaller.marshal(new XORCipher(), new File("XORCipher.xml"));
+//		jc = JAXBContext.newInstance(DoubleAlgorithmJAXB.class);
+//        marshaller = jc.createMarshaller();
+//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//        xmlFile = new File("DoubleAlgorithmJAXB.xml");
 	}
 
 	private void executeAlgorithmFromXML(String choice , FileHolder fileHolder){
@@ -89,11 +74,23 @@ public class EncryptorManager {
 		renameEncryptedFile(fileHolder);
 	}
 
-	public void executeDoubleAlgorithm(String choice1 , String choice2, FileHolder fileHolder) throws IOException{
-		int index1 = getCipherIndex(choice1);
-		int index2 = getCipherIndex(choice2);
-		doubleAlgorithm = new DoubleAlgorithm(baseAlgorithms[index1],baseAlgorithms[index2]);
-		executeExtendedAlgorithm(doubleAlgorithm,fileHolder);
+	public void executeDoubleAlgorithm(String choice1 , String choice2, FileHolder fileHolder) throws IOException, JAXBException{
+		JAXBContext jc = JAXBContext.newInstance(DoubleAlgorithmJAXB.class);
+        Marshaller marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        File xmlFile = new File("DoubleAlgorithmJAXB.xml");
+		//marshel into xmlFile
+		doubleAlgorithmJAXB = new DoubleAlgorithmJAXB();
+        doubleAlgorithmJAXB.setCipher(choice1);
+        doubleAlgorithmJAXB.setSecondaryCipher(choice2);
+        marshaller.marshal(doubleAlgorithmJAXB, xmlFile);
+        doubleAlgorithmJAXB=null;
+        //Unmarshal doubleAlgorithmJAXB
+        Unmarshaller unmarshaller = jc.createUnmarshaller(); //create here to avoid UnmarshalException
+        DoubleAlgorithmJAXB doubleAlgorithmJAXB = (DoubleAlgorithmJAXB) unmarshaller.unmarshal(xmlFile);
+    	doubleAlgorithmJAXB.execute(fileHolder, "Encryption");
+    	doubleAlgorithmJAXB.execute(fileHolder, "Decryption");
+    	renameEncryptedFile(fileHolder);
 	}
 
 	public void executeReverseAlgorithm(String choice , FileHolder fileHolder) throws IOException{
@@ -107,66 +104,6 @@ public class EncryptorManager {
 		int index2 = getCipherIndex(choice2);
 		splitAlgorithm = new SplitAlgorithm(baseAlgorithms[index1],baseAlgorithms[index2]);
 		executeExtendedAlgorithm(splitAlgorithm,fileHolder);
-	}
-
-	public void executeBaseAlgorithmFromXML(String algorithm, FileHolder fileHolder) throws JAXBException, IOException {
-		// TODO Auto-generated method stub
-		int index = getCipherIndex(algorithm);
-		BaseAlgorithm baseAlgorithm = getBaseAlgorithmFromXML(index);
-		if(baseAlgorithm!=null){
-			baseAlgorithm.execute(fileHolder, "Encryption");
-			baseAlgorithm.execute(fileHolder, "Decryption");
-			renameEncryptedFile(fileHolder);
-		}
-		else{
-			//throw NullPointerException
-		}
-		
-	}
-
-	private BaseAlgorithm getBaseAlgorithmFromXML(int index) throws JAXBException {
-		BaseAlgorithm baseAlgorithm = null;
-		switch(index){
-		case 0: 
-			caesarUnmarshaller = this.caesarCipherContext.createUnmarshaller();
-			baseAlgorithm= (CaesarCipher) caesarUnmarshaller.unmarshal(new File("CaesarCipher.xml")); 
-			System.out.println(baseAlgorithm.getName()+"XML");
-			break;
-		case 1: 
-			multiplicativeUnmarshaller = this.multiplicativeCipherContext.createUnmarshaller();
-			baseAlgorithm= (MultiplicativeCipher) multiplicativeUnmarshaller.unmarshal(new File("MultiplicativeCipher.xml")); 
-			System.out.println(baseAlgorithm.getName()+"XML");
-			break;
-		case 2: 
-			xorUnmarshaller = this.xorCipherContext.createUnmarshaller();
-			baseAlgorithm= (XORCipher) xorUnmarshaller.unmarshal(new File("XORCipher.xml")); 
-			System.out.println(baseAlgorithm.getName()+"XML");
-			break;
-		}
-		return baseAlgorithm;
-	}
-
-	public void executeSplitAlgorithmFromXML(String choice1, String choice2, FileHolder fileHolder) throws IOException, JAXBException {
-		// TODO Auto-generated method stub
-		int index1 = getCipherIndex(choice1);
-		int index2 = getCipherIndex(choice2);
-		splitAlgorithm = new SplitAlgorithm(getBaseAlgorithmFromXML(index1),getBaseAlgorithmFromXML(index2));
-		executeExtendedAlgorithm(splitAlgorithm,fileHolder);
-	}
-
-	public void executeReverseAlgorithmFromXML(String choice, FileHolder fileHolder) throws IOException, JAXBException {
-		// TODO Auto-generated method stub
-		int index = getCipherIndex(choice);
-		reverseAlgorithm = new ReverseAlgorithm(getBaseAlgorithmFromXML(index));
-		executeExtendedAlgorithm(reverseAlgorithm,fileHolder);
-	}
-
-	public void executeDoubleAlgorithmFromXML(String choice1, String choice2, FileHolder fileHolder) throws IOException, JAXBException {
-		// TODO Auto-generated method stub
-		int index1 = getCipherIndex(choice1);
-		int index2 = getCipherIndex(choice2);
-		doubleAlgorithm = new DoubleAlgorithm(getBaseAlgorithmFromXML(index1),getBaseAlgorithmFromXML(index2));
-		executeExtendedAlgorithm(doubleAlgorithm,fileHolder);
 	}
 
 	private void renameEncryptedFile(FileHolder fileHolder) {

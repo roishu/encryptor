@@ -85,42 +85,42 @@ public class ThreadPoolEncryptor {
 		numOfFiles = filesInFolder.size();
 	}
 
-	public void execute(boolean runFromXML){
+	public void execute(){
 		startTime = System.nanoTime();
 		executor = Executors.newFixedThreadPool(numOfFiles);
 		for(int i =0 ; i<numOfFiles ; i++){
 			//check for algorithm type
-			createThread(console==null , i , runFromXML);
+			createThread(console==null , i);
 			executor.execute(threadEncryptors.get(i));
 		}
 		executor.shutdown();
 		time();
 	}//execute
 
-	private void createThread(boolean b , int i , boolean runFromXML) {
+	private void createThread(boolean b , int i) {
 		// TODO Auto-generated method stub
 		if(b){ //system console
 			if(cipher1.equals(""))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm,runFromXML));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
 			else if (algorithm.equals("DoubleAlgorithm"))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,runFromXML));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
 			else if (algorithm.equals("ReverseAlgorithm"))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1,runFromXML));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1));
 			else if (algorithm.equals("SplitAlgorithm")) 
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,runFromXML));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2));
 			else {
 				System.out.println("THROW EXCEPTION"); //TODO exception !
 			}
 		}
 		else{ //app console
 			if(cipher1.equals(""))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm,runFromXML));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
 			else if (algorithm.equals("DoubleAlgorithm"))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,runFromXML,console));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,console));
 			else if (algorithm.equals("ReverseAlgorithm"))
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1,"",runFromXML,console));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1,"",console));
 			else if (algorithm.equals("SplitAlgorithm")) 
-				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,runFromXML,console));
+				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm , cipher1 , cipher2,console));
 			else {
 				System.out.println("THROW EXCEPTION"); //TODO exception !
 			}
