@@ -15,18 +15,21 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import com.apache.ciphers.BaseAlgorithm;
+import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.exception.IllegalKeyException;
 import com.apache.jaxb.DircetoryDocumentJAXB;
 import com.apache.jaxb.DoubleAlgorithmJAXB;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
-public class ThreadPoolEncryptor {
-
+public class EncryptorThreadPoolModel {
 	private EncryptorManager encryptor;
 	private ExecutorService executor;
 	private File folder;
 	private String algorithm;
-	private String cipher1="",cipher2=""; //Extended Algorithm Issue
+	private String cipher1="";
+	private String cipher2=""; //Extended Algorithm Issue
 	private ArrayList<FileHolder> filesInFolder;
 	private ArrayList<EncryptorThread> threadEncryptors;
 	private int numOfFiles = 0;
@@ -39,8 +42,7 @@ public class ThreadPoolEncryptor {
 	private Marshaller marshaller;
 	private File xmlFile;
 
-	@Inject
-	public ThreadPoolEncryptor(File folder, String algorithm) throws JAXBException {
+	public EncryptorThreadPoolModel(File folder, String algorithm) throws JAXBException {
 		super();
 		this.folder = folder;
 		this.algorithm = algorithm;
@@ -52,7 +54,19 @@ public class ThreadPoolEncryptor {
 	}
 	
 	@Inject
-	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1) throws JAXBException {
+	public EncryptorThreadPoolModel(File folder,@Named("Algorithm") ExtendedAlgorithm algorithm,
+			@Named("Cipher") BaseAlgorithm cipher1) throws JAXBException {
+		this.folder = folder;
+		this.cipher1 = cipher1.getName();
+		this.algorithm = algorithm.getName();
+		this.encryptor = new EncryptorManager();
+		this.filesInFolder = new ArrayList<FileHolder>();
+		this.threadEncryptors = new ArrayList<EncryptorThread>();
+		this.executor = null;
+		init();
+	}
+	
+	public EncryptorThreadPoolModel(File folder,String algorithm,String cipher1) throws JAXBException {
 		super();
 		this.folder = folder;
 		this.cipher1 = cipher1;
@@ -64,8 +78,7 @@ public class ThreadPoolEncryptor {
 		init();
 	}
 
-	@Inject
-	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1 , String cipher2) throws JAXBException {
+	public EncryptorThreadPoolModel(File folder, String algorithm, String cipher1 , String cipher2) throws JAXBException {
 		super();
 		this.folder = folder;
 		this.cipher1 = cipher1;
@@ -78,8 +91,7 @@ public class ThreadPoolEncryptor {
 		init();
 	}
 
-	@Inject
-	public ThreadPoolEncryptor(File folder, String algorithm, String cipher1 , String cipher2, JTextArea console) throws JAXBException {
+	public EncryptorThreadPoolModel(File folder, String algorithm, String cipher1 , String cipher2, JTextArea console) throws JAXBException {
 		super();
 		this.folder = folder;
 		this.cipher1 = cipher1;

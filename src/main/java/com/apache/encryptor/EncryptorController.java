@@ -13,7 +13,7 @@ import com.apache.exception.IllegalKeyException;
 import com.apache.gui.EncryptorMenu;
 
 public class EncryptorController {
-	private ThreadPoolEncryptor model;
+	private EncryptorThreadPoolModel model;
 	private EncryptorMenu view;
 
 	private ActionListener executeListener = new ActionListener() {
@@ -24,7 +24,7 @@ public class EncryptorController {
 			// TODO Auto-generated method stub
 			if (view.checkBeforeExecution()){
 				try {
-					model = new ThreadPoolEncryptor(new File(view.getPath()),
+					model = new EncryptorThreadPoolModel(new File(view.getPath()),
 							view.getAlgorithm(),view.getCipher(),view.getSecondaryCipher(),view.console);
 					if(!view.getKeyFileName().isEmpty())
 						model.setCipherKeysAndExecute(view.getCipher(),view.getSecondaryCipher(),view.getKeyFileName());

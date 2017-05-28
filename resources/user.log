@@ -75,3 +75,12 @@
 2017-05-28 20:58:09 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: pic
 2017-05-28 20:58:09 INFO  EncryptorController:165 - Thread Info : -----------Time 1: 131ms-----------
 2017-05-28 20:58:13 INFO  EncryptorController:165 - Thread Info : export key succeeded! {location:encryptor\key.bin}
+2017-05-28 23:41:23 INFO  EncryptorController:209 - Thread Info : new key is signed!
+2017-05-28 23:41:23 INFO  EncryptorController:209 - Thread Info : DoubleAlgorithm's Thread Created.
+2017-05-28 23:41:23 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 23:41:23 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 23:41:23 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 23:41:23 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 23:41:25 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 23:41:26 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 23:41:26 INFO  EncryptorController:209 - Thread Info : -----------Time 1: 2492ms-----------

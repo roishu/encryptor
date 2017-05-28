@@ -20,7 +20,7 @@ public class App
     {
     	
     	EncryptorMenu menu = new EncryptorMenu();
-        //ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor
+        //EncryptorThreadPoolModel tpEncryptor = new EncryptorThreadPoolModel
     }   
     
 }

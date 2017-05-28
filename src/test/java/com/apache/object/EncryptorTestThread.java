@@ -10,7 +10,7 @@ import com.apache.encryptor.EncryptorController;
 import com.apache.encryptor.EncryptorManager;
 import com.apache.encryptor.FileHolder;
 import com.apache.encryptor.SingletonLockManager;
-import com.apache.encryptor.ThreadPoolEncryptor;
+import com.apache.encryptor.EncryptorThreadPoolModel;
 import com.apache.exception.NoSuchAlgorithmException;
 import com.apache.exception.NoSuchCipherException;
 
