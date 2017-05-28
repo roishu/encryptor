@@ -105,7 +105,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    
 	    @Test
 	    public void testReverseAlgorithm() throws IOException, JAXBException  {
-	    	System.out.println("testDoubleAlgorithm");
+	    	System.out.println("testReverseAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "ReverseAlgorithm" ,"XORCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
@@ -113,7 +113,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    
 	    @Test
 	    public void testSplitAlgorithm() throws IOException, JAXBException  {
-	    	System.out.println("testDoubleAlgorithm");
+	    	System.out.println("testSplitAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "SplitAlgorithm" ,"MultiplicativeCipher" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();

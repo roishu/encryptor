@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.apache.encryptor.FileHolder;
+import com.apache.exception.NoSuchFunctionException;
 
 import lombok.NonNull;
 
@@ -39,10 +40,10 @@ public abstract class ExtendedAlgorithm extends Algorithm {
 	}
 	
     public abstract void encrypt(FileHolder fileHolder)
-            throws IOException;
+            throws IOException, NoSuchFunctionException;
 
     public abstract void decrypt(FileHolder fileHolder)
-            throws IOException;
+            throws IOException, NoSuchFunctionException;
 	
 
 }

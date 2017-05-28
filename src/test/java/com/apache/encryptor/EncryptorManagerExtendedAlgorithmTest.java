@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import com.apache.exception.NoSuchFunctionException;
+
 public class EncryptorManagerExtendedAlgorithmTest extends TestCase {
 	private String text = "Example Test Content.";
 	     
@@ -47,55 +49,55 @@ public class EncryptorManagerExtendedAlgorithmTest extends TestCase {
 	    }
 	 
 	    @Test
-	    public void testDoubleCipher_Caesar_XOR() throws IOException, JAXBException  {
+	    public void testDoubleCipher_Caesar_XOR() throws IOException, JAXBException, NoSuchFunctionException  {
 	    	encryptor.executeDoubleAlgorithm("CaesarCipher", "XORCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_XOR_Multi() throws IOException, JAXBException  {
+	    public void testDoubleCipher_XOR_Multi() throws IOException, JAXBException, NoSuchFunctionException  {
 	    	encryptor.executeDoubleAlgorithm("XORCipher", "MultiplicativeCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_Multi_Caesar() throws IOException, JAXBException  {
+	    public void testDoubleCipher_Multi_Caesar() throws IOException, JAXBException, NoSuchFunctionException  {
 	    	encryptor.executeDoubleAlgorithm("MultiplicativeCipher", "CaesarCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testReverseCipher_Caesar() throws IOException  {
+	    public void testReverseCipher_Caesar() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeReverseAlgorithm("CaesarCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testReverseCipher_XOR() throws IOException  {
+	    public void testReverseCipher_XOR() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeReverseAlgorithm("XORCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testReverseCipher_Multi() throws IOException  {
+	    public void testReverseCipher_Multi() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeReverseAlgorithm("MultiplicativeCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testSplitCipher_Caesar_XOR() throws IOException  {
+	    public void testSplitCipher_Caesar_XOR() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeSplitAlgorithm("CaesarCipher", "XORCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testSplitCipher_XOR_Multi() throws IOException  {
+	    public void testSplitCipher_XOR_Multi() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeSplitAlgorithm("XORCipher", "MultiplicativeCipher", fileHolder);
 	    	finish();
 	    }
 	    
 	    @Test
-	    public void testSplitCipher_Multi_Caesar() throws IOException  {
+	    public void testSplitCipher_Multi_Caesar() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeSplitAlgorithm("MultiplicativeCipher", "CaesarCipher", fileHolder);
 	    	finish();
 	    }

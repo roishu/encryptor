@@ -16,6 +16,7 @@ import com.apache.ciphers.BaseAlgorithm;
 import com.apache.ciphers.CaesarCipher;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
+import com.apache.exception.NoSuchFunctionException;
 
 public class BaseAlgorithmTest extends TestCase {
 	private String text = "Example Test Content.";
@@ -48,7 +49,7 @@ public class BaseAlgorithmTest extends TestCase {
 	    }
 	 
 	    @Test
-	    public void testCaesarCipher() throws IOException  {
+	    public void testCaesarCipher() throws IOException, NoSuchFunctionException  {
 	         
 	    	algorithm = new CaesarCipher();
 	    	executeAlgorithmForTest();
@@ -56,7 +57,7 @@ public class BaseAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testMultiplicativeCipher() throws IOException  {
+	    public void testMultiplicativeCipher() throws IOException, NoSuchFunctionException  {
 	         
 	    	algorithm = new MultiplicativeCipher();
 	    	executeAlgorithmForTest();
@@ -64,14 +65,14 @@ public class BaseAlgorithmTest extends TestCase {
 	    }
 	     
 	    @Test
-	    public void testXORCipher() throws IOException  {
+	    public void testXORCipher() throws IOException, NoSuchFunctionException  {
 	         
 	    	algorithm = new XORCipher();
 	    	executeAlgorithmForTest();
 
 	    }
 	    
-	    public void executeAlgorithmForTest() throws IOException{
+	    public void executeAlgorithmForTest() throws IOException, NoSuchFunctionException{
 	    	algorithm.execute(fileHolder, "Encryption");
 	    	algorithm.execute(fileHolder, "Decryption");
 			String dec_content = new String(Files.readAllBytes

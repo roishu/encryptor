@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.apache.encryptor.FileHolder;
+import com.apache.exception.NoSuchFunctionException;
 
 @XmlTransient
 public abstract class Algorithm {
@@ -23,7 +24,7 @@ public abstract class Algorithm {
 		this.name=name;
 	}
 	
-	public abstract void execute(FileHolder fileHolder , String choice) throws IOException;
+	public abstract void execute(FileHolder fileHolder , String choice) throws IOException, NoSuchFunctionException;
 	
 
 }

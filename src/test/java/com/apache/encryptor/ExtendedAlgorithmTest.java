@@ -19,6 +19,7 @@ import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.ReverseAlgorithm;
 import com.apache.ciphers.SplitAlgorithm;
 import com.apache.ciphers.XORCipher;
+import com.apache.exception.NoSuchFunctionException;
 
 public class ExtendedAlgorithmTest extends TestCase {
 	private String text = "Example Test Content.";
@@ -65,7 +66,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	 
 	    @Test
-	    public void testDoubleCipher_Caesar_XOR() throws IOException  {
+	    public void testDoubleCipher_Caesar_XOR() throws IOException, NoSuchFunctionException  {
 	    	
 	    	baseAlgorithm1 = new CaesarCipher();
 	    	baseAlgorithm2 = new XORCipher();
@@ -75,7 +76,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_Caesar_Multi() throws IOException  {
+	    public void testDoubleCipher_Caesar_Multi() throws IOException, NoSuchFunctionException  {
 	    	
 	    	baseAlgorithm1 = new CaesarCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
@@ -85,7 +86,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_XOR_Multi() throws IOException  {
+	    public void testDoubleCipher_XOR_Multi() throws IOException, NoSuchFunctionException  {
 	    	
 	    	baseAlgorithm1 = new XORCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
@@ -95,7 +96,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testDoubleCipher_Multi_Multi() throws IOException  {
+	    public void testDoubleCipher_Multi_Multi() throws IOException, NoSuchFunctionException  {
 	    	
 	    	baseAlgorithm1 = new MultiplicativeCipher();
 	    	baseAlgorithm2 = new MultiplicativeCipher();
@@ -105,7 +106,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testReverseCipher_Caesar() throws IOException  {
+	    public void testReverseCipher_Caesar() throws IOException, NoSuchFunctionException  {
 	         
 	    	 baseAlgorithm1 = new CaesarCipher();
 	    	 reverseAlgorithm = new ReverseAlgorithm(baseAlgorithm1);
@@ -113,7 +114,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testReverseCipher_XOR() throws IOException  {
+	    public void testReverseCipher_XOR() throws IOException, NoSuchFunctionException  {
 	         
 	    	 baseAlgorithm1 = new XORCipher();
 	    	 reverseAlgorithm = new ReverseAlgorithm(baseAlgorithm1);
@@ -121,7 +122,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testReverseCipher_Multi() throws IOException  {
+	    public void testReverseCipher_Multi() throws IOException, NoSuchFunctionException  {
 	         
 	    	 baseAlgorithm1 = new MultiplicativeCipher();
 	    	 reverseAlgorithm = new ReverseAlgorithm(baseAlgorithm1);
@@ -164,7 +165,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 
 	    }
 	    
-	    public void executeDoubleAlgorithmForTest() throws IOException{
+	    public void executeDoubleAlgorithmForTest() throws IOException, NoSuchFunctionException{
 	    	doubleAlgorithm.execute(fileHolder, "Encryption");
 	    	doubleAlgorithm.execute(fileHolder, "Decryption");
 	    	//doubleAlgorithm.encrypt(fileHolder);
@@ -179,7 +180,7 @@ public class ExtendedAlgorithmTest extends TestCase {
 			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();	    
 			}
 	    
-	    public void executeReverseAlgorithmForTest() throws IOException{
+	    public void executeReverseAlgorithmForTest() throws IOException, NoSuchFunctionException{
 	    	reverseAlgorithm.execute(fileHolder, "Encryption");
 	    	reverseAlgorithm.execute(fileHolder, "Decryption");
 	    	//reverseAlgorithm.encrypt(fileHolder);

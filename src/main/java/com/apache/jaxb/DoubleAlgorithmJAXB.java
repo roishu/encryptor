@@ -13,6 +13,7 @@ import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 import com.apache.encryptor.FileHolder;
+import com.apache.exception.NoSuchFunctionException;
 
 @XmlRootElement(name="double-algorithm")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -60,7 +61,7 @@ public class DoubleAlgorithmJAXB {
 		this.secondaryCipher = secondaryCipher;
 	}
 
-	public void encrypt(FileHolder fileHolder) throws IOException {
+	public void encrypt(FileHolder fileHolder) throws IOException, NoSuchFunctionException {
 		if(cipher.equals("CaesarCipher"))
 			caesarCipher.execute(fileHolder, "Encryption");
 		else if(cipher.equals("MultiplicativeCipher"))
@@ -77,7 +78,7 @@ public class DoubleAlgorithmJAXB {
 		else;
 	}
 
-	public void decrypt(FileHolder fileHolder) throws IOException {
+	public void decrypt(FileHolder fileHolder) throws IOException, NoSuchFunctionException {
 		if(secondaryCipher.equals("CaesarCipher"))
 			caesarCipher.execute(fileHolder, "Decryption");
 		else if(secondaryCipher.equals("MultiplicativeCipher"))
@@ -94,7 +95,7 @@ public class DoubleAlgorithmJAXB {
 		else;
 	}
 
-	public void execute(FileHolder fileHolder , String choice) throws IOException {
+	public void execute(FileHolder fileHolder , String choice) throws IOException, NoSuchFunctionException {
 		if(choice.equals("Encryption"))
 			encrypt(fileHolder);
 		else

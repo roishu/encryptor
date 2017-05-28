@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import com.apache.exception.NoSuchFunctionException;
+
 public class EncryptorManagerTestBaseAlgorithm extends TestCase {
 	private String text = "Example Test Content.";
 	     
@@ -47,20 +49,20 @@ public class EncryptorManagerTestBaseAlgorithm extends TestCase {
 	    }
 	 
 	    @Test
-	    public void testCaesarCipher() throws IOException  {
+	    public void testCaesarCipher() throws IOException, NoSuchFunctionException  {
 	    	encryptor.executeBaseAlgorithm("CaesarCipher", fileHolder);
 	    	finish();
 	    }
 	    
 		@Test
-	    public void testMultiplicativeCipher() throws IOException  {
+	    public void testMultiplicativeCipher() throws IOException, NoSuchFunctionException  {
 	         
 	    	encryptor.executeBaseAlgorithm("MultiplicativeCipher", fileHolder);
 	    	finish();
 	    }
 	     
 	    @Test
-	    public void testXORCipher() throws IOException  {
+	    public void testXORCipher() throws IOException, NoSuchFunctionException  {
 	         
 	    	encryptor.executeBaseAlgorithm("XORCipher", fileHolder);
 	    	finish();

@@ -9,6 +9,7 @@ import javax.xml.bind.JAXBException;
 import com.apache.encryptor.EncryptorController;
 import com.apache.encryptor.EncryptorManager;
 import com.apache.encryptor.FileHolder;
+import com.apache.encryptor.SingletonLockManager;
 import com.apache.encryptor.ThreadPoolEncryptor;
 import com.apache.exception.NoSuchAlgorithmException;
 import com.apache.exception.NoSuchCipherException;
@@ -23,7 +24,7 @@ public class EncryptorTestThread implements Runnable {
 	private JTextArea console;
 	private Exception ex=null;
 	//mutex
-	private ReentrantLock lock = ThreadPoolEncryptor.lock;
+	private ReentrantLock lock = SingletonLockManager.instance();
 
 	public EncryptorTestThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm) {
 		super();

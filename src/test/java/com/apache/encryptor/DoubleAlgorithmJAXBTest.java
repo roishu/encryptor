@@ -26,6 +26,7 @@ import com.apache.ciphers.DoubleAlgorithm;
 import com.apache.ciphers.ExtendedAlgorithm;
 import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
+import com.apache.exception.NoSuchFunctionException;
 import com.apache.jaxb.DoubleAlgorithmJAXB;
 
 import junit.framework.TestCase;
@@ -72,7 +73,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
     }
  
     @Test
-    public void testCaesarXOR() throws JAXBException, IOException{
+    public void testCaesarXOR() throws JAXBException, IOException, NoSuchFunctionException{
         // Create Domain Objects
         String baseAlgorithm = "CaesarCipher";
         String secondaryBaseAlgorithm = "XORCipher";
@@ -83,7 +84,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
     }
     
     @Test
-    public void testCaesarMultiplicative() throws JAXBException, IOException{
+    public void testCaesarMultiplicative() throws JAXBException, IOException, NoSuchFunctionException{
         // Create Domain Objects
         String baseAlgorithm = "MultiplicativeCipher";
         String secondaryBaseAlgorithm = "CaesarCipher";
@@ -94,7 +95,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
     }
     
     @Test
-    public void testCaesarCaesar() throws JAXBException, IOException{
+    public void testCaesarCaesar() throws JAXBException, IOException, NoSuchFunctionException{
         // Create Domain Objects
     	String baseAlgorithm = "CaesarCipher";
         String secondaryBaseAlgorithm = "CaesarCipher";
@@ -105,7 +106,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
     }
     
     @Test
-    public void testXORXOR() throws JAXBException, IOException{
+    public void testXORXOR() throws JAXBException, IOException, NoSuchFunctionException{
         // Create Domain Objects
         String baseAlgorithm = "XORCipher";
         String secondaryBaseAlgorithm = "XORCipher";
@@ -116,7 +117,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
     }
     
     @Test
-    public void testXORMultiplicative() throws JAXBException, IOException{
+    public void testXORMultiplicative() throws JAXBException, IOException, NoSuchFunctionException{
         // Create Domain Objects
         String baseAlgorithm = "XORCipher";
         String secondaryBaseAlgorithm = "MultiplicativeCipher";
@@ -127,7 +128,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
     }
     
     @Test
-    public void testMultiplicativeMultiplicative() throws JAXBException, IOException{
+    public void testMultiplicativeMultiplicative() throws JAXBException, IOException, NoSuchFunctionException{
         // Create Domain Objects
         String baseAlgorithm = "MultiplicativeCipher";
         String secondaryBaseAlgorithm = "MultiplicativeCipher";
@@ -137,7 +138,7 @@ public class DoubleAlgorithmJAXBTest extends TestCase{
         finishTest();
     }
     
-    public void finishTest() throws JAXBException, IOException  {
+    public void finishTest() throws JAXBException, IOException, NoSuchFunctionException  {
         // Marshal doubleAlgorithmJAXB
         marshaller.marshal(doubleAlgorithmJAXB, xmlFile);
         doubleAlgorithmJAXB=null;

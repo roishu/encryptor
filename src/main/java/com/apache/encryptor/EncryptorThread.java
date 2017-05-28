@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBException;
 
 import com.apache.exception.NoSuchAlgorithmException;
 import com.apache.exception.NoSuchCipherException;
+import com.apache.exception.NoSuchFunctionException;
 
 public class EncryptorThread implements Runnable {
 
@@ -17,8 +18,8 @@ public class EncryptorThread implements Runnable {
 	private String algorithm;
 	private String cipher1="",cipher2="";
 	private JTextArea console;
-	//mutex
-	private ReentrantLock lock = ThreadPoolEncryptor.lock;
+	//mutex - singleton
+	private ReentrantLock lock = SingletonLockManager.instance();
 
 	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm) {
 		super();
@@ -55,11 +56,11 @@ public class EncryptorThread implements Runnable {
 		this.console = console;
 	}
 
-	private void threadExecuteBaseAlgorithm() throws IOException, JAXBException {
+	private void threadExecuteBaseAlgorithm() throws IOException, JAXBException, NoSuchFunctionException {
 		encryptor.executeBaseAlgorithm(algorithm, fileHolder);
 	}
 
-	private void threadExecuteExtendedAlgorithm() throws IOException, JAXBException, NoSuchCipherException {
+	private void threadExecuteExtendedAlgorithm() throws IOException, JAXBException, NoSuchCipherException, NoSuchFunctionException {
 		if("CaesarCipherXORCipherMultiplicativeCipher".contains(cipher1) 
 				&& "CaesarCipherXORCipherMultiplicativeCipher".contains(cipher2))
 		{
@@ -93,7 +94,7 @@ public class EncryptorThread implements Runnable {
 			else{
 				throw new NoSuchAlgorithmException("Algorithm "+algorithm+" not found.");
 			}
-		} catch (IOException | JAXBException | NoSuchAlgorithmException | NoSuchCipherException e) {
+		} catch (IOException | JAXBException | NoSuchAlgorithmException | NoSuchCipherException | NoSuchFunctionException e) {
 			e.printStackTrace();
 			if(console!=null)
 				printErrorMVC(e.getMessage());

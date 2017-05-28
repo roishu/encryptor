@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.apache.encryptor.FileHolder;
+import com.apache.exception.NoSuchFunctionException;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
@@ -21,13 +22,13 @@ public class ReverseAlgorithm extends ExtendedAlgorithm{
 	}
 
 	@Override
-	public void encrypt(FileHolder fileHolder) throws IOException {
+	public void encrypt(FileHolder fileHolder) throws IOException, NoSuchFunctionException {
 		baseAlgorithm.execute(fileHolder, "Decryption");
 		
 	}
 
 	@Override
-	public void decrypt(FileHolder fileHolder) throws IOException {
+	public void decrypt(FileHolder fileHolder) throws IOException, NoSuchFunctionException {
 		// TODO Auto-generated method stub
 		baseAlgorithm.execute(fileHolder, "Encryption");
 		
@@ -49,7 +50,7 @@ public class ReverseAlgorithm extends ExtendedAlgorithm{
 	}
 	
 	@Override
-	public void execute(FileHolder fileHolder , String choice) throws IOException {
+	public void execute(FileHolder fileHolder , String choice) throws IOException, NoSuchFunctionException {
 		if(choice.equals("Encryption"))
 			encrypt(fileHolder);
 		else

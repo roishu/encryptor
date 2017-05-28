@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import com.apache.encryptor.FileHolder;
+import com.apache.exception.NoSuchFunctionException;
 
 @XmlTransient
 public abstract class BaseAlgorithm extends Algorithm {
@@ -56,12 +57,14 @@ public abstract class BaseAlgorithm extends Algorithm {
 		 	fos.close();
     }
     
-    public void execute(FileHolder fileHolder , String choice) throws IOException{
+    public void execute(FileHolder fileHolder , String choice) throws IOException, NoSuchFunctionException{
     	byte[] fileBytes = fileHolder.getData();
     	if (choice.equals("Encryption"))
     		encryption(fileBytes ,fileHolder);
-    	else
+    	else if (choice.equals("Decryption"))
     		decryption(fileBytes ,fileHolder);
+    	else
+    		throw new NoSuchFunctionException("can't resolve any function except {Encryption,Decryption}");
     }
     
 }

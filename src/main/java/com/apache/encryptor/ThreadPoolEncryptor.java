@@ -22,8 +22,6 @@ public class ThreadPoolEncryptor {
 	private long startTime=0 , endTime=0 , duration=0;
 	//MVC
 	private JTextArea console;
-	//mutex 
-	public static ReentrantLock lock = new ReentrantLock();
 
 	public ThreadPoolEncryptor(File folder, String algorithm) throws JAXBException {
 		super();
