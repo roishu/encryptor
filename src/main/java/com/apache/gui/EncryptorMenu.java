@@ -8,9 +8,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
-import com.apache.gui.FileChooserTest.OpenL;
-import com.apache.gui.FileChooserTest.SaveL;
-
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;

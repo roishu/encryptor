@@ -51,21 +51,6 @@ public class EncryptorManager {
         doubleAlgorithmJAXB.setSecondaryCipher("XORCipher");
         marshaller.marshal(doubleAlgorithmJAXB, xmlFile);
         doubleAlgorithmJAXB=null;
-        //Unmarshal doubleAlgorithmJAXB
-
-    	//xmlFile.delete();
-	}
-
-	private void executeAlgorithmFromXML(String choice , FileHolder fileHolder){
-
-		//    	Marshaller marshaller2 = this.doubleContext.createMarshaller();
-		//    	marshaller2.marshal(new DoubleAlgorithm(), new File("DoubleAlgorithm.xml"));
-		//    	
-		//    	Unmarshaller unmarshaller2 = this.doubleContext.createUnmarshaller();
-		//    	DoubleAlgorithm doubleAlgorithm = (DoubleAlgorithm) unmarshaller2.unmarshal(new File("DoubleAlgorithm.xml"));
-		//    	
-		//    	assertEquals(doubleAlgorithm.getBaseAlgorithmName(), "CaesarCipher");
-		//    	assertEquals(doubleAlgorithm.getSecondaryBaseAlgorithmName(), "MultiplicativeCipher");
 	}
 
 	public void executeBaseAlgorithm(String choice , FileHolder fileHolder) throws IOException{

@@ -91,10 +91,10 @@ public class ThreadPoolEncryptor {
 	public void execute(){
 		startTime = System.nanoTime();
 		executor = Executors.newFixedThreadPool(numOfFiles);
+		print(algorithm+"'s Thread Created.");
 		for(int i =0 ; i<numOfFiles ; i++){
 			//check for algorithm type
 			createThread(console==null , i);
-			//Async Execute
 			executor.execute(threadEncryptors.get(i));
 			/*
 			 * execute: Use it for fire and forget calls
@@ -102,8 +102,6 @@ public class ThreadPoolEncryptor {
 			 * take appropriate action on Future objected returned by the call
 			 * we are using execute because we don't have to manage the thread after it ends.
 			 */
-			//Sync Execute
-			//syncExecute(i);
 		}
 		executor.shutdown();
 		time();
@@ -124,7 +122,7 @@ public class ThreadPoolEncryptor {
 				System.out.println("THROW EXCEPTION"); //TODO exception !
 			}
 		}
-		else{ //app console
+		else{ //app console (MVC)
 			if(cipher1.equals(""))
 				threadEncryptors.add(new EncryptorThread(filesInFolder.get(i) , encryptor , algorithm));
 			else if (algorithm.equals("DoubleAlgorithm"))
@@ -148,8 +146,11 @@ public class ThreadPoolEncryptor {
 	}
 
 	public void print(String str){
-		if(console!=null)
+		if(console!=null){
 			console.setText(console.getText()+str+"\n");
+			EncryptorController.logger.info("Thread Info : " + str); //to log
+		}
+			
 		else
 			System.out.println(str);
 	}

@@ -1,0 +1,12 @@
+2017-05-28 12:34:48 INFO  EncryptorController:151 - Thread Info : SplitAlgorithm's Thread Created.
+2017-05-28 12:34:48 INFO  EncryptorController:109 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 12:34:48 INFO  EncryptorController:109 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 12:34:48 INFO  EncryptorController:109 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 12:34:48 INFO  EncryptorController:109 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 12:34:48 INFO  EncryptorController:109 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 12:34:48 INFO  EncryptorController:109 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 12:34:48 INFO  EncryptorController:151 - Thread Info : -----------Time 1: 162ms-----------
+2017-05-28 12:45:12 INFO  EncryptorController:151 - Thread Info : DoubleAlgorithm's Thread Created.
+2017-05-28 12:45:12 INFO  EncryptorController:110 - Thread Info : Encryption\Decryption File: Untitled-1
+2017-05-28 12:45:12 INFO  EncryptorController:110 - Thread Info : Finish Encryption\Decryption File: Untitled-1
+2017-05-28 12:45:12 INFO  EncryptorController:151 - Thread Info : -----------Time 1: 94ms-----------

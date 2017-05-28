@@ -25,8 +25,7 @@ public class EncryptorController {
 							view.getAlgorithm(),view.getCipher(),view.getSecondaryCipher(),view.console);
 					model.execute();
 				} catch (JAXBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					EncryptorController.logger.error(e1.getMessage());
 				}
 			}
 		}

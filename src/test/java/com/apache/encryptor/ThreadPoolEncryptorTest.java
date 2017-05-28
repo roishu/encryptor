@@ -58,7 +58,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testCaesarCipher() throws IOException, JAXBException  {
 	    	System.out.println("testCaesarCipher");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "CaesarCiper");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "CaesarCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
@@ -82,7 +82,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testDoubleAlgorithm_Caesar_Multiplicative() throws IOException, JAXBException  {
 	    	System.out.println("testDoubleAlgorithm");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"CaesarCiper" , "MultiplicativeCipher");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"CaesarCipher" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }
@@ -98,7 +98,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    @Test
 	    public void testDoubleAlgorithm_XOR_Caesar() throws IOException, JAXBException  {
 	    	System.out.println("testDoubleAlgorithm");
-	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"XORCipher" , "CaesarCiper");
+	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"XORCipher" , "CaesarCipher");
 	    	tpEncryptor.execute();
 	    	finishTest();
 	    }

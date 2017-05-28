@@ -1,4 +1,4 @@
-package com.apache.encryptor;
+package com.apache.object;
 
 import java.io.IOException;
 import java.util.concurrent.locks.ReentrantLock;
@@ -6,10 +6,14 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.swing.JTextArea;
 import javax.xml.bind.JAXBException;
 
+import com.apache.encryptor.EncryptorController;
+import com.apache.encryptor.EncryptorManager;
+import com.apache.encryptor.FileHolder;
+import com.apache.encryptor.ThreadPoolEncryptor;
 import com.apache.exception.NoSuchAlgorithmException;
 import com.apache.exception.NoSuchCipherException;
 
-public class EncryptorThread implements Runnable {
+public class EncryptorTestThread implements Runnable {
 
 	private Thread t;
 	private FileHolder fileHolder;
@@ -17,17 +21,18 @@ public class EncryptorThread implements Runnable {
 	private String algorithm;
 	private String cipher1="",cipher2="";
 	private JTextArea console;
+	private Exception ex=null;
 	//mutex
 	private ReentrantLock lock = ThreadPoolEncryptor.lock;
 
-	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm) {
+	public EncryptorTestThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm) {
 		super();
 		this.fileHolder = fileHolder;
 		this.encryptor = encryptor;
 		this.algorithm = algorithm;
 	}
 
-	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 ) {
+	public EncryptorTestThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 ) {
 		super();
 		this.fileHolder = fileHolder;
 		this.encryptor = encryptor;
@@ -35,7 +40,7 @@ public class EncryptorThread implements Runnable {
 		this.cipher1 = cipher1;
 	}
 
-	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 , String cipher2) {
+	public EncryptorTestThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 , String cipher2) {
 		super();
 		this.fileHolder = fileHolder;
 		this.encryptor = encryptor;
@@ -44,7 +49,7 @@ public class EncryptorThread implements Runnable {
 		this.cipher2 = cipher2;
 	}
 
-	public EncryptorThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 , String cipher2 
+	public EncryptorTestThread(FileHolder fileHolder, EncryptorManager encryptor, String algorithm , String cipher1 , String cipher2 
 			, JTextArea console) {
 		super();
 		this.fileHolder = fileHolder;
@@ -56,24 +61,21 @@ public class EncryptorThread implements Runnable {
 	}
 
 	private void threadExecuteBaseAlgorithm() throws IOException, JAXBException {
-		encryptor.executeBaseAlgorithm(algorithm, fileHolder);
+		/*
+		 * unnecessary for test 
+		 */
 	}
 
 	private void threadExecuteExtendedAlgorithm() throws IOException, JAXBException, NoSuchCipherException {
 		if("CaesarCipherXORCipherMultiplicativeCipher".contains(cipher1) 
 				&& "CaesarCipherXORCipherMultiplicativeCipher".contains(cipher2))
 		{
-			if(algorithm.equals("ReverseAlgorithm"))
-				encryptor.executeReverseAlgorithm(cipher1, fileHolder);
-
-			else if(algorithm.equals("SplitAlgorithm"))
-				encryptor.executeSplitAlgorithm(cipher1,cipher2, fileHolder);
-
-			else if(algorithm.equals("DoubleAlgorithm"))
-				encryptor.executeDoubleAlgorithm(cipher1,cipher2, fileHolder);
+			/*
+			 * unneccesary for test
+			 */
 		}
 		else
-			throw new NoSuchCipherException("one or more {"+cipher1+","+cipher2+"} ciphers not found.");
+			ex = new NoSuchCipherException("one or more {"+cipher1+","+cipher2+"} ciphers not found.");
 	}
 
 
@@ -84,46 +86,33 @@ public class EncryptorThread implements Runnable {
 	@Override
 	public void run() {
 		//lock.lock();
-		print("Encryption\\Decryption File: " +  fileHolder.getFileNameWithoutExtension());
 		try {
 			if(cipher1.equals("") && "CaesarCipherXORCipherMultiplicativeCipher".contains(algorithm))
 				threadExecuteBaseAlgorithm();
 			else if ("DoubleAlgorithmReverseAlgorithmSplitAlgorithm".contains(algorithm))
 				threadExecuteExtendedAlgorithm();
 			else{
-				throw new NoSuchAlgorithmException("Algorithm "+algorithm+" not found.");
+				ex = new NoSuchAlgorithmException("Algorithm "+algorithm+" not found.");
 			}
-		} catch (IOException | JAXBException | NoSuchAlgorithmException | NoSuchCipherException e) {
+		} catch (IOException | JAXBException | NoSuchCipherException e) {
 			e.printStackTrace();
-			if(console!=null)
-				printErrorMVC(e.getMessage());
 		}
-		print("Finish Encryption\\Decryption File: " +  fileHolder.getFileNameWithoutExtension());
 		//lock.unlock();
 	}
 
 	public void start () {
 		if (t == null) {
-			print(algorithm+"'s Thread Created.");
 			t = new Thread(this);
 			t.start ();
 		}
 	}
-
-	public void print(String str){
-		if(console!=null){
-			console.setText(console.getText()+str+"\n"); //to user
-			EncryptorController.logger.info("Thread Info : " + str); //to log
-		}
-
-		else
-			System.out.println(str);
-	}
 	
-	public void printErrorMVC(String str){
-		EncryptorController.logger.error(str);
-		console.setText(console.getText()+str+"\n");
-	}
+    public void checkForExceptionForTest() throws Exception {
+        if (ex!= null) {
+            throw ex;
+        }
+    }
 
 
 }
+
