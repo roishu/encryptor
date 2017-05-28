@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import com.apache.encryptor.FileHolder;
+import com.apache.exception.IllegalKeyException;
 import com.apache.exception.NoSuchFunctionException;
 
 @XmlTransient
@@ -66,5 +67,16 @@ public abstract class BaseAlgorithm extends Algorithm {
     	else
     		throw new NoSuchFunctionException("can't resolve any function except {Encryption,Decryption}");
     }
+
+	public void setKey(String fileName) throws IllegalKeyException {
+		this.key.deserialize(fileName);
+		this.checkValidKey();
+	}
+	
+	public void exprotKey() {
+		this.key.serialize();
+	}
+	
+    public abstract void checkValidKey() throws IllegalKeyException;
     
 }

@@ -10,3 +10,68 @@
 2017-05-28 12:45:12 INFO  EncryptorController:110 - Thread Info : Encryption\Decryption File: Untitled-1
 2017-05-28 12:45:12 INFO  EncryptorController:110 - Thread Info : Finish Encryption\Decryption File: Untitled-1
 2017-05-28 12:45:12 INFO  EncryptorController:151 - Thread Info : -----------Time 1: 94ms-----------
+2017-05-28 18:31:53 INFO  EncryptorController:149 - Thread Info : ReverseAlgorithm's Thread Created.
+2017-05-28 18:31:53 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 18:31:53 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 18:31:53 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 18:31:53 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 18:31:53 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 18:31:53 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 18:31:53 INFO  EncryptorController:149 - Thread Info : -----------Time 1: 408ms-----------
+2017-05-28 18:50:33 INFO  EncryptorController:155 - Thread Info : ReverseAlgorithm's Thread Created.
+2017-05-28 18:50:33 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 18:50:33 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 18:50:33 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 18:50:34 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 18:50:34 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 18:50:34 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 18:50:34 INFO  EncryptorController:155 - Thread Info : -----------Time 1: 648ms-----------
+2017-05-28 18:53:34 INFO  EncryptorController:156 - Thread Info : setting new key from C:\Users\Roi\Documents\empty-key.bin
+2017-05-28 18:53:34 INFO  EncryptorController:156 - Thread Info : ReverseAlgorithm's Thread Created.
+2017-05-28 18:53:34 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 18:53:34 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 18:53:34 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 18:53:35 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 18:53:35 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 18:53:35 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 18:53:35 INFO  EncryptorController:156 - Thread Info : -----------Time 1: 715ms-----------
+2017-05-28 18:57:43 INFO  EncryptorController:160 - Thread Info : setting new key from C:\Users\Roi\Documents\empty-key.bin
+2017-05-28 18:57:43 INFO  EncryptorController:160 - Thread Info : ReverseAlgorithm's Thread Created.
+2017-05-28 18:57:43 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 18:57:43 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 18:57:43 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 18:57:44 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 18:57:44 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 18:57:44 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 18:57:44 INFO  EncryptorController:160 - Thread Info : -----------Time 1: 936ms-----------
+2017-05-28 19:02:48 INFO  EncryptorController:167 - Thread Info : ReverseAlgorithm's Thread Created.
+2017-05-28 19:02:48 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 19:02:48 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 19:02:48 INFO  EncryptorController:167 - Thread Info : -----------Time 1: 20ms-----------
+2017-05-28 19:22:28 INFO  EncryptorController:164 - Thread Info : DoubleAlgorithm's Thread Created.
+2017-05-28 19:22:28 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: Untitled-1
+2017-05-28 19:22:28 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: Untitled-1
+2017-05-28 19:22:28 INFO  EncryptorController:164 - Thread Info : -----------Time 1: 78ms-----------
+2017-05-28 19:25:41 INFO  EncryptorController:164 - Thread Info : DoubleAlgorithm's Thread Created.
+2017-05-28 19:25:41 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: pic
+2017-05-28 19:25:41 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: pic
+2017-05-28 19:25:41 INFO  EncryptorController:164 - Thread Info : -----------Time 1: 124ms-----------
+2017-05-28 19:27:36 ERROR EncryptorController:173 - Illegal Key File
+2017-05-28 19:29:03 INFO  EncryptorController:39 - you need to fill every field before execute Encryption/Decryption!
+2017-05-28 19:30:45 INFO  EncryptorController:40 - you need to fill every field before execute Encryption/Decryption!
+2017-05-28 20:54:54 ERROR EncryptorController:173 - Illegal Key File
+2017-05-28 20:55:04 INFO  EncryptorController:165 - Thread Info : new key is signed!
+2017-05-28 20:55:04 INFO  EncryptorController:165 - Thread Info : ReverseAlgorithm's Thread Created.
+2017-05-28 20:55:04 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file1
+2017-05-28 20:55:04 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file3
+2017-05-28 20:55:04 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: file2
+2017-05-28 20:55:04 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file2
+2017-05-28 20:55:04 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file3
+2017-05-28 20:55:04 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: file1
+2017-05-28 20:55:04 INFO  EncryptorController:165 - Thread Info : -----------Time 1: 743ms-----------
+2017-05-28 20:58:09 INFO  EncryptorController:165 - Thread Info : new key is signed!
+2017-05-28 20:58:09 INFO  EncryptorController:165 - Thread Info : DoubleAlgorithm's Thread Created.
+2017-05-28 20:58:09 INFO  EncryptorController:117 - Thread Info : Encryption\Decryption File: pic
+2017-05-28 20:58:09 INFO  EncryptorController:117 - Thread Info : Finish Encryption\Decryption File: pic
+2017-05-28 20:58:09 INFO  EncryptorController:165 - Thread Info : -----------Time 1: 131ms-----------
+2017-05-28 20:58:13 INFO  EncryptorController:165 - Thread Info : export key succeeded! {location:encryptor\key.bin}

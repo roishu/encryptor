@@ -7,18 +7,36 @@ import java.nio.file.Paths;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.apache.ciphers.CaesarCipher;
 
+@XmlRootElement (name = "file")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class FileHolder {
+	@XmlTransient
 	private boolean isEmpty = true;
+	@XmlTransient
 	private File file;
+	@XmlTransient
 	private CaesarCipher caesarChiper;
+	@XmlTransient
 	private String filePath;
+	@XmlTransient
 	private String content;
+	@XmlTransient
 	private byte[] data;
+	@XmlTransient
 	private String directoryPath;
 	private String extension;
+	@XmlElement
+	private String status = "Encryption\\Decryption: true";
+	@XmlElement
+	private String name;
 	
 	public String getDirectoryPath() {
 		return directoryPath;
@@ -26,6 +44,14 @@ public class FileHolder {
 
 	public void setDirectoryPath(String directoryPath) {
 		this.directoryPath = directoryPath;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean b) {
+		this.status = "Encryption\\Decryption: "+b;
 	}
 
 	public FileHolder() {
@@ -36,6 +62,7 @@ public class FileHolder {
 	public FileHolder(File file) {
 		// TODO Auto-generated constructor stub
 		importFile(file.getPath());
+		name = file.getName();
 	}
 	
 	public String getContent() {

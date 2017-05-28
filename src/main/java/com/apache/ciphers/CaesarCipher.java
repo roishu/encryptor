@@ -24,4 +24,11 @@ public class CaesarCipher extends BaseAlgorithm {
 	public byte decryptByte(byte b, Key key) throws IOException {
 		return (byte)(b - key.key);
 	}
+
+	@Override
+	public void checkValidKey(){
+		/*
+		 * nothing to check
+		 */
+	}
 }

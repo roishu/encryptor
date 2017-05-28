@@ -1,10 +1,17 @@
 package com.apache.encryptor;
 
-import junit.framework.TestCase;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -19,7 +26,9 @@ import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.XORCipher;
 import com.apache.exception.NoSuchFunctionException;
 
-public class BaseAlgorithmTest extends TestCase {
+import junit.framework.TestCase;
+
+public class KeyChangeCipherTest extends TestCase {
 	private String text = "Example Test Content.";
 	     
 	    @Mock
@@ -47,30 +56,61 @@ public class BaseAlgorithmTest extends TestCase {
 	        algorithm = null;
 	        file.delete();   
 	        System.gc();
+	        new File("logs/key.bin").delete();
 	    }
-	 
+	    
 	    @Test
 	    public void testCaesarCipher() throws IOException, NoSuchFunctionException  {
 	         
-	    	algorithm = new CaesarCipher();
-	    	executeAlgorithmForTest();
-
+			try {
+				String x = "abcd";
+				FileOutputStream fos = new FileOutputStream("logs/key.bin");
+				ObjectOutputStream out = new ObjectOutputStream(fos);
+				out.writeObject(x.getBytes()[0]);
+				out.close();
+		    	algorithm = new CaesarCipher();
+		    	algorithm.setKey("logs/key.bin");
+		    	executeAlgorithmForTest();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
+	    }
+	    
+	    @Test
+	    public void testXORCipher() throws IOException, NoSuchFunctionException  {
+	         
+			try {
+				String x = "abcd";
+				FileOutputStream fos = new FileOutputStream("logs/key.bin");
+				ObjectOutputStream out = new ObjectOutputStream(fos);
+				out.writeObject(x.getBytes()[0]);
+				out.close();
+		    	algorithm = new XORCipher();
+		    	algorithm.setKey("logs/key.bin");
+		    	executeAlgorithmForTest();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
 	    }
 	    
 	    @Test
 	    public void testMultiplicativeCipher() throws IOException, NoSuchFunctionException  {
 	         
-	    	algorithm = new MultiplicativeCipher();
-	    	executeAlgorithmForTest();
-
-	    }
-	     
-	    @Test
-	    public void testXORCipher() throws IOException, NoSuchFunctionException  {
-	         
-	    	algorithm = new XORCipher();
-	    	executeAlgorithmForTest();
-
+			try {
+				int x = 15;
+				FileOutputStream fos = new FileOutputStream("logs/key.bin");
+				ObjectOutputStream out = new ObjectOutputStream(fos);
+				out.writeObject((byte)15);
+				out.close();
+		    	algorithm = new XORCipher();
+		    	algorithm.setKey("logs/key.bin");
+		    	executeAlgorithmForTest();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
 	    }
 	    
 	    public void executeAlgorithmForTest() throws IOException, NoSuchFunctionException{
@@ -83,6 +123,5 @@ public class BaseAlgorithmTest extends TestCase {
 			Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();
 			Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();
 	    }
-	 
-	
+	    
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -56,7 +57,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	 
 	    @Test
-	    public void testCaesarCipher() throws IOException, JAXBException  {
+	    public void testCaesarCipher() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testCaesarCipher");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "CaesarCipher");
 	    	tpEncryptor.execute();
@@ -64,7 +65,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testMultiplicativeCipher() throws IOException, JAXBException  {
+	    public void testMultiplicativeCipher() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testMultiplicativeCipher");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "MultiplicativeCipher");
 	    	tpEncryptor.execute();
@@ -72,7 +73,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testXORCipher() throws IOException, JAXBException  {
+	    public void testXORCipher() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testXORCipher");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "XORCipher");
 	    	tpEncryptor.execute();
@@ -80,7 +81,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testDoubleAlgorithm_Caesar_Multiplicative() throws IOException, JAXBException  {
+	    public void testDoubleAlgorithm_Caesar_Multiplicative() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testDoubleAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"CaesarCipher" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();
@@ -88,7 +89,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testDoubleAlgorithm_Multiplicative_XOR() throws IOException, JAXBException  {
+	    public void testDoubleAlgorithm_Multiplicative_XOR() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testDoubleAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"MultiplicativeCipher" , "XORCipher");
 	    	tpEncryptor.execute();
@@ -96,7 +97,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testDoubleAlgorithm_XOR_Caesar() throws IOException, JAXBException  {
+	    public void testDoubleAlgorithm_XOR_Caesar() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testDoubleAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "DoubleAlgorithm" ,"XORCipher" , "CaesarCipher");
 	    	tpEncryptor.execute();
@@ -104,7 +105,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testReverseAlgorithm() throws IOException, JAXBException  {
+	    public void testReverseAlgorithm() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testReverseAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "ReverseAlgorithm" ,"XORCipher");
 	    	tpEncryptor.execute();
@@ -112,7 +113,7 @@ public class ThreadPoolEncryptorTest extends TestCase {
 	    }
 	    
 	    @Test
-	    public void testSplitAlgorithm() throws IOException, JAXBException  {
+	    public void testSplitAlgorithm() throws IOException, JAXBException, NoSuchAlgorithmException  {
 	    	System.out.println("testSplitAlgorithm");
 	    	ThreadPoolEncryptor tpEncryptor = new ThreadPoolEncryptor(folder, "SplitAlgorithm" ,"MultiplicativeCipher" , "MultiplicativeCipher");
 	    	tpEncryptor.execute();

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<directory-document>
+    <file>
+        <extension>.txt</extension>
+        <status>Encryption\Decryption: true</status>
+        <name>fileTest1.txt</name>
+    </file>
+    <file>
+        <extension>.txt</extension>
+        <status>Encryption\Decryption: true</status>
+        <name>fileTest2.txt</name>
+    </file>
+    <file>
+        <extension>.txt</extension>
+        <status>Encryption\Decryption: true</status>
+        <name>fileTest3.txt</name>
+    </file>
+    <file>
+        <extension>.txt</extension>
+        <status>Encryption\Decryption: true</status>
+        <name>fileTest4.txt</name>
+    </file>
+</directory-document>

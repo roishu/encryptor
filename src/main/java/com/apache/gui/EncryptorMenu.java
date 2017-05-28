@@ -21,6 +21,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.LinearGradientPaint;
 import java.awt.TextArea;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -47,7 +48,7 @@ public class EncryptorMenu extends JFrame
 	private static final String []dataCombo2 = { "CaesarCipher" , "MultiplicativeCipher" , "XORCipher" };
 	private JScrollPane consolePanel ;
 	private JButton btBut1 = new JButton("Accept");
-	private JButton browseButton = new JButton("Browse");
+	private JButton browseButton = new JButton("Browse File") , keyButton = new JButton("Browse Key");
 	private final JFileChooser fc = new JFileChooser();
 	private JTextField filename = new JTextField("",30), dir = new JTextField();
 	private ButtonGroup selectionGroup;
@@ -55,16 +56,21 @@ public class EncryptorMenu extends JFrame
 	private JPanel encryptorExecutePanel;
 	//public elements (MVC)
 	public JButton executeButton;
-	public JButton exportXMLButton;
+	public JButton exportKeyButton;
 	public JTextArea console;
+	private JPanel keyChooserPanel;
+	private JTextField keyfilename= new JTextField("",30);
 
 	public EncryptorMenu() 
 	{ 
 		fileChooserInit();
+		keyChooserInit();
 		setLayout(new GridLayout(3, 1));
 		//Browse
 		selectionPanel = new JPanel();
+		//selectionPanel.setLayout(new GridLayout(2, 1));
 		selectionPanel.add(fileChooserPanel);
+		selectionPanel.add(keyChooserPanel);
 		//Encryption / Decryption - Choose
 		selectionPanel.setBorder(BorderFactory.createTitledBorder("Choose File"));
 		//Algorithms - Options
@@ -93,8 +99,9 @@ public class EncryptorMenu extends JFrame
 		encryptorPanel.add(encryporOptionPanel);
 		executeButton = new JButton("Execute");
 		encryptorExecutePanel.add(executeButton);
-		exportXMLButton = new JButton("Export algorithm to xml");
-		encryptorExecutePanel.add(exportXMLButton);
+		exportKeyButton = new JButton("Export Key");
+		exportKeyButton.setEnabled(false);
+		encryptorExecutePanel.add(exportKeyButton);
 		encryptorPanel.add(encryptorExecutePanel);
 		console = new JTextArea( 12, 40 ) ;
 		console.setText(">>>Welcome!\n");
@@ -113,7 +120,7 @@ public class EncryptorMenu extends JFrame
 		pack();
 		setSize(500,500);
 		setVisible( true );
-		//setResizable(false);
+		setResizable(false);
 	} 
 	
 	public boolean checkBeforeExecution(){
@@ -126,6 +133,10 @@ public class EncryptorMenu extends JFrame
 						return true;
 				}
 		return false;
+	}
+	
+	public String getKeyFileName(){
+		return keyfilename.getText();
 	}
 	
 	public void print(String str){
@@ -161,6 +172,21 @@ public class EncryptorMenu extends JFrame
 	    fileChooserPanel.add(browseButton,BorderLayout.WEST);
 	    fileChooserPanel.add(filename,BorderLayout.CENTER);
 	    filename.setSize(100, 20);
+	    filename.setEnabled(false);
+	}
+	
+	private void keyChooserInit() {
+		// TODO Auto-generated method stub
+		keyChooserPanel = new JPanel();
+		keyChooserPanel.setLayout(new BorderLayout());
+		keyButton.addActionListener(keyBrowseActionListener);
+	    //dir.setEditable(false);
+	    //filename.setEditable(false);
+	    
+		keyChooserPanel.add(keyButton,BorderLayout.WEST);
+		keyChooserPanel.add(keyfilename,BorderLayout.CENTER);
+	    keyfilename.setSize(100, 20);
+	    keyfilename.setEnabled(false);
 	}
 	
     ActionListener cbActionListener = new ActionListener() {//add actionlistner to listen for change
@@ -200,7 +226,6 @@ public class EncryptorMenu extends JFrame
 		      int rVal = c.showOpenDialog(EncryptorMenu.this);
 		      if (rVal == JFileChooser.APPROVE_OPTION) {
 		        filename.setText(c.getSelectedFile().getPath());
-		        dir.setText(c.getCurrentDirectory().toString());
 		        jcmbAlgorithm.setEnabled(true);
 		      }
 		      if (rVal == JFileChooser.CANCEL_OPTION) {
@@ -212,22 +237,22 @@ public class EncryptorMenu extends JFrame
 		      }
 		}
 	};
-
-	private ActionListener FunctionActionListener = new ActionListener() {
+	
+	private ActionListener keyBrowseActionListener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-			String s = (String) jcmbFunction.getSelectedItem();//get the selected item
-			console.setText(s);
-			switch (s) {//check for a match
-			case "Encryption":
-
-				break;
-			case "Decryption":
-
-				break;
-			}
+			// TODO Auto-generated method stub
+		      JFileChooser c = new JFileChooser();
+		      c.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		      int rVal = c.showOpenDialog(EncryptorMenu.this);
+		      if (rVal == JFileChooser.APPROVE_OPTION) {
+		    	 keyfilename.setText(c.getSelectedFile().getPath());
+		      }
+		      if (rVal == JFileChooser.CANCEL_OPTION) {
+		        keyfilename.setText("");
+		      }
 		}
 	};
+
 
 } 

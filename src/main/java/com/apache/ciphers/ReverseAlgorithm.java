@@ -18,7 +18,6 @@ public class ReverseAlgorithm extends ExtendedAlgorithm{
 
 	public ReverseAlgorithm(BaseAlgorithm baseAlgorithm) {
 		super("ReverseAlgorithm",baseAlgorithm);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -29,7 +28,6 @@ public class ReverseAlgorithm extends ExtendedAlgorithm{
 
 	@Override
 	public void decrypt(FileHolder fileHolder) throws IOException, NoSuchFunctionException {
-		// TODO Auto-generated method stub
 		baseAlgorithm.execute(fileHolder, "Encryption");
 		
 	}

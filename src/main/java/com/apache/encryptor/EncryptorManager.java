@@ -18,6 +18,7 @@ import com.apache.ciphers.MultiplicativeCipher;
 import com.apache.ciphers.ReverseAlgorithm;
 import com.apache.ciphers.SplitAlgorithm;
 import com.apache.ciphers.XORCipher;
+import com.apache.exception.IllegalKeyException;
 import com.apache.exception.NoSuchFunctionException;
 import com.apache.jaxb.DoubleAlgorithmJAXB;
 
@@ -115,6 +116,18 @@ public class EncryptorManager {
 		//delete Files
 		Paths.get(fileHolder.getEncryptedResultPath()).toFile().delete();
 		Paths.get(fileHolder.getDecryptedResultPath()).toFile().delete();	
+	}
+
+	public void setCipherKeys(String cipher, String secondaryCipher, String keyFileName) throws IllegalKeyException {
+		int index1 = getCipherIndex(cipher);
+		int index2 = getCipherIndex(secondaryCipher);
+		baseAlgorithms[index1].setKey(keyFileName);
+		baseAlgorithms[index2].setKey(keyFileName);
+	}
+
+	public void exportKey(String cipher1) {
+		int index1 = getCipherIndex(cipher1);
+		baseAlgorithms[index1].exprotKey();
 	}
 
 

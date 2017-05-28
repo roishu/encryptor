@@ -27,5 +27,12 @@ public class XORCipher extends BaseAlgorithm {
 		// TODO Auto-generated method stub
 		return encryptByte( b , key);
 	}
+	
+	@Override
+	public void checkValidKey(){
+		/*
+		 * nothing to check
+		 */
+	}
 
 }
